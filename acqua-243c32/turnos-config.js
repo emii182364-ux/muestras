@@ -1,7 +1,7 @@
 /* Acqua Detail · configuración de la plantilla de turnos (demo). Horarios de ejemplo: a confirmar con Acqua. */
 window.TURNOS_CONFIG = {
   modo: 'demo',
-  negocio: { id: 'acqua-detail', nombre: 'Acqua Detail', whatsapp: '5493444510332', prefijoPais: '549', direccion: '25 de Mayo 1546, Gualeguay' },
+  negocio: { id: 'acqua-detail', nombre: 'Acqua Detail', whatsapp: '5493444510332', prefijoPais: '549', direccion: '25 de Mayo 1546, Gualeguay', resena: 'https://search.google.com/local/writereview?placeid=ChIJ0wp5dv2bsJUR4-9TA8P_lHI' },
   textos: { titulo: 'Reservá tu turno', prefijoPrecio: 'Estimativo promedio', campoVehiculo: 'Modelo del auto', ejemploVehiculo: 'Ej.: Toyota Hilux', lugar: 'taller', unidad: 'auto' },
   mostrarPrecios: true,
   puestos: ['Box 1', 'Box 2'],

@@ -320,7 +320,7 @@
       const cambiar = e => { t.estado = e; guardar(); pintar(); };
       const num = numWa(t.telefono);
       const recordar = `Hola ${t.nombre}! Te recordamos tu turno en ${C.negocio.nombre}: ${s.nombre}, el ${fmtLargo.format(ini)} a las ${hora(ini)}.${C.negocio.direccion ? ' ' + C.negocio.direccion + '.' : ''} Si no podés venir, avisanos por acá.`;
-      const listo = `Hola ${t.nombre}! Tu ${t.vehiculo || T.unidad} ya está listo en ${C.negocio.nombre}. Podés pasar a retirarlo cuando quieras.`;
+      const listo = `Hola ${t.nombre}! Tu ${t.vehiculo || T.unidad} ya está listo en ${C.negocio.nombre}. Podés pasar a retirarlo cuando quieras.${C.negocio.resena ? ' Si te gustó cómo quedó, nos ayudás mucho con tu opinión en Google: ' + C.negocio.resena : ''}`;
       const idx = C.puestos.indexOf(t.puesto);
       return h('article', { class: `a-turno a-${t.estado} a-p${idx % 4}` },
         h('p', { class: 'a-cuando', text: cuando }),
