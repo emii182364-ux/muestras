@@ -312,3 +312,5 @@ svg.ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-wi
 html.kit-mov [data-kit~=portada]>:is(h1,[data-kit-lcp]){animation:kit-titulo var(--kit-dur-grande,.9s) var(--kit-ease-entra) both,titulo-brillo 6s var(--kit-ease-entra) infinite}
 .kit-mov [data-kit~=portada]>h1 em{animation:titulo-brillo 6s var(--kit-ease-entra) infinite}
 @media (prefers-reduced-motion:reduce){html.kit-mov [data-kit~=portada]>:is(h1,[data-kit-lcp]),.kit-mov [data-kit~=portada]>h1 em{animation:none}}
+.pres-aparte{margin-top:4px;padding:12px 16px;border-left:3px solid var(--celeste);background:rgba(63,178,255,.08);border-radius:0 12px 12px 0;color:var(--suave)!important}
+.pres-aparte b{color:var(--tinta)}
