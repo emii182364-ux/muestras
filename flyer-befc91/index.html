@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Flyer · Páginas Clover</title>
+<style>
+  /* Marca de paginasclover.com: letra Inter, verde #0b7a5e, tinta #1d1d1f */
+  @font-face { font-family: 'Inter'; src: url('fonts/inter-latin-var.woff2') format('woff2'); font-weight: 100 900; }
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #1d1d1f; --ink2: #6e6e73; --ink3: #424245; --line: #d2d2d7;
+    --green: #0b7a5e; --green-d: #08614b; --green-soft: #eaf5f1; --green-soft2: #d3ece2;
+    --bg: #fff; --bg2: #f5f5f7; --dev: #161617; --dev-edge: #3a3a3c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #ddd; }
+  body { font-family: 'Inter', sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @media print { html, body { background: none; } }
+  .hoja { width: 210mm; height: 297mm; margin: 0 auto; position: relative; overflow: hidden; background: var(--bg);
+    padding: 14mm 15mm 13mm; display: flex; flex-direction: column; }
+
+  /* Encabezado */
+  header { display: flex; justify-content: space-between; align-items: center; }
+  .marca { display: flex; align-items: center; gap: 2.6mm; }
+  .marca svg { width: 10mm; height: 10mm; }
+  .wm { font-size: 6.4mm; letter-spacing: -.02em; line-height: 1; white-space: nowrap; }
+  .wm span { font-weight: 500; }
+  .wm b { font-weight: 800; letter-spacing: .06em; font-size: .86em; }
+  .lema { text-align: right; font-weight: 600; font-size: 3.7mm; line-height: 1.35; color: var(--ink3); }
+  .lema::after { content: ""; display: block; width: 12mm; height: .9mm; background: var(--green); border-radius: 1mm; margin: 2mm 0 0 auto; }
+
+  /* Titular */
+  h1 { margin-top: 10mm; font-weight: 800; line-height: .95; letter-spacing: -.045em; }
+  h1 .l1 { display: block; font-size: 22mm; }
+  h1 .l2 { display: block; font-size: 31mm; color: var(--green); }
+  .bajada { margin-top: 5mm; font-weight: 500; font-size: 5.2mm; line-height: 1.35; color: var(--ink2); }
+  .bajada b { color: var(--ink); font-weight: 600; }
+
+  /* Vitrina con trabajos reales */
+  .vitrina { margin-top: 7mm; background: var(--bg2); border-radius: 5mm; padding: 6mm 5mm 4mm; }
+  .mock { position: relative; height: 70mm; }
+  .vidrio { position: relative; overflow: hidden; background: #000; }
+  .vidrio img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+  .laptop { position: absolute; left: 7mm; bottom: 0; width: 104mm; z-index: 1; }
+  .tapa { background: var(--dev); border-radius: 3.6mm 3.6mm 1mm 1mm; padding: 2.3mm 2.3mm 3.2mm; box-shadow: 0 0 0 .3mm var(--dev-edge); position: relative; }
+  .tapa::before { content: ""; position: absolute; top: .8mm; left: 50%; width: .9mm; height: .9mm; margin-left: -.45mm; border-radius: 50%; background: #2c2f33; }
+  .tapa .vidrio { aspect-ratio: 16 / 10; border-radius: .5mm; }
+  .base { position: relative; height: 3.6mm; margin: 0 -7mm; border-radius: .5mm .5mm 4.5mm 4.5mm;
+    background: linear-gradient(#ececee 0%, #d1d2d6 40%, #a6a8ad 85%, #8a8c91 100%); box-shadow: 0 2mm 4mm rgba(0,0,0,.16); }
+  .base::before { content: ""; position: absolute; left: 50%; top: 0; width: 20mm; height: 1.2mm; transform: translateX(-50%); background: #b9bbbf; border-radius: 0 0 1.6mm 1.6mm; }
+
+  .ipad { position: absolute; left: 102mm; bottom: 1mm; width: 42mm; z-index: 2; padding: 2.2mm; border-radius: 4.6mm;
+    background: var(--dev); box-shadow: 0 0 0 .35mm var(--dev-edge), 0 4mm 9mm rgba(0,0,0,.2); }
+  .ipad .vidrio { aspect-ratio: 810 / 1080; border-radius: 2.5mm; }
+
+  .celu { position: absolute; right: 0; bottom: -1mm; width: 29mm; z-index: 3; padding: 1.4mm; border-radius: 5.6mm;
+    background: var(--dev); box-shadow: 0 0 0 .35mm var(--dev-edge), 0 5mm 10mm rgba(0,0,0,.25); }
+  .celu .vidrio { aspect-ratio: 390 / 844; border-radius: 4.3mm; }
+  .celu .isla { position: absolute; top: 2.4mm; left: 50%; transform: translateX(-50%); width: 8.5mm; height: 2.4mm; border-radius: 2mm; background: #000; z-index: 2; }
+
+  .creditos { margin-top: 5mm; text-align: center; font-size: 2.9mm; font-weight: 500; color: var(--ink2); }
+  .creditos b { color: var(--ink); font-weight: 600; }
+
+  /* Beneficios */
+  .beneficios { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 7mm; }
+  .ben { text-align: center; padding: 0 1.5mm; font-weight: 600; font-size: 3.2mm; line-height: 1.3; }
+  .ben + .ben { border-left: .3mm solid var(--line); }
+  .ben i { display: flex; width: 10mm; height: 10mm; margin: 0 auto 2.2mm; border-radius: 2.6mm; background: var(--green-soft); align-items: center; justify-content: center; }
+  .ben svg { width: 6mm; height: 6mm; }
+
+  /* Bloques de abajo */
+  .bloques { display: grid; grid-template-columns: 1.3fr 1fr; gap: 4mm; margin-top: 7mm; }
+  .negro { background: var(--ink); color: #fff; border-radius: 4.5mm; padding: 4.5mm; display: flex; align-items: center; gap: 3mm; }
+  .qr { background: #fff; padding: 2mm; border-radius: 2mm; flex: none; }
+  .qr img { width: 27mm; height: 27mm; display: block; }
+  .negro .flecha { width: 7mm; flex: none; }
+  .negro h3 { font-weight: 700; font-size: 5mm; line-height: 1.15; letter-spacing: -.02em; }
+  .negro p { font-weight: 400; font-size: 3.3mm; line-height: 1.4; margin-top: 1.8mm; color: #d2d2d7; }
+  .negro .url { display: block; margin-top: 2.2mm; color: #6fd0b0; font-weight: 600; font-size: 3.2mm; }
+  .claro { background: var(--green-soft); border: .3mm solid var(--green-soft2); border-radius: 4.5mm; padding: 6mm; display: flex; align-items: center;
+    font-weight: 600; font-size: 5mm; line-height: 1.3; letter-spacing: -.015em; }
+  .claro strong { color: var(--green); font-weight: 800; }
+
+  /* Pie */
+  footer { margin-top: auto; padding-top: 4mm; display: flex; justify-content: center; align-items: center; gap: 2.5mm; font-weight: 700; font-size: 4.4mm; letter-spacing: -.01em; }
+  footer svg { width: 7mm; height: 7mm; }
+  footer span { color: var(--green); }
+
+  /* Solo para ver en pantalla: barra de descarga y hoja que entra en el celular */
+  @media screen {
+    html, body { background: #e8e8ed; }
+    body { padding: 76px 0 32px; overflow-x: hidden; }
+    .barra { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: center; align-items: center; gap: 12px;
+      padding: 14px 16px; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    .barra span { font-weight: 600; font-size: 15px; }
+    .barra a { background: var(--green); color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; padding: 10px 18px; border-radius: 999px; }
+    .marco { width: 210mm; margin: 0 auto; transform-origin: top left; }
+    .hoja { box-shadow: 0 10px 40px rgba(0,0,0,.12); border-radius: 4px; }
+  }
+  @media screen and (max-width: 600px) { .barra span { display: none; } }
+  @media print { .barra { display: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gLogo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#237a6c"/><stop offset="1" stop-color="#7dccbf"/>
+    </linearGradient>
+    <!-- Logo de Páginas Clover: los 4 círculos (copia vectorial de img/logo-icon.png del sitio) -->
+    <symbol id="logo" viewBox="78 78 356 356">
+      <g fill="url(#gLogo)">
+        <circle cx="168" cy="168" r="90"/><circle cx="344" cy="168" r="90"/>
+        <circle cx="168" cy="344" r="90"/><circle cx="344" cy="344" r="90"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="barra"><span>Flyer de Páginas Clover</span><a href="flyer-paginas-clover.pdf" download>Descargar PDF</a></div>
+<div class="marco"><div class="hoja">
+  <header>
+    <div class="marca"><svg><use href="#logo"/></svg><span class="wm"><span>páginas</span> <b>CLOVER</b></span></div>
+    <div class="lema">Sitios web que<br>impulsan negocios.</div>
+  </header>
+
+  <h1><span class="l1">¿Tenés un</span><span class="l2">negocio?</span></h1>
+  <p class="bajada">Nosotros hacemos que <b>se vea así de bien</b> en internet.</p>
+
+  <div class="vitrina">
+    <div class="mock">
+      <div class="laptop">
+        <div class="tapa"><div class="vidrio"><img src="img/cafe-compu.jpg" alt="Today's Coffee Taiwan en la compu"></div></div>
+        <div class="base"></div>
+      </div>
+      <div class="ipad"><div class="vidrio"><img src="img/oxi-ipad.jpg" alt="Oxidados CDELU en el iPad"></div></div>
+      <div class="celu">
+        <div class="isla"></div>
+        <div class="vidrio"><img src="img/cafe-celu.jpg" alt="Today's Coffee Taiwan en el celular"></div>
+      </div>
+    </div>
+    <p class="creditos">Trabajos reales: <b>Today's Coffee Taiwan</b> · <b>Oxidados CDELU</b></p>
+  </div>
+
+  <div class="beneficios">
+    <div class="ben"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0b7a5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 8h18M9 21h6M12 17v4"/></svg></i>Diseño<br>profesional</div>
+    <div class="ben"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0b7a5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.5c0 4 2.7 6.7 6.7 6.7l1.1-1.6-2-1.1-.9.9a5 5 0 0 1-3-3l.9-.9-1.1-2z"/></svg></i>Botón directo<br>a WhatsApp</div>
+    <div class="ben"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0b7a5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.7 5.5 3.7 9s-1.2 6.5-3.7 9c-2.5-2.5-3.7-5.5-3.7-9S9.5 5.5 12 3z"/></svg></i>Tu propia<br>dirección web</div>
+    <div class="ben"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0b7a5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21M7.8 10.6l1.9 1.9 3.6-4"/></svg></i>Preparada<br>para Google</div>
+    <div class="ben"><i><svg viewBox="0 0 24 24" fill="none" stroke="#0b7a5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="14" height="10" rx="1.5"/><path d="M1 18h14"/><rect x="17" y="8.5" width="6" height="11" rx="1.3"/></svg></i>Adaptada a<br>celulares y PC</div>
+  </div>
+
+  <div class="bloques">
+    <div class="negro">
+      <div class="qr"><img src="qr.svg" alt="QR a paginasclover.com"></div>
+      <svg class="flecha" viewBox="0 0 40 30" fill="none" stroke="#6fd0b0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M37 22C28 8 16 6 6 13"/><path d="M12 6L5 13.5l8.5 4"/></svg>
+      <div>
+        <h3>Mirá nuestros trabajos</h3>
+        <p>Escaneá el QR y conocé ejemplos reales.</p>
+        <span class="url">paginasclover.com</span>
+      </div>
+    </div>
+    <div class="claro"><div>Te mostramos <strong>GRATIS</strong> cómo podría quedar la de tu negocio.</div></div>
+  </div>
+
+  <footer><svg><use href="#logo"/></svg>Diseñamos. Publicamos. <span>Vos vendés.</span></footer>
+</div></div>
+<script>
+  // Achica la hoja para que entre entera en pantallas angostas
+  const marco = document.querySelector(".marco");
+  function ajustar() {
+    marco.style.transform = ""; marco.style.marginLeft = ""; marco.style.height = "";
+    const ancho = marco.offsetWidth, alto = marco.offsetHeight, libre = innerWidth - 32;
+    if (libre < ancho) { const k = libre / ancho; marco.style.transform = `scale(${k})`; marco.style.marginLeft = "16px"; marco.style.height = alto * k + "px"; }
+  }
+  addEventListener("resize", ajustar); ajustar();
+</script>
+</body>
+</html>
