@@ -1,0 +1,10 @@
+/* Acqua Detail · tema de la plantilla de turnos: sus colores y fuentes (los de estilos.css) */
+:root{
+  --t-fondo:#070b12; --t-panel:#101a2a; --t-panel-2:#14233a; --t-borde:#1d2c43;
+  --t-texto:#f2f6fb; --t-suave:#b4c2d4; --t-tenue:#8a9bb2;
+  --t-acento:#3fb2ff; --t-acento-2:#8fd3ff; --t-acento-texto:#04121f;
+  --t-fuente:Inter,system-ui,sans-serif; --t-fuente-titulo:Unbounded,Inter,sans-serif;
+}
+.turnos .t-titulo{text-transform:uppercase}
+.pagina-turnos{min-height:100vh;background:radial-gradient(60% 40% at 85% 0%,rgba(63,178,255,.12),transparent 70%),var(--noche)}
+.aviso-horarios{max-width:980px;margin:0 auto;padding:0 clamp(16px,4vw,32px) 40px;color:var(--tenue);font-size:14px}
