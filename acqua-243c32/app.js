@@ -5,9 +5,11 @@
   // 1) Cada botón de WhatsApp llega con el servicio ya escrito (data-wa)
   document.querySelectorAll('a[data-wa]').forEach(a => {
     const wa = a.dataset.wa;
-    const texto = wa.startsWith('un presupuesto')
-      ? `Hola Acqua Detail! Quiero pedir ${wa}. Mi auto es: `
-      : `Hola Acqua Detail! Quiero reservar ${wa.startsWith('un') ? wa : 'un turno para ' + wa}.`;
+    const texto = wa === 'consulta'
+      ? 'Hola Acqua Detail! Quiero hacer una consulta.'
+      : wa.startsWith('un presupuesto')
+        ? `Hola Acqua Detail! Quiero pedir ${wa}. Mi auto es: `
+        : `Hola Acqua Detail! Quiero ${wa.startsWith('un') ? 'reservar ' + wa : 'consultar por ' + wa}.`;
     a.href = `https://wa.me/${TEL}?text=${encodeURIComponent(texto)}`;
   });
 
