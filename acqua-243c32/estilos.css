@@ -347,3 +347,29 @@ html.kit-mov [data-kit~=portada]>:is(h1,[data-kit-lcp]){animation:kit-titulo var
   .qr-caja{box-shadow:none;border:2px solid #070b12;width:90mm}
 }
 button.btn-borde{background:transparent;color:var(--tinta);cursor:pointer}
+
+/* Página de enlaces para la bio (redes.html) */
+.pagina-redes{min-height:100vh;background:radial-gradient(70% 40% at 50% 0%,rgba(63,178,255,.18),transparent 70%),var(--noche)}
+.redes{display:grid;gap:22px;max-width:480px;margin:0 auto;padding:clamp(28px,6vw,48px) var(--gutter) 48px}
+.redes-cabeza{display:grid;justify-items:center;text-align:center;gap:10px}
+.redes-cabeza h1{font-size:clamp(1.9rem,8vw,2.6rem)}
+.redes-cabeza .kicker::before{display:none}
+.redes-bajada{color:var(--suave);max-width:34ch}
+.redes-nota{font-size:15px;color:var(--suave)}
+.redes-nota b{color:var(--tinta)}
+.redes-lista{display:grid;gap:10px}
+.enlace{display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 18px;border-radius:18px;background:var(--panel);border:1px solid var(--borde);color:var(--tinta);text-decoration:none;font-weight:700;font-size:16px;line-height:1.2;transition:border-color 180ms ease,background-color 180ms ease,transform 100ms ease}
+.enlace .ico{width:26px;height:26px;color:var(--celeste)}
+.enlace small{display:block;margin-top:3px;font-weight:400;font-size:14px;color:var(--suave)}
+.enlace:active{transform:scale(.97)}
+.enlace-principal{background:var(--celeste);border-color:var(--celeste);color:#04121f;min-height:72px;box-shadow:0 0 34px rgba(63,178,255,.35)}
+.enlace-principal .ico{color:#04121f}
+.enlace-principal small{color:#0b3554}
+@media (hover:hover) and (pointer:fine){.enlace:hover{border-color:var(--celeste)}.enlace-principal:hover{background:var(--celeste-2)}}
+.redes-fotos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.redes-fotos img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--borde)}
+.redes-compartir{justify-self:center}
+.redes-compartir .ico{width:20px;height:20px}
+.redes-pie{text-align:center;color:var(--tenue);font-size:13px}
+.extra-foto{display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 50%,rgba(63,178,255,.25),transparent 70%),#0b1422}
+.extra-foto img{position:absolute!important;top:14px;left:50%;transform:translateX(-50%);height:calc(100% - 28px)!important;width:auto!important;aspect-ratio:1/1;object-fit:contain!important;background:#fff;padding:6px;border-radius:12px;box-sizing:border-box}
