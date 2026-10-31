@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="zh-TW">
+<!--
+  Páginas Clover — Propuesta 06 · "Editorial / revista" · modo lote
+  Cliente (prospecto): 豬豬隊友 Scott & Wendy (@piggyteammates)
+  Concepto: «la revista de viajes de la familia» — la portada es un número de revista (豬豬隊友 誌 · Vol.),
+            el grupo abierto es la «nota de tapa de la semana», los destinos son el sumario § numerado
+            y el historial de grupos es el «archivo / back issues» con reseñas.
+  Acento: el verde del estilo pasa a rosa chanchito → --pink #a72a68 (oklch 50% .17 355; 6,34:1 sobre el papel,
+          botón y un detalle por pantalla) · resaltador --hl #fed4e3 (tinta encima 14,2:1) · --pink-b #e87da9 solo en tramas.
+          A confirmar con Emi.
+  Largo: ~10 pantallas a 390 px (meta ≤ 14) — medir con medirLote
+  Efecto firma: hero-editorial-serif (líneas del titular que suben + filetes que se dibujan) → portada
+                + tipo-resaltador-progresivo (resaltador rosa) → portada, nota de tapa y archivo
+  Apoyo: producto-oferta-cuenta-regresiva → nota de tapa (cierra 4/11/2026 23:59 hora de Taiwán)
+         · boton-copiar-portapapeles → código piggyteamate
+         · texto-notas-ancladas → notas al margen «品牌表示» en la nota de tapa
+         · grilla-reglas-editoriales → catálogo 長期推薦
+         · tipo-letra-capital-animada → capitular dibujada en la reseña del archivo
+         · scroll-barra-progreso-lectura → filete rosa bajo la cabecera
+  Imágenes: ilustraciones de línea SVG duotono (tinta + trama rosa) con «Fig. N» y pie; marcos «這裡放你們的照片 / Acá va su foto».
+  Todo respeta prefers-reduced-motion. Sin recursos externos salvo Google Fonts.
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title data-es="Piggy Teammates — la revista de viajes de la familia (muestra)">豬豬隊友 誌 — 一家四口的旅行雜誌（範例頁面）</title>
+<meta name="description" content="豬豬隊友 Scott &amp; Wendy：親子旅遊、真心推薦的團購好物。Páginas Clover 製作的範例頁面。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Noto+Serif+TC:wght@900&display=swap">
+<style>
+/* ================= Tokens (ficha 06 · acento rosa chanchito) ================= */
+:root{
+  --paper:#fbfaf7; --ink:#111; --ink2:#55534e; --mute:#6b6a65; --hair:rgba(17,17,17,.16);
+  --pink:#a72a68; --pink-b:#e87da9; --hl:#fed4e3;
+  --dot:color-mix(in srgb,var(--ink) 30%,transparent);
+  --d:"Instrument Serif","Noto Serif TC","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --s:"Newsreader","PingFang TC","Noto Sans CJK TC","Microsoft JhengHei","Iowan Old Style",Georgia,system-ui,sans-serif;
+  --wrap:1320px; --gut:clamp(16px,4vi,48px); --col:clamp(14px,2vi,28px); --hdr:66px;
+  /* escala de letra (8 pasos, máx ≤ 2,5× el mínimo) */
+  --t-xs:clamp(.8125rem,.79rem + .1vi,.875rem);
+  --t-s:clamp(.9375rem,.9rem + .15vi,1rem);
+  --t-b:clamp(1.0625rem,1rem + .3vi,1.1875rem);
+  --t-m:clamp(1.25rem,1.1rem + .6vi,1.5rem);
+  --t-l:clamp(1.6rem,1.2rem + 1.4vi,2.4rem);
+  --t-xl:clamp(2.2rem,1.4rem + 3.4vi,5rem);
+  --t-xxl:clamp(2.9rem,1.2rem + 7vi,7.2rem);
+  --t-num:clamp(3rem,2rem + 4vi,7rem);
+  /* espacios */
+  --e-1:4px; --e-2:8px; --e-3:12px; --e-4:18px; --e-5:28px; --e-6:44px; --e-7:clamp(48px,7vi,96px); --e-8:clamp(56px,9vi,132px);
+  /* movimiento */
+  --e:cubic-bezier(.16,1,.3,1); --io:cubic-bezier(.76,0,.24,1);
+  --dur-s:.4s; --dur-m:.6s; --dur-l:1.4s; --dur-xl:2s;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hdr) + 16px);font-synthesis:none}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--s);font-size:var(--t-b);line-height:1.55;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:clip;font-feature-settings:"kern","liga"}
+:lang(zh-TW) body,:lang(zh-TW) p{line-height:1.78}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol,figure,blockquote,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+::selection{background:var(--hl);color:var(--ink)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:var(--ink);color:var(--paper);padding:10px 16px;transition:top .2s}
+.skip:focus{top:12px}
+.wrap{width:min(var(--wrap),100% - 2*var(--gut));margin-inline:auto}
+.sc{font-variant-caps:all-small-caps;letter-spacing:.09em;font-weight:600;font-feature-settings:"lnum"}
+:lang(zh-TW) .sc{letter-spacing:.12em}
+.num{font-variant-numeric:tabular-nums lining-nums}
+.ico{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+p,li{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+/* el chino nunca en cursiva */
+:lang(zh-TW) :is(em,i,.it){font-style:normal}
+.it{font-style:italic}
+/* rótulo de contenido inventado */
+.ej{display:inline-block;font-family:var(--s);font-style:normal;font-size:var(--t-xs);font-weight:600;letter-spacing:.06em;line-height:1.3;padding:2px 7px;border:1px dashed var(--ink2);color:var(--ink2);vertical-align:middle;white-space:nowrap}
+
+/* ================= Filetes que se dibujan (firma) ================= */
+.rule{display:block;height:1px;background:var(--ink);transform-origin:left}
+.rule.thick{height:3px}
+.js .rule[data-in]{transform:scaleX(0);transition:transform var(--dur-l) var(--io) var(--dl,0s)}
+.js .rule[data-in].on{transform:none}
+
+/* ================= Resaltador rosa (tipo-resaltador-progresivo) ================= */
+mark.hl{color:inherit;background:linear-gradient(100deg,transparent 0,var(--hl) .3em,var(--hl) calc(100% - .3em),transparent) no-repeat 0 72%/100% 62%;padding:0 .12em;margin:0 -.12em;border-radius:.25em .1em;transition:background-size 1.1s cubic-bezier(.55,0,.2,1) var(--dl,0s);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.js mark.hl[data-in]:not(.on){background-size:0% 62%}
+
+/* ================= Botones (rectángulos de imprenta) ================= */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:50px;padding:.7em 1.4em;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--s);font-size:var(--t-s);font-weight:600;letter-spacing:.06em;white-space:nowrap;transition:background-color var(--dur-s),color var(--dur-s),border-color var(--dur-s)}
+.btn.pk{background:var(--pink);border-color:var(--pink)}
+.btn.line{background:transparent;color:var(--ink)}
+.btn .ico{transition:transform var(--dur-s) var(--e)}
+.btn:active{background:var(--pink);border-color:var(--pink);color:var(--paper)}
+.btn.pk:active{background:var(--ink);border-color:var(--ink)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--pink);border-color:var(--pink);color:var(--paper)}
+  .btn.pk:hover{background:var(--ink);border-color:var(--ink)}
+  .btn:hover .ico{transform:translateX(4px)}
+}
+.more{display:inline-flex;align-items:center;gap:.45em;font-style:italic;border-bottom:1px solid currentColor;min-height:44px;transition:color var(--dur-s),gap var(--dur-s) var(--e)}
+.more:active{color:var(--pink)}
+@media (hover:hover) and (pointer:fine){.more:hover{color:var(--pink);gap:.75em}}
+
+/* ================= Cabecera (masthead) ================= */
+.mast{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.mast-in{height:var(--hdr);display:flex;align-items:center;gap:var(--e-5);width:min(1440px,100% - 2*var(--gut));margin-inline:auto}
+.brand{display:inline-flex;align-items:center;gap:10px;flex:none;min-height:44px}
+.snout{width:30px;height:30px}
+.snout .o{fill:var(--hl);stroke:var(--ink);stroke-width:1.4}
+.snout .n{fill:var(--pink)}
+.wm{display:flex;align-items:baseline;gap:.35em;line-height:1;white-space:nowrap}
+.wm b{font-family:var(--d);font-weight:900;font-size:var(--t-m);letter-spacing:.02em}
+.wm i{font-family:var(--d);font-size:var(--t-m);color:var(--pink)}
+.nav{margin-left:auto}
+.nav ol{display:flex;gap:2px}
+.nav a{display:flex;align-items:flex-start;gap:3px;padding:10px;font-size:var(--t-s);transition:color var(--dur-s)}
+.nav a sup{font-size:var(--t-xs);font-weight:600;color:var(--pink);line-height:1}
+.nav a:active{color:var(--pink)}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--pink)}}
+.lang{display:inline-flex;align-items:center;gap:6px;min-height:44px;min-width:44px;padding:0 12px;border:1px solid var(--ink);background:transparent;font-size:var(--t-s);font-weight:600;letter-spacing:.06em}
+.lang:active{background:var(--ink);color:var(--paper)}
+@media (hover:hover) and (pointer:fine){.lang:hover{background:var(--ink);color:var(--paper)}}
+.mast-rule{position:relative;height:1px;background:var(--ink)}
+/* scroll-barra-progreso-lectura: filete rosa que avanza con la lectura */
+.progress{position:absolute;left:0;right:0;top:-1px;height:3px;background:var(--pink);transform-origin:left;transform:scaleX(var(--rp,0))}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .progress{animation:rp linear both;animation-timeline:scroll(root)}
+    @keyframes rp{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  }
+}
+@media (max-width:1040px){.nav{display:none}.lang{margin-left:auto}}
+
+/* ================= Portada (hero-editorial-serif) ================= */
+.cover{padding-top:var(--e-3)}
+.dateline{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--e-3);padding:10px 0;font-size:var(--t-xs);color:var(--ink2)}
+.dateline b{color:var(--ink)}
+.dateline .mid{display:none}
+.cover-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);padding:var(--e-5) 0 var(--e-4);align-items:end}
+.h1{grid-column:1/-1;font-family:var(--d);font-weight:900;font-size:var(--t-xxl);line-height:1.02;letter-spacing:-.01em}
+:lang(es) .h1{font-weight:400;line-height:.9;letter-spacing:-.022em}
+.h1 em{font-style:italic;color:var(--pink)}
+:lang(zh-TW) .h1 em{font-weight:600}
+/* EL EFECTO: cada línea vive en una máscara y sube */
+.ln{display:block;overflow:hidden;overflow:clip;padding:0 .06em .12em 0;margin-bottom:-.12em}
+.ln>span{display:block}
+.ln:nth-child(2){padding-left:.7em}
+.js .cover .ln>span{transform:translateY(108%);transition:transform var(--dur-l) var(--e) var(--dl,0s)}
+.js .cover.on .ln>span{transform:none}
+.cover-foot{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);padding-bottom:var(--e-7)}
+.lede{grid-column:1/6;font-size:var(--t-m);line-height:1.5}
+:lang(zh-TW) .lede{line-height:1.75}
+.lede::first-letter{float:left;font-family:var(--d);font-weight:900;font-size:3.1em;line-height:.9;padding:.04em .1em 0 0;color:var(--pink)}
+:lang(es) .lede::first-letter{font-weight:400;font-size:4em;line-height:.8}
+.cta-col{grid-column:6/9;display:flex;flex-direction:column;align-items:flex-start;gap:var(--e-3);padding-left:var(--col);border-left:1px solid var(--hair)}
+.cta-col .note{font-size:var(--t-s);font-style:italic;color:var(--ink2)}
+.fig1{grid-column:9/13;grid-row:1/3;display:flex;flex-direction:column;gap:var(--e-2)}
+figcaption{font-size:var(--t-xs);line-height:1.5;color:var(--ink2);border-top:1px solid var(--ink);padding-top:var(--e-2)}
+figcaption b{font-style:italic;font-weight:600;color:var(--ink);margin-right:.3em}
+/* Marco para foto real (todavía no tenemos sus fotos) */
+.frame{position:relative;display:grid;place-items:center;aspect-ratio:4/5;background:repeating-linear-gradient(135deg,transparent 0 9px,color-mix(in srgb,var(--pink-b) 28%,transparent) 9px 10px),var(--paper);border:1px solid var(--ink)}
+.frame::before,.frame::after{content:"";position:absolute;width:22px;height:22px;border:0 solid var(--ink)}
+.frame::before{top:8px;left:8px;border-top-width:2px;border-left-width:2px}
+.frame::after{bottom:8px;right:8px;border-bottom-width:2px;border-right-width:2px}
+.frame span{background:var(--paper);border:1px solid var(--ink);padding:var(--e-2) var(--e-3);font-size:var(--t-s);font-weight:600;text-align:center;line-height:1.4}
+.frame span small{display:block;font-weight:400;font-style:italic;color:var(--ink2);font-size:var(--t-xs)}
+.frame.wide{aspect-ratio:3/2}
+.toc{grid-column:1/-1;margin-top:var(--e-5)}
+.toc h2{font-size:var(--t-s);margin-bottom:var(--e-1)}
+.toc ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--col)}
+.toc a{display:grid;grid-template-columns:2.2em 1fr;align-items:baseline;gap:6px;padding:8px 0;min-height:44px;border-bottom:1px dotted var(--dot);font-size:var(--t-s);transition:transform var(--dur-s) var(--e),color var(--dur-s),opacity var(--dur-s)}
+.toc a b{font-family:var(--d);font-style:italic;font-weight:400;font-size:var(--t-m);color:var(--pink);line-height:1}
+.toc a:active{color:var(--pink)}
+@media (hover:hover) and (pointer:fine){
+  .toc ol:has(a:hover) a:not(:hover){opacity:.5}
+  .toc a:hover{transform:translateX(8px);color:var(--pink)}
+}
+
+/* ================= Encabezado de sección § numerado ================= */
+.sec{padding-block:var(--e-7)}
+section[id]{scroll-margin-top:var(--hdr)}
+.sh{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);align-items:end;margin-bottom:var(--e-6)}
+.sh .rule{grid-column:1/-1;margin-bottom:var(--e-4)}
+.sh-n{grid-column:1/3;font-family:var(--d);font-style:italic;font-size:var(--t-num);line-height:.8;color:var(--pink);letter-spacing:-.02em}
+.sh-n small{font-size:.32em;font-style:normal;color:var(--ink);vertical-align:top;margin-right:.1em}
+.sh-t{grid-column:3/9}
+.kick{font-size:var(--t-s);color:var(--ink2);margin-bottom:var(--e-2)}
+.h2{font-family:var(--d);font-weight:900;font-size:var(--t-xl);line-height:1.04;letter-spacing:-.005em}
+:lang(es) .h2{font-weight:400;line-height:.95;letter-spacing:-.015em}
+.h2 em{font-style:italic;color:var(--pink)}
+:lang(zh-TW) .h2 em{font-weight:600}
+.sh-i{grid-column:9/13;font-style:italic;color:var(--ink2);font-size:var(--t-s);padding-bottom:.4em}
+
+/* ================= § 01 Nota de tapa (grupo abierto) ================= */
+.story{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);row-gap:var(--e-5);align-items:start}
+.story-fig{grid-column:1/6}
+.story-txt{grid-column:6/10}
+.story-box{grid-column:10/13;position:sticky;top:calc(var(--hdr) + 20px)}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-xs);font-weight:600;letter-spacing:.08em;color:var(--pink);margin-bottom:var(--e-2)}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--pink);position:relative}
+.h3{font-family:var(--d);font-weight:900;font-size:var(--t-l);line-height:1.15;margin-bottom:var(--e-3)}
+:lang(es) .h3{font-weight:400;line-height:1}
+/* texto-notas-ancladas: cada bloque = párrafo + nota al margen a su altura */
+.blk{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--e-2);padding-bottom:var(--e-4)}
+.blk p{font-size:var(--t-b)}
+.ref{font-family:var(--d);font-style:italic;color:var(--pink);font-size:1.1em;padding:0 .1em}
+.mnote{font-size:var(--t-xs);line-height:1.55;color:var(--ink2);border-left:2px solid var(--pink);padding:2px 0 2px var(--e-3)}
+.mnote b{color:var(--pink);font-family:var(--d);font-style:italic;font-weight:400;font-size:1.2em;margin-right:.2em}
+@media (min-width:1100px){
+  .story-txt{padding-right:0}
+  .blk{grid-template-columns:minmax(0,1fr)}
+}
+/* Caja de compra: cuenta regresiva + código + botón */
+.box{border:1px solid var(--ink);background:var(--paper);padding:var(--e-4)}
+.box h3{font-size:var(--t-s);font-weight:600;letter-spacing:.06em;border-bottom:1px solid var(--ink);padding-bottom:var(--e-2);margin-bottom:var(--e-3);display:flex;justify-content:space-between;gap:8px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--hair);margin-bottom:var(--e-3)}
+.cd div{text-align:center;padding:var(--e-2) 0;border-right:1px solid var(--hair)}
+.cd div:last-child{border-right:0}
+.cd b{display:block;font-family:var(--d);font-weight:400;font-size:var(--t-l);line-height:1;font-variant-numeric:tabular-nums lining-nums}
+.cd small{font-size:var(--t-xs);color:var(--ink2)}
+.cd-when{font-size:var(--t-xs);color:var(--ink2);margin-bottom:var(--e-3)}
+.closed{display:none;padding:var(--e-3) 0;border-block:1px solid var(--hair);margin-bottom:var(--e-3)}
+.closed strong{display:block;font-family:var(--d);font-size:var(--t-l);font-weight:900;color:var(--pink);line-height:1.1}
+.box.end .cd,.box.end .cd-when,.box.end .buy{display:none}
+.box.end .closed{display:block}
+.code{display:flex;align-items:stretch;border:1px dashed var(--ink);margin-bottom:var(--e-3)}
+.code code{flex:1;display:flex;align-items:center;padding:0 var(--e-3);font-family:var(--s);font-weight:600;font-size:var(--t-m);letter-spacing:.04em}
+.copy{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 var(--e-3);border:0;border-left:1px dashed var(--ink);background:var(--hl);font-size:var(--t-s);font-weight:600;transition:background-color var(--dur-s)}
+.copy:active{background:var(--pink);color:var(--paper)}
+@media (hover:hover) and (pointer:fine){.copy:hover{background:var(--pink);color:var(--paper)}}
+.copy .ok{display:none}
+.copy.done .ok{display:inline}
+.copy.done .go{display:none}
+.copy-msg{min-height:1.5em;font-size:var(--t-xs);color:var(--pink);font-weight:600;margin:-4px 0 var(--e-2)}
+.box .btn{width:100%}
+.box .fine{font-size:var(--t-xs);color:var(--ink2);margin-top:var(--e-2)}
+
+/* ================= Ilustraciones de línea duotono ================= */
+.ill{width:100%;height:auto;overflow:visible}
+.ill .o{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.ill .h{fill:url(#t06)}
+.ill .f{fill:var(--hl)}
+.ill .p{fill:var(--pink)}
+.ill .w{fill:var(--paper)}
+.hatch line{stroke:var(--pink-b);stroke-width:2.2}
+.js [data-in] .ill .o{stroke-dasharray:1;stroke-dashoffset:1}
+.js [data-in] .ill :is(.h,.f,.p){opacity:0}
+[data-in].on .ill .o{stroke-dashoffset:0;transition:stroke-dashoffset var(--dur-xl) var(--io) var(--dl,0s)}
+[data-in].on .ill :is(.h,.f,.p){opacity:1;transition:opacity 1s var(--e) 1.2s}
+.fig{display:flex;flex-direction:column;gap:var(--e-2)}
+.fig .pic{border:1px solid var(--ink);background:var(--paper);padding:var(--e-3)}
+
+/* ================= § 02 長期推薦 (grilla-reglas-editoriales) ================= */
+.cat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--e-5) var(--e-6);column-rule:1px solid var(--hair);row-rule:1px solid var(--hair)}
+@supports not (column-rule-width:1px){.cat .it-c{border-top:1px solid var(--hair);padding-top:var(--e-3)}}
+.it-c{display:flex;flex-direction:column;gap:var(--e-2);min-width:0}
+.it-c .lab{font-size:var(--t-xs);font-weight:600;letter-spacing:.1em;color:var(--pink)}
+.it-c h3{font-family:var(--d);font-weight:600;font-size:var(--t-m);line-height:1.25}
+:lang(es) .it-c h3{font-weight:400}
+.it-c p{font-size:var(--t-s);color:var(--ink2);line-height:1.6}
+.it-c .more{margin-top:auto;font-size:var(--t-s)}
+.it-c svg{max-width:150px}
+.legal{margin-top:var(--e-5);font-size:var(--t-xs);color:var(--ink2);font-style:italic;border-top:1px solid var(--hair);padding-top:var(--e-3)}
+
+/* ================= § 03 Sumario de destinos ================= */
+.dest{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--col)}
+.dest li{display:flex;flex-direction:column;gap:var(--e-2);min-width:0}
+.dest a{display:flex;flex-direction:column;gap:var(--e-2);height:100%}
+.dest .pic{border:1px solid var(--ink);padding:var(--e-2);transition:transform var(--dur-m) var(--e)}
+.dest .no{display:flex;align-items:baseline;gap:var(--e-2);border-bottom:1px solid var(--ink);padding-bottom:4px}
+.dest .no b{font-family:var(--d);font-style:italic;font-weight:400;font-size:var(--t-l);color:var(--pink);line-height:1}
+.dest .no span{font-family:var(--d);font-weight:600;font-size:var(--t-m)}
+:lang(es) .dest .no span{font-weight:400}
+.dest p{font-size:var(--t-s);color:var(--ink2);line-height:1.6}
+.dest .go{font-size:var(--t-xs);font-style:italic;color:var(--ink);margin-top:auto}
+.dest a:active .pic{transform:translateY(-4px)}
+@media (hover:hover) and (pointer:fine){.dest a:hover .pic{transform:translateY(-4px)}.dest a:hover .no span{color:var(--pink)}}
+
+/* ================= § 04 Archivo / back issues ================= */
+.arch{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);row-gap:var(--e-6)}
+.rev{grid-column:span 6;display:grid;gap:var(--e-3);align-content:start;padding-top:var(--e-3);border-top:3px solid var(--ink)}
+.rev .meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:var(--t-xs);color:var(--ink2)}
+.rev .meta b{color:var(--ink)}
+.rev blockquote{font-size:var(--t-b)}
+.rev blockquote p+p{margin-top:var(--e-2)}
+.rev .who{font-size:var(--t-s);font-style:italic;color:var(--ink2)}
+.rev .btn{align-self:start;justify-self:start}
+/* tipo-letra-capital-animada: la capitular se dibuja (marco → trazo de la letra → relleno) */
+.cap{float:left;width:76px;height:76px;margin:6px var(--e-3) 0 0}
+.cap .fr{fill:none;stroke:var(--ink);stroke-width:1.2}
+.cap .fl{fill:var(--hl)}
+.cap text{font-family:var(--d);font-weight:900;font-size:58px;fill:var(--pink);stroke:var(--pink);stroke-width:.8;paint-order:stroke}
+:lang(es) .cap text{font-weight:400;font-size:66px}
+.js .rev[data-in] .cap .fr{stroke-dasharray:1;stroke-dashoffset:1}
+.js .rev[data-in] .cap .fl{opacity:0}
+.js .rev[data-in] .cap text{stroke-dasharray:260;stroke-dashoffset:260;fill-opacity:0}
+.rev.on .cap .fr{stroke-dashoffset:0;transition:stroke-dashoffset var(--dur-l) var(--io)}
+.rev.on .cap .fl{opacity:1;transition:opacity 1s .9s}
+.rev.on .cap text{stroke-dashoffset:0;fill-opacity:1;transition:stroke-dashoffset var(--dur-xl) var(--io) .4s,fill-opacity var(--dur-m) 1.8s}
+
+/* ================= § 05 Para marcas ================= */
+.kit{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);row-gap:var(--e-5);align-items:start}
+.kit-txt{grid-column:1/6}
+.kit-txt p{margin-bottom:var(--e-4)}
+.stats{grid-column:7/13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--ink)}
+.stats div{padding:var(--e-3) var(--e-3) var(--e-4) 0;border-bottom:1px solid var(--hair)}
+.stats div:nth-child(odd){border-right:1px solid var(--hair)}
+.stats div:nth-child(even){padding-left:var(--e-3)}
+.stats dt{font-size:var(--t-xs);color:var(--ink2);margin-bottom:var(--e-1)}
+.stats dd{font-family:var(--d);font-size:var(--t-xl);line-height:1;font-variant-numeric:tabular-nums lining-nums}
+.stats dd.real{color:var(--pink)}
+.stats .ej{margin-top:var(--e-2)}
+
+/* ================= Suscribite ================= */
+.sub{border-block:3px solid var(--ink);padding-block:var(--e-6)}
+.sub-in{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);row-gap:var(--e-4);align-items:end}
+.sub .h2{grid-column:1/8}
+.sub-a{grid-column:8/13;display:flex;flex-wrap:wrap;gap:var(--e-3)}
+.sub-a p{flex-basis:100%;font-size:var(--t-s);color:var(--ink2);font-style:italic}
+
+/* ================= Pie ================= */
+.foot{padding-block:var(--e-6) var(--e-5);font-size:var(--t-s)}
+.foot-g{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--col);row-gap:var(--e-4)}
+.foot .big{grid-column:1/6;font-family:var(--d);font-weight:900;font-size:var(--t-l);line-height:1.1}
+.foot .big i{display:block;font-weight:400;font-size:var(--t-m);color:var(--pink)}
+.foot ul{grid-column:6/13;display:flex;flex-wrap:wrap;gap:4px var(--e-4);align-content:start}
+.foot ul a{display:inline-flex;align-items:center;min-height:44px;border-bottom:1px solid var(--hair)}
+.foot ul a:active{color:var(--pink)}
+@media (hover:hover) and (pointer:fine){.foot ul a:hover{color:var(--pink);border-color:var(--pink)}}
+.credit{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--e-2) var(--e-4);border-top:1px solid var(--ink);padding-top:var(--e-3);font-size:var(--t-xs);color:var(--ink2)}
+.credit a{text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;min-height:24px}
+.credit a:active{color:var(--pink)}
+@media (hover:hover) and (pointer:fine){.credit a:hover{color:var(--pink)}}
+
+/* ================= Entradas (seguras: sin JS se ve todo) ================= */
+.js .rv[data-in]{opacity:0;transform:translateY(22px);transition:opacity 1s var(--e) var(--dl,0s),transform 1.2s var(--e) var(--dl,0s)}
+.js .rv[data-in].on{opacity:1;transform:none}
+
+/* ================= Celular y tablet ================= */
+@media (max-width:1040px){
+  .h1,.lede,.cta-col,.fig1,.toc,.story-fig,.story-txt,.story-box,.kit-txt,.stats,.sub .h2,.sub-a,.foot .big,.foot ul{grid-column:1/-1}
+  .fig1{grid-row:auto;margin-top:var(--e-5)}
+  .cta-col{padding-left:0;border-left:0;margin-top:var(--e-4)}
+  .lede{max-width:40ch}
+  .story-box{position:static}
+  .story-fig{max-width:560px}
+  .cat{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--e-5) var(--e-4)}
+  .dest{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:var(--e-4);padding-bottom:var(--e-3);margin-inline:calc(-1 * var(--gut));padding-inline:var(--gut);scroll-padding-inline:var(--gut)}
+  .dest li{flex:0 0 min(72%,280px);scroll-snap-align:start}
+  .rev{grid-column:1/-1}
+  .sh-n{grid-column:1/-1;margin-bottom:var(--e-2)}
+  .sh-t,.sh-i{grid-column:1/-1}
+  .sh-i{margin-top:var(--e-3)}
+}
+@media (min-width:700px) and (max-width:1040px){.story-box{max-width:420px}.fig1{max-width:420px}}
+@media (max-width:600px){
+  .toc ol{grid-template-columns:minmax(0,1fr)}
+  .toc{display:none}
+  .fig1 .frame{aspect-ratio:3/2}
+  .cta-col .btn{width:100%}
+  .wm i{display:none}
+  .cat .it-c svg{max-width:110px}
+  .stats dd{font-size:var(--t-l)}
+}
+@media (min-width:601px){.dateline .mid{display:block}.dateline{grid-template-columns:1fr auto 1fr}.dateline>:last-child{justify-self:end}}
+@supports (text-box:trim-both cap alphabetic){.btn,.h2,.h3{text-box:trim-both cap alphabetic}}
+
+/* ================= Menos movimiento ================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+  .js .cover .ln>span,.js .rv[data-in]{transform:none!important;opacity:1!important}
+  .js .rule[data-in]{transform:none}
+  .js mark.hl[data-in]:not(.on){background-size:100% 62%}
+  .js [data-in] .ill .o,.js .rev[data-in] .cap .fr,.js .rev[data-in] .cap text{stroke-dashoffset:0;fill-opacity:1}
+  .js [data-in] .ill :is(.h,.f,.p),.js .rev[data-in] .cap .fl{opacity:1}
+}
+@media print{.mast{position:static}.js [data-in],.js .cover .ln>span{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-es="Saltar al contenido">跳到主要內容</a>
+
+<!-- Trama rosa compartida por todas las ilustraciones -->
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs><pattern id="t06" class="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6"/></pattern></defs>
+</svg>
+
+<header class="mast">
+  <div class="mast-in">
+    <a class="brand" href="#top" aria-label="豬豬隊友 誌 — 回到封面">
+      <svg class="snout" viewBox="0 0 30 30" aria-hidden="true"><ellipse class="o" cx="15" cy="15" rx="13" ry="10.5"/><ellipse class="n" cx="10.5" cy="15" rx="2.3" ry="3.4"/><ellipse class="n" cx="19.5" cy="15" rx="2.3" ry="3.4"/></svg>
+      <span class="wm"><b>豬豬隊友 誌</b><i>Piggy Teammates</i></span>
+    </a>
+    <nav class="nav" aria-label="目錄">
+      <ol>
+        <li><a href="#tapa"><sup>01</sup><span data-es="Nota de tapa">本週封面</span></a></li>
+        <li><a href="#lista"><sup>02</sup><span data-es="Recomendados">長期推薦</span></a></li>
+        <li><a href="#destinos"><sup>03</sup><span data-es="Destinos">親子旅遊</span></a></li>
+        <li><a href="#archivo"><sup>04</sup><span data-es="Archivo">團購紀錄</span></a></li>
+        <li><a href="#marcas"><sup>05</sup><span data-es="Para marcas">合作邀約</span></a></li>
+      </ol>
+    </nav>
+    <button class="lang" id="lang" type="button" aria-label="Ver en español">ES</button>
+  </div>
+  <div class="mast-rule"><span class="progress" id="progress"></span></div>
+</header>
+
+<main id="main">
+<!-- ================= Portada ================= -->
+<section class="cover wrap" id="top" aria-labelledby="h1">
+  <div class="dateline">
+    <span><b>Vol.&nbsp;11</b> · <span data-es="Número de noviembre 2026">2026 年 11 月號</span></span>
+    <span class="mid it" data-es="La revista de viajes de una familia de cuatro">一家四口的旅行雜誌</span>
+    <span class="num"><b>83.6K</b> <span data-es="lectores en Instagram">位 IG 讀者</span></span>
+  </div>
+  <span class="rule thick" data-in></span>
+  <div class="cover-grid">
+    <h1 class="h1" id="h1">
+      <span class="ln"><span style="--dl:.15s" data-es="A los 25 dimos">25 歲環遊世界，</span></span>
+      <span class="ln"><span style="--dl:.3s" data-es="la vuelta al mundo.">現在帶著兩個孩子</span></span>
+      <span class="ln"><span style="--dl:.45s"><mark class="hl" data-in style="--dl:1.5s"><em data-es="Ahora, con los chicos.">再出發一次。</em></mark></span></span>
+    </h1>
+  </div>
+  <span class="rule" data-in style="--dl:.4s"></span>
+  <div class="cover-foot">
+    <p class="lede rv" data-in style="--dl:.7s" data-es="Somos Scott y Wendy. Viajamos un año entero alrededor del mundo y ahora el sueño es repetirlo con nuestros dos hijos. Acá solo compartimos lo que usamos y recomendamos de verdad, al mejor precio que conseguimos.">我們是 Scott 和 Wendy。曾經花一年環遊世界，現在的夢想是帶著兩個孩子再走一次。這裡只分享自己真心用過、推薦的好物，用更好的價格。</p>
+    <div class="cta-col rv" data-in style="--dl:.85s">
+      <a class="btn pk" href="#tapa"><span data-es="Ver el grupo abierto">看現在開團</span> <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn line" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span data-es="Sumate por LINE">加入 LINE 好友</span></a>
+      <p class="note" data-es="Los grupos nuevos se avisan primero por LINE.">新團都會先在 LINE 通知。</p>
+    </div>
+    <figure class="fig1 rv" data-in style="--dl:1s">
+      <div class="frame"><span data-es="Acá va su foto<small>la familia el día que salen de viaje</small>">這裡放你們的照片<small>一家四口出發的那天</small></span></div>
+      <figcaption><b>Fig. 1</b><span data-es="Portada del número: los cuatro con las valijas, listos para salir.">本期封面：一家四口拖著行李，準備出發。</span></figcaption>
+    </figure>
+    <nav class="toc" aria-labelledby="toc-h">
+      <h2 class="sc" id="toc-h" data-es="En este número">本期目錄</h2>
+      <ol>
+        <li><a href="#tapa"><b>§1</b><span data-es="Nota de tapa: el grupo de la semana">封面故事：本週開團</span></a></li>
+        <li><a href="#lista"><b>§2</b><span data-es="Lo que usamos todos los días">長期推薦好物</span></a></li>
+        <li><a href="#destinos"><b>§3</b><span data-es="Cinco viajes en familia">五趟親子旅行</span></a></li>
+        <li><a href="#archivo"><b>§4</b><span data-es="Archivo: grupos anteriores">過刊回顧：團購紀錄</span></a></li>
+        <li><a href="#marcas"><b>§5</b><span data-es="Para marcas">品牌合作邀約</span></a></li>
+        <li><a href="#suscribite"><b>§6</b><span data-es="Suscribite">訂閱新團通知</span></a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- ================= § 01 Nota de tapa ================= -->
+<section class="sec wrap" id="tapa" aria-labelledby="h-tapa">
+  <div class="sh">
+    <span class="rule" data-in></span>
+    <p class="sh-n" aria-hidden="true"><small>§</small>01</p>
+    <div class="sh-t">
+      <p class="kick sc" data-es="Nota de tapa de la semana · grupo abierto">本週封面故事 · 開團中</p>
+      <h2 class="h2" id="h-tapa"><span data-es="El colchón que">一張讓全家</span> <mark class="hl" data-in><em data-es="nos devolvió el sueño">睡回好覺</em></mark><span data-es=".">的床墊。</span></h2>
+    </div>
+    <p class="sh-i" data-es="Colchón EMMA (Alemania) · 50 % por el 11/11 + 12 % extra con nuestro código.">德國 EMMA 床墊 · 雙 11 下殺 5 折，輸入我們的代碼再享 12% 折扣。</p>
+  </div>
+
+  <div class="story">
+    <figure class="story-fig fig" data-in>
+      <div class="pic">
+        <svg class="ill" viewBox="0 0 320 200" role="img" aria-labelledby="f2t"><title id="f2t">床墊插畫</title>
+          <path class="f" d="M40 96 L180 70 L290 98 L150 128Z"/>
+          <path class="h" d="M40 96 L150 128 L150 150 L40 118Z"/>
+          <path class="o" pathLength="1" d="M40 96 L180 70 L290 98 L150 128Z"/>
+          <path class="o" pathLength="1" d="M40 96 V118 L150 150 L290 120 V98 M150 128 V150"/>
+          <path class="o" pathLength="1" d="M75 92 L205 76 M95 104 L235 86 M118 114 L262 94" stroke-dasharray="2 6"/>
+          <path class="w" d="M180 80 Q210 70 238 82 Q246 92 222 96 Q196 100 180 90Z"/>
+          <path class="o" pathLength="1" d="M180 80 Q210 70 238 82 Q246 92 222 96 Q196 100 180 90Z"/>
+          <ellipse class="p" cx="203" cy="86" rx="3" ry="4"/><ellipse class="p" cx="215" cy="86" rx="3" ry="4"/>
+          <path class="o" pathLength="1" d="M64 54 h14 l-14 14 h14 M92 34 h10 l-10 10 h10 M112 20 h7 l-7 7 h7"/>
+        </svg>
+      </div>
+      <figcaption><b>Fig. 2</b><span data-es="El colchón del dormitorio grande, dibujado mientras esperamos su foto.">主臥的那張床墊（照片之後換上你們的）。</span></figcaption>
+    </figure>
+
+    <div class="story-txt">
+      <p class="tag"><i aria-hidden="true"></i><span data-es="GRUPO ABIERTO · cierra el 4/11">開團中 · 11/4 結單</span></p>
+      <h3 class="h3" data-es="Dos chicos, una cama grande y mañanas más tranquilas">兩個孩子、一張大床，和比較安靜的早晨</h3>
+      <div class="blk" data-ejemplo>
+        <span class="ej">範例 / Ejemplo</span>
+        <p data-es="Desde que los chicos se pasan a nuestra cama a la madrugada, buscábamos un colchón que no se hundiera en el medio<span class='ref'>¹</span>. Lo usamos varios meses antes de abrir este grupo.">自從孩子半夜都爬到我們床上，我們就在找一張中間不會塌的床墊<span class="ref">¹</span>。開這團之前，我們已經自己睡了好幾個月。</p>
+        <p class="mnote"><b>¹</b><span data-es="Según la marca, tiene capas de soporte por zonas. Es lo que dice EMMA, no una prueba nuestra.">品牌表示床墊採分區支撐設計；此為 EMMA 官方說法，非我們實測。</span></p>
+      </div>
+      <div class="blk">
+        <p data-es="Este 11/11 la marca lo deja a mitad de precio, y con nuestro código suma un 12 % más<span class='ref'>²</span>.">今年雙 11 品牌直接下殺 5 折，輸入我們的代碼再享 12% 折扣<span class="ref">²</span>。</p>
+        <p class="mnote"><b>²</b><span data-es="Descuento indicado por la marca para este grupo. Revisá las condiciones en su página antes de comprar.">折扣依品牌公告為準，下單前請再確認官網活動條件。</span></p>
+      </div>
+    </div>
+
+    <aside class="story-box" aria-labelledby="box-h">
+      <div class="box" id="box">
+        <h3 id="box-h"><span data-es="Cierra en">距離結單</span><span class="num">11/4 23:59</span></h3>
+        <div class="cd" role="timer" aria-live="off">
+          <div><b id="cd-d">4</b><small data-es="días">天</small></div>
+          <div><b id="cd-h">00</b><small data-es="horas">時</small></div>
+          <div><b id="cd-m">00</b><small data-es="min">分</small></div>
+          <div><b id="cd-s">00</b><small data-es="seg">秒</small></div>
+        </div>
+        <p class="cd-when" data-es="Hora de Taiwán · 4 de noviembre de 2026, 23:59">台灣時間 2026/11/4 23:59 結單</p>
+        <div class="closed"><strong data-es="Cerrado">已結單</strong><span data-es="Este grupo ya terminó. Avisame si vuelve:">這團已經結束，想等下次開團：</span></div>
+        <p class="sc" style="font-size:var(--t-xs);margin-bottom:var(--e-1)" data-es="Código de descuento">折扣代碼</p>
+        <div class="code">
+          <code id="code">piggyteamate</code>
+          <button class="copy" id="copy" type="button" data-copy="piggyteamate"><span class="go" data-es="Copiar">複製</span><span class="ok" data-es="¡Listo!">已複製</span></button>
+        </div>
+        <p class="copy-msg" id="copy-msg" aria-live="polite"></p>
+        <a class="btn pk buy" href="https://links.emma-sleep.com.tw/ytpiggyteamate" target="_blank" rel="noopener"><span data-es="Comprar con el código">用代碼購買 EMMA</span> <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn line" style="margin-top:var(--e-2)" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span data-es="Avisame si vuelve">再開團通知我</span></a>
+        <p class="fine" data-es="Si comprás desde este link, la marca nos da una pequeña comisión. A vos no te cuesta más.">透過此連結購買，品牌會給我們一點分潤，不會讓你多花錢。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= § 02 長期推薦 ================= -->
+<section class="sec wrap" id="lista" aria-labelledby="h-lista">
+  <div class="sh">
+    <span class="rule" data-in></span>
+    <p class="sh-n" aria-hidden="true"><small>§</small>02</p>
+    <div class="sh-t">
+      <p class="kick sc" data-es="Recomendados de siempre">長期推薦</p>
+      <h2 class="h2" id="h-lista"><span data-es="Lo que usamos">每天都在用的</span><em data-es=" todos los días">好東西</em></h2>
+    </div>
+    <p class="sh-i" data-es="Ordenado como un sumario: casa, cocina, viajes y chicos.">像雜誌目錄一樣分類：居家、廚房、旅行、親子。</p>
+  </div>
+  <div class="cat">
+    <article class="it-c rv" data-in>
+      <p class="lab" data-es="CASA">居家</p>
+      <svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+        <rect class="h" x="38" y="16" width="44" height="92"/>
+        <rect class="o" pathLength="1" x="38" y="16" width="44" height="92" rx="6"/>
+        <path class="o" pathLength="1" d="M46 30h28M46 38h28M46 46h28M46 54h28"/>
+        <circle class="f" cx="60" cy="80" r="9"/><circle class="o" pathLength="1" cx="60" cy="80" r="9"/>
+        <path class="o" pathLength="1" d="M90 30q8 6 0 12q-8 6 0 12M100 24q8 8 0 16q-8 8 0 16"/>
+      </svg>
+      <h3 data-es="Purificador y deshumidificador IRIS">IRIS 空氣清淨除濕機</h3>
+      <p data-es="Según la marca, elimina el 99,9 % de las bacterias. Aplica al subsidio de NT$&nbsp;1200.">品牌表示可去除 99.9% 細菌；可申請 NT$&nbsp;1200 節能補助。</p>
+      <a class="more" href="https://presto.company/5kM3S" target="_blank" rel="noopener"><span data-es="Ver precio">看優惠價</span> →</a>
+    </article>
+    <article class="it-c rv" data-in style="--dl:.1s">
+      <p class="lab" data-es="COCINA">廚房</p>
+      <svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+        <path class="h" d="M24 58h72v26q0 18-18 18H42q-18 0-18-18Z"/>
+        <path class="o" pathLength="1" d="M24 58h72v26q0 18-18 18H42q-18 0-18-18Z"/>
+        <path class="o" pathLength="1" d="M14 62h10M96 62h10M22 58q38-18 76 0"/>
+        <circle class="p" cx="60" cy="44" r="4"/>
+        <path class="o" pathLength="1" d="M48 30q-4-6 0-12M60 28q-4-6 0-12M72 30q-4-6 0-12"/>
+      </svg>
+      <h3 data-es="Ollas de cerámica Neoflam">Neoflam 陶瓷鍋</h3>
+      <p data-es="De Corea, con recubrimiento cerámico sin teflón, según la marca.">韓國品牌，品牌表示採陶瓷塗層、不含鐵氟龍。</p>
+      <a class="more" href="https://neoflam.com.tw/pages/piggy?sl-ref=piggy" target="_blank" rel="noopener"><span data-es="Ver precio">看優惠價</span> →</a>
+    </article>
+    <article class="it-c rv" data-in data-ejemplo style="--dl:.2s">
+      <p class="lab" data-es="VIAJES">旅行</p>
+      <svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+        <rect class="h" x="26" y="40" width="68" height="62"/>
+        <rect class="o" pathLength="1" x="26" y="40" width="68" height="62" rx="5"/>
+        <path class="o" pathLength="1" d="M48 40V28h24v12M26 60h68M40 102v8M80 102v8"/>
+        <circle class="f" cx="76" cy="78" r="10"/><circle class="p" cx="46" cy="80" r="5"/>
+      </svg>
+      <h3 data-es="Bolsas organizadoras de valija">行李收納袋</h3>
+      <p data-es="Una por persona y por color, así cada chico arma su valija.">一人一色，孩子自己就能整理行李。</p>
+      <span class="ej">範例 / Ejemplo</span>
+    </article>
+    <article class="it-c rv" data-in data-ejemplo style="--dl:.3s">
+      <p class="lab" data-es="CHICOS">親子</p>
+      <svg class="ill" viewBox="0 0 120 120" aria-hidden="true">
+        <path class="h" d="M34 50q0-22 26-22t26 22v46q0 8-8 8H42q-8 0-8-8Z"/>
+        <path class="o" pathLength="1" d="M34 50q0-22 26-22t26 22v46q0 8-8 8H42q-8 0-8-8Z"/>
+        <path class="o" pathLength="1" d="M48 28q0-10 12-10t12 10M42 70h36v20H42Z"/>
+        <ellipse class="f" cx="60" cy="54" rx="11" ry="8"/><ellipse class="p" cx="56" cy="54" rx="1.6" ry="2.4"/><ellipse class="p" cx="64" cy="54" rx="1.6" ry="2.4"/>
+      </svg>
+      <h3 data-es="Mochila de viaje para chicos">兒童旅行背包</h3>
+      <p data-es="Liviana, con lugar para la tablet, el abrigo y un muñeco.">輕巧好背，平板、外套和玩偶都裝得下。</p>
+      <span class="ej">範例 / Ejemplo</span>
+    </article>
+  </div>
+  <p class="legal" data-es="Los datos de cada producto son los que informa la marca. Los links son de afiliados.">產品說明皆依品牌提供資訊；部分為分潤連結。</p>
+</section>
+
+<!-- ================= § 03 Sumario de destinos ================= -->
+<section class="sec wrap" id="destinos" aria-labelledby="h-dest">
+  <div class="sh">
+    <span class="rule" data-in></span>
+    <p class="sh-n" aria-hidden="true"><small>§</small>03</p>
+    <div class="sh-t">
+      <p class="kick sc" data-es="Sumario · viajes en familia">目錄 · 親子旅遊</p>
+      <h2 class="h2" id="h-dest"><span data-es="Cinco viajes, ">五趟旅行，</span><mark class="hl" data-in><em data-es="dos chicos">兩個孩子</em></mark></h2>
+    </div>
+    <p class="sh-i" data-es="Cada destino tiene su nota completa. Deslizá para ver los cinco.">每個目的地都有完整的旅行筆記。左右滑動看全部。</p>
+  </div>
+  <ol class="dest">
+    <li class="rv" data-in>
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <figure class="fig">
+          <div class="pic"><svg class="ill" viewBox="0 0 240 160" role="img" aria-labelledby="f3t"><title id="f3t">肯亞草原插畫</title>
+            <circle class="f" cx="172" cy="56" r="26"/>
+            <path class="h" d="M0 126 Q60 116 120 124 T240 120 V160 H0Z"/>
+            <path class="o" pathLength="1" d="M0 126 Q60 116 120 124 T240 120"/>
+            <path class="h" d="M30 70 Q74 52 124 68 Q78 80 30 70Z"/>
+            <path class="o" pathLength="1" d="M30 70 Q74 52 124 68 Q78 80 30 70Z M72 124 L76 90 L60 74 M76 90 L92 72 M75 100 L98 86"/>
+            <path class="o" pathLength="1" d="M180 124 V102 M196 124 V102 M176 104 Q188 96 200 104 L204 70 L212 64 L216 70 L208 74 L200 104"/>
+          </svg></div>
+          <figcaption><b>Fig. 3</b><span data-es="Kenia: la sabana desde el jeep.">肯亞：從吉普車上看見的草原。</span></figcaption>
+        </figure>
+        <p class="no"><b>01</b><span data-es="Kenia">肯亞</span></p>
+        <p data-es="Safari con chicos: qué llevar y cómo cuidarlos del sol.">帶孩子去看動物大遷徙，該帶什麼、怎麼防曬。</p>
+        <span class="go" data-es="Leer la nota →">閱讀這篇 →</span>
+      </a>
+    </li>
+    <li class="rv" data-in style="--dl:.1s">
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <figure class="fig">
+          <div class="pic"><svg class="ill" viewBox="0 0 240 160" role="img" aria-labelledby="f4t"><title id="f4t">法國巴黎插畫</title>
+            <circle class="f" cx="56" cy="44" r="18"/>
+            <path class="h" d="M0 134 V104 L18 92 L36 104 V134Z M40 134 V98 H76 V134Z"/>
+            <path class="o" pathLength="1" d="M0 134 V104 L18 92 L36 104 V134 M40 134 V98 H76 V134 M48 110 h6 M62 110 h6 M48 120 h6 M62 120 h6"/>
+            <path class="o" pathLength="1" d="M140 134 L160 40 L180 134 M150 92 H170 M146 112 H174 M160 40 V24 M152 134 Q160 120 168 134"/>
+            <path class="o" pathLength="1" d="M0 134 H240"/>
+            <path class="p" d="M196 134 h22 v-14 h-22Z"/>
+          </svg></div>
+          <figcaption><b>Fig. 4</b><span data-es="Francia: los techos de París.">法國：巴黎的屋頂。</span></figcaption>
+        </figure>
+        <p class="no"><b>02</b><span data-es="Francia">法國</span></p>
+        <p data-es="París con cochecito: museos, plazas y panaderías.">推著嬰兒車逛巴黎：博物館、公園和麵包店。</p>
+        <span class="go" data-es="Leer la nota →">閱讀這篇 →</span>
+      </a>
+    </li>
+    <li class="rv" data-in style="--dl:.2s">
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <figure class="fig">
+          <div class="pic"><svg class="ill" viewBox="0 0 240 160" role="img" aria-labelledby="f5t"><title id="f5t">香港樂園城堡插畫</title>
+            <path class="h" d="M80 134 V90 H160 V134Z"/>
+            <path class="o" pathLength="1" d="M80 134 V90 H160 V134 M108 134 V116 Q120 104 132 116 V134 M92 90 V62 H106 V90 M134 90 V62 H148 V90 M112 90 V48 H128 V90"/>
+            <path class="f" d="M90 62 L99 40 L108 62Z M132 62 L141 40 L150 62Z M110 48 L120 20 L130 48Z"/>
+            <path class="o" pathLength="1" d="M90 62 L99 40 L108 62 M132 62 L141 40 L150 62 M110 48 L120 20 L130 48 M0 134 H240"/>
+            <path class="o" pathLength="1" d="M200 40 v-12 M200 40 l10 -8 M200 40 l12 2 M200 40 l8 10 M200 40 l-10 8 M200 40 l-12 -2 M200 40 l-8 -10"/>
+            <circle class="p" cx="40" cy="36" r="4"/><circle class="p" cx="214" cy="80" r="3"/>
+          </svg></div>
+          <figcaption><b>Fig. 5</b><span data-es="Disney Hong Kong: el castillo al atardecer.">香港迪士尼：傍晚的城堡。</span></figcaption>
+        </figure>
+        <p class="no"><b>03</b><span data-es="Disney Hong Kong">香港迪士尼</span></p>
+        <p data-es="Dos días en el parque: qué juegos para cada edad.">兩天玩樂園：不同年紀適合的設施。</p>
+        <span class="go" data-es="Leer la nota →">閱讀這篇 →</span>
+      </a>
+    </li>
+    <li class="rv" data-in style="--dl:.3s">
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <figure class="fig">
+          <div class="pic"><svg class="ill" viewBox="0 0 240 160" role="img" aria-labelledby="f6t"><title id="f6t">郵輪插畫</title>
+            <circle class="f" cx="196" cy="42" r="20"/>
+            <path class="h" d="M28 104 H212 L196 128 H46Z"/>
+            <path class="o" pathLength="1" d="M28 104 H212 L196 128 H46Z M52 104 V86 H180 V104 M70 86 V72 H160 V86"/>
+            <path class="o" pathLength="1" d="M60 94 h8 M80 94 h8 M100 94 h8 M120 94 h8 M140 94 h8 M160 94 h8"/>
+            <path class="p" d="M96 72 V54 H112 V72Z M122 72 V54 H138 V72Z"/>
+            <path class="o" pathLength="1" d="M0 140 Q20 134 40 140 T80 140 T120 140 T160 140 T200 140 T240 140 M10 152 Q30 146 50 152 T90 152 T130 152 T170 152 T210 152"/>
+          </svg></div>
+          <figcaption><b>Fig. 6</b><span data-es="Crucero Disney: cinco noches en el mar.">迪士尼郵輪：海上的五個晚上。</span></figcaption>
+        </figure>
+        <p class="no"><b>04</b><span data-es="Crucero Disney">迪士尼郵輪</span></p>
+        <p data-es="La primera vez en barco: camarote, comidas y mareos.">第一次搭郵輪：艙房、餐點和暈船。</p>
+        <span class="go" data-es="Leer la nota →">閱讀這篇 →</span>
+      </a>
+    </li>
+    <li class="rv" data-in style="--dl:.4s">
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <figure class="fig">
+          <div class="pic"><svg class="ill" viewBox="0 0 240 160" role="img" aria-labelledby="f7t"><title id="f7t">沙烏地阿拉伯沙漠插畫</title>
+            <circle class="f" cx="60" cy="48" r="24"/>
+            <path class="h" d="M0 132 Q50 104 110 124 Q170 100 240 120 V160 H0Z"/>
+            <path class="o" pathLength="1" d="M0 132 Q50 104 110 124 Q170 100 240 120"/>
+            <path class="o" pathLength="1" d="M140 110 Q138 76 160 70 Q190 66 196 92 Q198 108 190 112 Q182 96 168 100 Q160 104 158 114"/>
+            <path class="o" pathLength="1" d="M36 128 V96 M36 96 q-14 -4 -20 4 M36 96 q14 -6 22 2 M36 96 q-6 -12 -16 -12 M36 96 q8 -12 18 -10"/>
+            <circle class="p" cx="210" cy="40" r="3"/>
+          </svg></div>
+          <figcaption><b>Fig. 7</b><span data-es="Arabia Saudita: rocas y dunas en AlUla.">沙烏地阿拉伯：AlUla 的岩石與沙丘。</span></figcaption>
+        </figure>
+        <p class="no"><b>05</b><span data-es="Arabia Saudita">沙烏地阿拉伯</span></p>
+        <p data-es="El desierto con chicos: calor, agua y cielos de noche.">帶孩子去沙漠：高溫、補水和滿天星空。</p>
+        <span class="go" data-es="Leer la nota →">閱讀這篇 →</span>
+      </a>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= § 04 Archivo / back issues ================= -->
+<section class="sec wrap" id="archivo" aria-labelledby="h-arch">
+  <div class="sh">
+    <span class="rule" data-in></span>
+    <p class="sh-n" aria-hidden="true"><small>§</small>04</p>
+    <div class="sh-t">
+      <p class="kick sc" data-es="Archivo · números anteriores">過刊回顧 · 團購紀錄</p>
+      <h2 class="h2" id="h-arch"><span data-es="Lo que pensamos ">用了半年，</span><em data-es="medio año después">我們的心得是…</em></h2>
+    </div>
+    <p class="sh-i" data-es="Grupos que ya cerraron, con la reseña honesta de cómo nos fue.">已經結單的團，加上誠實的使用心得。</p>
+  </div>
+  <div class="arch">
+    <article class="rev" data-in data-ejemplo>
+      <p class="meta"><span><b>Vol.&nbsp;06</b> · <span data-es="Grupo de mayo">5 月團</span></span><span class="ej">範例 / Ejemplo</span></p>
+      <h3 class="h3" data-es="La valija rígida que sobrevivió a Kenia">撐過肯亞之旅的硬殼行李箱</h3>
+      <blockquote>
+        <svg class="cap" viewBox="0 0 80 80" aria-hidden="true"><rect class="fl" x="6" y="6" width="68" height="68"/><rect class="fr" pathLength="1" x="2" y="2" width="76" height="76"/><text x="40" y="61" text-anchor="middle" data-es="M">用</text></svg>
+        <p data-es="<span class='sr'>M</span>edio año y tres vuelos largos después, las ruedas siguen enteras y el cierre no se trabó nunca. Lo único: se raya. Si te molesta, comprá la funda."><span class="sr">用</span>了半年、搭了三趟長途飛機，輪子還是好好的，拉鍊也從來沒卡住。唯一的缺點是容易刮傷，介意的話記得加購保護套。</p>
+      </blockquote>
+      <p class="who" data-es="— Wendy, sobre el grupo de valijas de mayo">— Wendy，5 月行李箱團</p>
+      <a class="btn line" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span data-es="Avisame si vuelve">再開團通知我</span></a>
+    </article>
+    <article class="rev rv" data-in data-ejemplo style="--dl:.15s">
+      <p class="meta"><span><b>Vol.&nbsp;08</b> · <span data-es="Grupo de julio">7 月團</span></span><span class="ej">範例 / Ejemplo</span></p>
+      <h3 class="h3" data-es="Las ollas que usamos todos los días">每天都在用的那組鍋</h3>
+      <blockquote>
+        <p data-es="Las usamos todos los días para el desayuno de los chicos. No se pega nada y se lavan rápido. La tapa de vidrio es pesada para que la agarre un chico.">每天早上幫孩子做早餐都用它，完全不沾、洗起來很快。玻璃鍋蓋有點重，不適合讓小朋友自己拿。</p>
+      </blockquote>
+      <p class="who" data-es="— Scott, sobre el grupo de cocina de julio">— Scott，7 月廚房團</p>
+      <a class="btn line" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span data-es="Avisame si vuelve">再開團通知我</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ================= § 05 Para marcas ================= -->
+<section class="sec wrap" id="marcas" aria-labelledby="h-marcas">
+  <div class="sh">
+    <span class="rule" data-in></span>
+    <p class="sh-n" aria-hidden="true"><small>§</small>05</p>
+    <div class="sh-t">
+      <p class="kick sc" data-es="Para marcas · media kit">合作邀約 · 媒體資料</p>
+      <h2 class="h2" id="h-marcas"><span data-es="Contemos su marca ">用旅行，</span><em data-es="viajando">說你的品牌故事</em></h2>
+    </div>
+  </div>
+  <div class="kit">
+    <div class="kit-txt rv" data-in>
+      <p data-es="Hacemos contenido de viajes y vida en familia para padres que viajan con chicos. Solo trabajamos con productos que probamos antes.">我們為帶孩子旅行的爸媽創作親子旅遊與家庭生活內容，只和自己先用過、認同的品牌合作。</p>
+      <a class="btn pk" href="mailto:piggyteammates@capsuleinc.cc?subject=%E5%90%88%E4%BD%9C%E9%82%80%E7%B4%84"><span data-es="Escribir a la agencia">寫信給經紀團隊</span> <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="sh-i" style="margin-top:var(--e-3)">piggyteammates@capsuleinc.cc · Capsule Inc.</p>
+    </div>
+    <dl class="stats rv" data-in style="--dl:.15s">
+      <div><dt data-es="Seguidores en Instagram">Instagram 追蹤者</dt><dd class="real num">83.6K</dd></div>
+      <div data-ejemplo><dt data-es="Suscriptores en YouTube">YouTube 訂閱</dt><dd class="num">12K</dd><span class="ej">範例 / Ejemplo</span></div>
+      <div data-ejemplo><dt data-es="Vistas promedio por reel">Reels 平均觀看</dt><dd class="num">40K</dd><span class="ej">範例 / Ejemplo</span></div>
+      <div data-ejemplo><dt data-es="Público de 25 a 44 años">25–44 歲受眾</dt><dd class="num">78%</dd><span class="ej">範例 / Ejemplo</span></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ================= Suscribite ================= -->
+<section class="sub" id="suscribite" aria-labelledby="h-sub">
+  <div class="wrap sub-in">
+    <h2 class="h2" id="h-sub"><span data-es="Enterate antes ">新團開跑，</span><mark class="hl" data-in><em data-es="del próximo grupo">第一個知道</em></mark></h2>
+    <div class="sub-a">
+      <a class="btn pk" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span data-es="Sumate por LINE">加入 LINE 好友</span></a>
+      <a class="btn line" href="mailto:piggyteammates@capsuleinc.cc?subject=%E8%A8%82%E9%96%B1%E6%96%B0%E5%9C%98%E9%80%9A%E7%9F%A5"><span data-es="Avisame por email">用 Email 訂閱</span></a>
+      <p data-es="Un mensaje por grupo nuevo. Nada más.">每次開新團才通知，不會洗版。</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot wrap">
+  <div class="foot-g">
+    <p class="big">豬豬隊友 誌<i>Scott &amp; Wendy · Piggy Teammates</i></p>
+    <ul>
+      <li><a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@piggyteammates" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.facebook.com/piggyteammates" target="_blank" rel="noopener">Facebook</a></li>
+      <li><a href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener">LINE</a></li>
+      <li><a href="mailto:piggyteammates@capsuleinc.cc" data-es="Contacto comercial">商業合作</a></li>
+    </ul>
+    <div class="credit">
+      <span>© 2026 豬豬隊友 Scott &amp; Wendy</span>
+      <span><a href="https://paginasclover.com" target="_blank" rel="noopener nofollow" data-es="Página de muestra hecha por Páginas Clover">範例設計頁面 · Páginas Clover 製作</a> · <span data-es="Otro trabajo nuestro:">我們的其他作品：</span> <a href="https://spanishwithemi.com" target="_blank" rel="noopener nofollow">Spanish with Emi</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const d = document, h = d.documentElement;
+  h.classList.add('js');
+  const cap = /[?&]captura/.test(location.search);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Entradas al bajar: [data-in] recibe .on (si no hay JS, todo se ve igual) */
+  const all = d.querySelectorAll('[data-in]');
+  if (cap || reduce || !('IntersectionObserver' in window)) {
+    all.forEach(el => el.classList.add('on'));
+  } else {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -10% 0px' });
+    all.forEach(el => io.observe(el));
+  }
+  /* Portada: las líneas del titular suben al cargar */
+  const cover = d.querySelector('.cover');
+  setTimeout(() => cover.classList.add('on'), 60);
+
+  /* Barra de progreso de lectura (respaldo sin scroll-timeline) */
+  const bar = d.getElementById('progress');
+  if (!CSS.supports('animation-timeline: scroll()') || reduce) {
+    let tick = false;
+    const upd = () => {
+      tick = false;
+      const max = h.scrollHeight - innerHeight;
+      bar.style.setProperty('--rp', max > 0 ? (scrollY / max).toFixed(4) : 0);
+    };
+    addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(upd); } }, { passive: true });
+    upd();
+  }
+
+  /* Idioma: zh-TW por defecto, ES cambia todos los textos con data-es */
+  const btn = d.getElementById('lang');
+  const nodes = d.querySelectorAll('[data-es]');
+  const titleEl = d.querySelector('title');
+  let lang = 'zh';
+  const setLang = to => {
+    nodes.forEach(el => {
+      if (el === titleEl) return;
+      if (el.dataset.zh === undefined) el.dataset.zh = el.innerHTML;
+      el.innerHTML = to === 'es' ? el.dataset.es : el.dataset.zh;
+    });
+    if (titleEl.dataset.zh === undefined) titleEl.dataset.zh = d.title;
+    d.title = to === 'es' ? titleEl.dataset.es : titleEl.dataset.zh;
+    h.lang = to === 'es' ? 'es-AR' : 'zh-TW';
+    btn.textContent = to === 'es' ? '中文' : 'ES';
+    btn.setAttribute('aria-label', to === 'es' ? '切換成中文' : 'Ver en español');
+    lang = to;
+    copyMsg.textContent = '';
+  };
+  btn.addEventListener('click', () => setLang(lang === 'zh' ? 'es' : 'zh'));
+
+  /* Cuenta regresiva al cierre del grupo: 4/11/2026 23:59 hora de Taiwán (UTC+8) */
+  const END = Date.UTC(2026, 10, 4, 15, 59, 0);
+  const box = d.getElementById('box');
+  const el = { d: d.getElementById('cd-d'), h: d.getElementById('cd-h'), m: d.getElementById('cd-m'), s: d.getElementById('cd-s') };
+  const two = n => String(n).padStart(2, '0');
+  let timer = null;
+  const tickCd = () => {
+    let left = Math.max(0, Math.floor((END - Date.now()) / 1000));
+    if (!left) { box.classList.add('end'); stop(); return; }
+    el.d.textContent = Math.floor(left / 86400); left %= 86400;
+    el.h.textContent = two(Math.floor(left / 3600)); left %= 3600;
+    el.m.textContent = two(Math.floor(left / 60));
+    el.s.textContent = two(left % 60);
+  };
+  const start = () => { if (!timer) { tickCd(); timer = setInterval(tickCd, 1000); } };
+  const stop = () => { clearInterval(timer); timer = null; };
+  tickCd();
+  let visible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; visible && !d.hidden ? start() : stop(); }).observe(box);
+  } else start();
+  d.addEventListener('visibilitychange', () => { (!d.hidden && visible) ? start() : stop(); });
+
+  /* Copiar el código con un toque */
+  const copy = d.getElementById('copy');
+  const copyMsg = d.getElementById('copy-msg');
+  const done = () => {
+    copy.classList.add('done');
+    copyMsg.textContent = lang === 'es' ? 'Código copiado: pegalo al pagar.' : '代碼已複製，結帳時貼上即可。';
+    setTimeout(() => copy.classList.remove('done'), 2400);
+  };
+  const fallback = () => {
+    const r = d.createRange(); r.selectNodeContents(d.getElementById('code'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    try { d.execCommand('copy'); done(); } catch (e) { copyMsg.textContent = lang === 'es' ? 'Mantené apretado el código para copiarlo.' : '請長按代碼複製。'; }
+  };
+  copy.addEventListener('click', () => {
+    const txt = copy.dataset.copy;
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(done, fallback);
+    else fallback();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,812 @@
+<!doctype html>
+<!--
+  Páginas Clover — Propuesta 03 · "Cálido y cercano" · modo lote
+  Cliente: 豬豬隊友 Scott & Wendy (prospecto, muestra visual: sin SEO, seguridad ni formularios reales)
+  Concepto: «el álbum de la familia» — diario de viaje con polaroids pegadas con cinta de una familia
+            que vuelve a dar la vuelta al mundo, ahora con dos chicos; los grupos de compra son notitas
+            y etiquetas pegadas en el álbum.
+  Acento (a confirmar con Emi): rosa chanchito --chancho #AD3E68 (oklch 53% .15 0), con el papel de la terracota
+            (botón principal + 1 detalle por pantalla). Medido con contraste_oklch.py:
+            texto #FFF6EA sobre el botón 5,35:1 · rosa sobre crema 4,97:1 · sobre papel 5,47:1 (AA).
+            Los rosas claros (#dc7d94 2,65:1, #c95e7e 3,64:1) no daban AA como fondo de botón: por eso el rosa profundo.
+            Rosa claro --chancho-c #F6D9DC solo de fondo (tinta encima 11,6:1), nunca con texto rosa.
+  Largo: 7,5 pantallas a 390 px (meta ≤ 14), medido en el navegador; 0 scroll de costado a 390 y 1280.
+  Efecto firma: svg-dibujo-trazo → subrayado a mano bajo «再出發» del h1 ·
+                tipo-resaltador-progresivo → resaltador y subrayado de los títulos al entrar ·
+                galeria-polaroids (+ scroll-polaroids-mesa en el celular) → portada y «親子旅遊»
+  Apoyo: collage-papel-cinta → collage de la portada y notitas con cinta ·
+         producto-oferta-cuenta-regresiva → grupo EMMA (cierra 4/11/2026 23:59, hora de Taiwán) ·
+         boton-copiar-portapapeles → código piggyteamate ·
+         sticker-despegable-luz → sello «已結單» de los grupos anteriores ·
+         imagen-escena-css-sin-fotos → escenas SVG de cada destino, valija, colchón y productos
+  Letras: Fraunces (SOFT) + DM Sans para latín; 霞鶩文楷 TC (LXGW WenKai TC) 400/700 solo en títulos; cuerpo chino con letras del sistema.
+  Idiomas: zh-TW por defecto; botón ES/中文 cambia todos los textos (data-es) y <html lang>.
+  Todo respeta prefers-reduced-motion. Sin animaciones infinitas. Sin recursos externos salvo Google Fonts.
+-->
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>豬豬隊友 Scott &amp; Wendy｜親子旅遊・團購好物</title>
+<meta name="description" content="豬豬隊友 Scott & Wendy：25 歲環遊世界一年，現在帶著兩個孩子再出發。親子旅遊與真心推薦的團購好物。">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F6EEE1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&amp;family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&amp;family=LXGW+WenKai+TC:wght@400;700&amp;display=swap">
+<style>
+:root{
+  /* Neutros, formas y curvas del estilo 03 (copiados del original) */
+  --crema:#F6EEE1; --crema2:#EFE2CC; --papel:#FFF9F0; --tinta:#2D231C; --tinta2:#5E4C40;
+  --terra:#A9492A; --terra-t:#A2462A; --terra-v:#C9683F; --durazno:#F2C9AE;
+  --salvia:#93A889; --salvia-o:#3F5A3C; --salvia-c:#DDE5D3; --mostaza:#E3A847; --rosa:#EBC6BC;
+  --linea:rgba(45,35,28,.14); --linea2:rgba(45,35,28,.26);
+  --r-xl:40px; --r-l:28px; --r-m:18px; --r-s:10px; --r-p:999px;
+  --sombra:0 1px 0 rgba(45,35,28,.05), 0 22px 44px -26px rgba(92,52,24,.42);
+  --sombra2:0 2px 0 rgba(45,35,28,.05), 0 40px 60px -30px rgba(92,52,24,.55);
+  --e:cubic-bezier(.22,1,.36,1); --e2:cubic-bezier(.65,0,.35,1);
+  --d1:.35s; --d2:.6s; --d3:1.1s;
+  /* Acento del cliente (modo lote): rosa chanchito en el papel de la terracota */
+  --chancho:#AD3E68; --chancho-c:#F6D9DC; --sobre:#FFF6EA;
+  --cinta-a:color-mix(in srgb, var(--mostaza) 55%, transparent);
+  --cinta-b:color-mix(in srgb, var(--salvia) 60%, transparent);
+  --cinta-c:color-mix(in srgb, var(--chancho) 32%, transparent);
+  /* Letras: latín primero, chino después */
+  --serif:"Fraunces", "LXGW WenKai TC", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mano:"LXGW WenKai TC", "Fraunces", "Iowan Old Style", Georgia, serif;
+  --sans:"DM Sans", "PingFang TC", "Noto Sans CJK TC", "Microsoft JhengHei", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Escala fluida (8 pasos, máx ≤ 2,5x el mín) */
+  --t-1:.8125rem; --t-2:.9375rem; --t-3:1.0625rem;
+  --t-4:clamp(1.125rem, 1.05rem + .4vi, 1.3rem);
+  --t-5:clamp(1.3rem, 1.15rem + .8vi, 1.7rem);
+  --t-6:clamp(1.85rem, 1.3rem + 2.6vi, 3.2rem);
+  --t-7:clamp(2.2rem, 1.3rem + 4.2vi, 4.6rem);
+  --t-8:clamp(1.75rem, 1.45rem + 1.6vi, 2.6rem);
+  /* Espacios */
+  --e-1:4px; --e-2:8px; --e-3:12px; --e-4:16px; --e-5:24px; --e-6:32px; --e-7:48px; --e-8:72px;
+  --gut:16px;
+}
+@media (min-width:768px){ :root{ --gut:32px; } }
+*,*::before,*::after{ box-sizing:border-box; }
+*{ margin:0; }
+html{ -webkit-text-size-adjust:100%; scroll-padding-top:var(--e-8); }
+@media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
+body{
+  background:var(--crema); color:var(--tinta); font:400 var(--t-3)/1.6 var(--sans);
+  overflow-x:hidden; overflow-x:clip; -webkit-font-smoothing:antialiased;
+  /* grano de papel quieto (no animado) */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:lang(zh-TW) body, body:lang(zh-TW){ line-height:1.75; }
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; }
+button{ font:inherit; color:inherit; }
+:focus-visible{ outline:3px solid var(--terra-v); outline-offset:3px; border-radius:6px; }
+.sr{ position:absolute!important; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.saltar{ position:fixed; left:var(--e-3); top:-60px; z-index:100; background:var(--tinta); color:var(--papel); padding:.7em 1.1em; border-radius:var(--r-p); text-decoration:none; transition:top .2s; }
+.saltar:focus{ top:var(--e-3); }
+.wrap{ width:min(1180px, 100% - var(--gut) * 2); margin-inline:auto; }
+section{ position:relative; scroll-margin-top:var(--e-8); }
+.seccion{ padding-block:clamp(56px, 8vw, 112px); }
+
+/* ============ Tipografía ============ */
+h1,h2,h3{ font-family:var(--serif); font-weight:520; font-variation-settings:"SOFT" 100; letter-spacing:-.02em; line-height:1.12; text-wrap:balance; }
+:lang(zh-TW) :is(h1,h2,h3){ font-family:var(--mano); font-weight:700; letter-spacing:.01em; line-height:1.3; }
+h2{ font-size:var(--t-6); }
+h3{ font-size:var(--t-5); }
+p{ text-wrap:pretty; }
+:lang(zh-TW) em{ font-style:normal; }
+.kicker{ display:inline-flex; align-items:center; gap:.55em; font:600 var(--t-1)/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--terra-t); margin-bottom:var(--e-3); }
+.kicker::before{ content:""; width:14px; height:14px; flex:none; background:currentColor;
+  clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%); }
+.cabezal{ max-width:720px; margin-bottom:clamp(28px, 4vw, 48px); }
+.cabezal p:not(.kicker){ color:var(--tinta2); font-size:var(--t-4); margin-top:var(--e-3); max-width:52ch; }
+.num{ font-variant-numeric:tabular-nums; }
+
+/* ============ Marcas a mano (tipo-resaltador-progresivo) ============ */
+mark{ background:none; color:inherit; }
+.res,.sub{ background-repeat:no-repeat; transition:background-size var(--d3) cubic-bezier(.55,0,.2,1) .15s; -webkit-box-decoration-break:clone; box-decoration-break:clone; }
+.res{ background-image:linear-gradient(100deg, transparent 0, color-mix(in srgb, var(--mostaza) 60%, transparent) .3em, color-mix(in srgb, var(--mostaza) 70%, var(--papel)) 50%, color-mix(in srgb, var(--mostaza) 60%, transparent) calc(100% - .3em), transparent 100%);
+  background-position:0 72%; background-size:100% 58%; padding:0 .12em; margin:0 -.12em; border-radius:.3em .1em; }
+.res.rosa{ background-image:linear-gradient(100deg, transparent 0, var(--chancho-c) .3em, var(--chancho-c) calc(100% - .3em), transparent 100%); }
+.sub{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c6-4 9-4 13 0s8 4 13 0 8-4 12 0' fill='none' stroke='%23C9683F' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-position:0 100%; background-size:100% .3em; padding-bottom:.14em; }
+@media (prefers-reduced-motion:no-preference){
+  .js .res:not(.on){ background-size:0% 58%; }
+  .js .sub:not(.on){ background-size:0% .3em; }
+}
+
+/* ============ Botones ============ */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:.6em; min-height:52px; padding:.85em 1.5em; border-radius:var(--r-p); border:2px solid transparent;
+  font:600 var(--t-3)/1.15 var(--sans); text-decoration:none; text-align:center; cursor:pointer; -webkit-tap-highlight-color:transparent;
+  transition:transform var(--d1) var(--e), box-shadow var(--d1) var(--e), background-color var(--d1), color var(--d1); }
+.btn svg{ width:1.15em; height:1.15em; flex:none; }
+.btn:active{ transform:translateY(1px) scale(.98); }
+.btn--chancho{ background:var(--chancho); color:var(--sobre); box-shadow:0 10px 24px -14px var(--chancho); }
+.btn--chancho:is(:hover,:focus-visible){ background:color-mix(in srgb, var(--chancho) 86%, var(--tinta)); transform:translateY(-2px); }
+.btn--linea{ background:transparent; color:var(--tinta); border-color:var(--tinta); }
+.btn--linea:is(:hover,:focus-visible){ background:var(--tinta); color:var(--papel); }
+.btn--salvia{ background:var(--salvia-o); color:var(--papel); }
+.btn--salvia:is(:hover,:focus-visible){ background:var(--tinta); }
+.btn--chico{ min-height:44px; padding:.5em 1.1em; font-size:var(--t-2); }
+.btn--ancho{ width:100%; }
+.acciones{ display:flex; flex-wrap:wrap; gap:var(--e-3); margin-top:var(--e-5); }
+
+/* Rótulo de ejemplo */
+.ej{ display:inline-flex; align-items:center; gap:.3em; font:700 var(--t-1)/1 var(--sans); letter-spacing:.06em; color:var(--tinta2); background:var(--crema2); border:1.5px dashed var(--linea2); border-radius:var(--r-p); padding:.35em .7em; vertical-align:middle; white-space:nowrap; }
+
+/* ============ Cabecera ============ */
+.cab{ position:sticky; top:0; z-index:50; background:color-mix(in srgb, var(--crema) 92%, transparent); }
+.cab::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:repeating-linear-gradient(90deg, var(--linea2) 0 8px, transparent 8px 14px); }
+.cab__in{ display:flex; align-items:center; gap:var(--e-3); min-height:64px; }
+.logo{ display:inline-flex; align-items:center; gap:var(--e-2); text-decoration:none; border-radius:var(--r-s); flex:none; }
+.logo svg{ width:40px; height:40px; transition:rotate var(--d2) var(--e); }
+.logo:hover svg{ rotate:-10deg; }
+.logo__t{ display:flex; flex-direction:column; line-height:1.05; }
+.logo__zh{ font:700 var(--t-4)/1.1 var(--mano); letter-spacing:.04em; }
+.logo__en{ font:500 var(--t-1)/1.1 var(--serif); font-variation-settings:"SOFT" 100; color:var(--tinta2); }
+.nav{ display:none; margin-left:auto; }
+.nav ul{ display:flex; gap:var(--e-1); list-style:none; padding:0; }
+.nav a{ position:relative; display:block; padding:.5em .8em; text-decoration:none; font-weight:500; font-size:var(--t-2); border-radius:var(--r-p); }
+.nav a::after{ content:""; position:absolute; left:.8em; right:.8em; bottom:.2em; height:6px; clip-path:inset(0 100% 0 0); transition:clip-path .45s var(--e);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8' preserveAspectRatio='none'%3E%3Cpath d='M1 5c6-4 9-4 13 0s8 4 13 0 8-4 12 0' fill='none' stroke='%23C9683F' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat; }
+.nav a:is(:hover,:focus-visible)::after{ clip-path:inset(0 0 0 0); }
+.cab__acc{ display:flex; align-items:center; gap:var(--e-2); margin-left:auto; }
+.idioma{ min-width:48px; min-height:44px; padding:0 .9em; border:1.5px solid var(--linea2); border-radius:var(--r-p); background:var(--papel); font:700 var(--t-2)/1 var(--sans); letter-spacing:.04em; cursor:pointer; transition:background-color var(--d1), color var(--d1); }
+.idioma:is(:hover,:focus-visible){ background:var(--tinta); color:var(--papel); }
+.line-mini{ display:inline-grid; place-items:center; width:44px; height:44px; border-radius:50%; background:var(--salvia-o); color:var(--papel); }
+.line-mini svg{ width:22px; height:22px; }
+@media (min-width:960px){ .logo svg{ width:48px; height:48px; } .cab .logo__zh{ font-size:var(--t-5); } .cab .logo__en{ font-size:var(--t-2); } .nav{ display:block; } .cab__acc{ margin-left:var(--e-3); } }
+
+/* ============ Portada ============ */
+.hero{ padding:clamp(24px, 4vw, 64px) 0 clamp(48px, 7vw, 96px); }
+.hero__grid{ display:grid; gap:clamp(36px, 5vw, 72px); align-items:center; }
+@media (min-width:900px){ .hero__grid{ grid-template-columns:1.05fr .95fr; } }
+.h1{ font-size:var(--t-7); font-weight:480; line-height:1.08; letter-spacing:-.03em; }
+:lang(zh-TW) .h1{ line-height:1.28; letter-spacing:.01em; }
+.h1 span{ display:inline; }
+:lang(zh-TW) .nw{ white-space:nowrap; }
+.trazo-w{ position:relative; display:inline-block; color:var(--chancho); font-weight:430; white-space:nowrap; }
+:lang(zh-TW) .trazo-w{ font-weight:700; }
+.trazo-w svg{ position:absolute; left:-2%; bottom:-.12em; width:104%; height:.34em; overflow:visible; }
+.trazo-w path{ fill:none; stroke:var(--mostaza); stroke-width:5; stroke-linecap:round; stroke-dasharray:1; }
+@media (prefers-reduced-motion:no-preference){
+  .js .trazo-w path{ stroke-dashoffset:1; transition:stroke-dashoffset var(--d3) var(--e2) .5s; }
+  .js .trazo-w.on path{ stroke-dashoffset:0; }
+}
+.hero__p{ margin-top:var(--e-4); font-size:var(--t-4); color:var(--tinta2); max-width:44ch; }
+.hero__dato{ display:inline-flex; align-items:center; gap:.5em; margin-top:var(--e-5); font-size:var(--t-2); color:var(--tinta2); }
+.hero__dato b{ color:var(--tinta); font-family:var(--serif); font-variation-settings:"SOFT" 100; font-size:var(--t-4); }
+
+/* Collage de la portada (collage-papel-cinta + polaroids) */
+.collage{ position:relative; min-height:clamp(410px, 100vw, 540px); }
+.pola{ position:relative; display:block; background:var(--papel); padding:10px 10px 0; border-radius:6px; box-shadow:var(--sombra); text-decoration:none; color:var(--tinta);
+  rotate:var(--r,-2deg); transition:rotate var(--d2) var(--e), transform var(--d2) var(--e), box-shadow var(--d2) var(--e); }
+.pola__img{ aspect-ratio:1; border-radius:3px; overflow:hidden; background:var(--crema2); }
+.pola__img svg{ width:100%; height:100%; }
+.pola figcaption, .pola__pie{ display:block; padding:.55em .2em .7em; font:400 var(--t-3)/1.35 var(--mano); text-align:center; }
+.cinta{ position:absolute; top:-12px; left:50%; width:96px; height:28px; translate:-50% 0; rotate:var(--rc,-4deg); background:var(--cinta-a); border-radius:3px; z-index:2;
+  -webkit-mask:linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent 0); mask:linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent 0); }
+.cinta.b{ background:var(--cinta-b); }
+.cinta.c{ background:var(--cinta-c); }
+a.pola:is(:hover,:focus-visible), .pola:focus-within{ rotate:0deg; transform:translateY(-8px); box-shadow:var(--sombra2); }
+.collage .pola{ position:absolute; width:min(62%, 300px); }
+.collage .p1{ left:0; top:3%; width:min(60%, 290px); --r:-4deg; z-index:1; }
+.collage .p2{ right:0; top:27%; width:min(50%, 280px); --r:5deg; z-index:2; }
+@media (min-width:900px){ .collage .p1{ top:0; } .collage .p2{ top:20%; } }
+.foto-vacia{ position:relative; display:grid; place-items:center; height:100%; background:repeating-linear-gradient(-45deg, var(--crema2) 0 10px, var(--crema) 10px 20px); border:2px dashed var(--linea2); border-radius:3px; text-align:center; }
+.foto-vacia svg{ position:absolute; inset:auto 0 0; height:62%; width:100%; }
+.foto-vacia span{ position:relative; z-index:1; max-width:86%; display:inline-flex; flex-direction:column; align-items:center; gap:var(--e-1); background:var(--papel); color:var(--tinta); padding:.5em .9em; border-radius:var(--r-s); font:600 var(--t-1)/1.35 var(--sans); box-shadow:var(--sombra); margin-bottom:28%; }
+.foto-vacia span svg{ position:static; width:22px; height:22px; }
+.sello{ position:absolute; right:2%; top:0; z-index:3; display:grid; place-items:center; width:88px; aspect-ratio:1; border-radius:50%; border:2px dashed var(--chancho); background:var(--papel); color:var(--chancho); rotate:-10deg; text-align:center; font:700 var(--t-1)/1.15 var(--sans); box-shadow:var(--sombra); }
+.sello b{ display:block; font:600 var(--t-5)/1 var(--serif); font-variation-settings:"SOFT" 100; }
+.nota-cinta{ position:absolute; left:2%; bottom:0; z-index:3; max-width:44%; background:var(--papel); padding:.7em .9em; rotate:2deg; box-shadow:var(--sombra); font:400 var(--t-2)/1.45 var(--mano); border-radius:2px; }
+.nota-cinta::before{ content:""; position:absolute; top:-10px; left:18px; width:58px; height:20px; background:var(--cinta-b); rotate:-6deg; }
+
+/* Escenas SVG (imagen-escena-css-sin-fotos): solo tokens */
+.f-cr{ fill:var(--crema); } .f-cr2{ fill:var(--crema2); } .f-pa{ fill:var(--papel); } .f-ti{ fill:var(--tinta); } .f-ti2{ fill:var(--tinta2); }
+.f-te{ fill:var(--terra); } .f-tv{ fill:var(--terra-v); } .f-du{ fill:var(--durazno); } .f-sa{ fill:var(--salvia); } .f-so{ fill:var(--salvia-o); }
+.f-sc{ fill:var(--salvia-c); } .f-mo{ fill:var(--mostaza); } .f-ro{ fill:var(--rosa); } .f-ch{ fill:var(--chancho); } .f-cc{ fill:var(--chancho-c); }
+.s-ti2{ fill:none; stroke:var(--tinta2); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
+.s-pa{ fill:none; stroke:var(--papel); stroke-width:2.5; stroke-linecap:round; }
+.s-mo{ fill:none; stroke:var(--mostaza); stroke-width:4; stroke-linecap:round; }
+.s-ch{ fill:none; stroke:var(--chancho); stroke-width:2; stroke-linecap:round; }
+
+/* ============ Grupo abierto (producto-oferta-cuenta-regresiva + boton-copiar) ============ */
+.abierto{ background:var(--crema2); border-radius:var(--r-xl) var(--r-xl) 0 0; }
+.grupo{ position:relative; display:grid; gap:var(--e-5); background:var(--papel); border-radius:var(--r-l); padding:clamp(20px, 3vw, 40px); box-shadow:var(--sombra); }
+.grupo > .cinta{ left:22%; width:120px; }
+@media (min-width:900px){ .grupo{ grid-template-columns:.9fr 1.1fr; align-items:center; gap:var(--e-7); } }
+.grupo__esc{ border-radius:var(--r-m); overflow:hidden; aspect-ratio:4/3; }
+.grupo__esc svg{ width:100%; height:100%; }
+@media (max-width:899px){ .grupo__esc{ aspect-ratio:16/9; } }
+.etiq{ display:inline-flex; align-items:center; gap:.45em; font:700 var(--t-1)/1 var(--sans); letter-spacing:.06em; padding:.5em .85em; border-radius:var(--r-p); background:var(--chancho-c); color:var(--tinta); }
+.etiq i{ width:8px; height:8px; border-radius:50%; background:var(--chancho); }
+.grupo h3{ margin-top:var(--e-3); }
+.grupo__oferta{ margin-top:var(--e-2); color:var(--tinta2); }
+.grupo__oferta b{ color:var(--tinta); }
+.reloj{ margin-top:var(--e-4); }
+.reloj__t{ font-size:var(--t-2); color:var(--tinta2); }
+.reloj__n{ display:grid; grid-template-columns:repeat(4, 1fr); gap:var(--e-2); margin-top:var(--e-2); max-width:420px; }
+.reloj__n div{ background:var(--crema); border:1.5px dashed var(--linea2); border-radius:var(--r-m); padding:.45em .2em .5em; text-align:center; }
+.reloj__n b{ display:block; font:560 var(--t-8)/1 var(--serif); font-variation-settings:"SOFT" 100; font-variant-numeric:tabular-nums; }
+.reloj__n span{ display:block; margin-top:var(--e-1); font-size:var(--t-1); color:var(--tinta2); }
+.codigo{ display:flex; align-items:center; gap:var(--e-2); flex-wrap:wrap; margin-top:var(--e-4); padding:var(--e-2) var(--e-2) var(--e-2) var(--e-4); border:2px dashed var(--chancho); border-radius:var(--r-m); background:var(--crema); }
+.codigo__l{ font-size:var(--t-1); color:var(--tinta2); width:100%; padding-top:var(--e-1); }
+.codigo code{ flex:1; font:700 var(--t-4)/1.2 var(--sans); letter-spacing:.06em; font-variant-numeric:tabular-nums; }
+.copiar{ display:inline-flex; align-items:center; gap:.4em; min-height:44px; padding:0 1em; border:0; border-radius:var(--r-p); background:var(--tinta); color:var(--papel); font:600 var(--t-2)/1 var(--sans); cursor:pointer; transition:background-color var(--d1); }
+.copiar svg{ width:18px; height:18px; }
+.copiar .ok{ display:none; }
+.copiar.hecho{ background:var(--salvia-o); }
+.copiar.hecho .ok{ display:block; } .copiar.hecho .cp{ display:none; }
+.grupo .btn--chancho{ margin-top:var(--e-4); }
+.letra-chica{ margin-top:var(--e-3); font-size:var(--t-1); color:var(--tinta2); }
+.cerrado-msg{ display:none; }
+.grupo.terminado .reloj__n, .grupo.terminado .codigo, .grupo.terminado .btn--chancho{ display:none; }
+.grupo.terminado .cerrado-msg{ display:block; margin-top:var(--e-4); }
+.grupo.terminado .etiq i{ background:var(--tinta2); }
+
+/* ============ Recomendados (notitas pegadas) ============ */
+.filtros{ display:flex; gap:var(--e-2); overflow-x:auto; padding:var(--e-1) var(--e-1) var(--e-3); margin:0 calc(var(--e-1) * -1) var(--e-3); scrollbar-width:none; }
+.filtros::-webkit-scrollbar{ display:none; }
+.filtro{ flex:none; min-height:44px; padding:0 1.05em; border-radius:var(--r-p); border:1.5px solid var(--linea2); background:var(--papel); font:600 var(--t-2)/1 var(--sans); cursor:pointer; transition:background-color var(--d1), color var(--d1); }
+.filtro[aria-pressed="true"]{ background:var(--tinta); color:var(--papel); border-color:var(--tinta); }
+.notas{ display:grid; gap:var(--e-5) var(--e-5); list-style:none; padding:0; }
+@media (min-width:700px){ .notas{ grid-template-columns:1fr 1fr; } }
+@media (min-width:1100px){ .notas{ grid-template-columns:repeat(4, 1fr); } }
+.nota{ position:relative; display:grid; grid-template-columns:76px 1fr; gap:var(--e-4); align-items:start; background:var(--papel); border-radius:var(--r-m); padding:var(--e-5) var(--e-4) var(--e-4); box-shadow:var(--sombra); rotate:var(--r,0deg); transition:rotate var(--d2) var(--e), transform var(--d2) var(--e); }
+.nota:nth-child(2n){ --r:.8deg; } .nota:nth-child(2n+1){ --r:-.6deg; }
+.nota:focus-within, .nota:hover{ rotate:0deg; transform:translateY(-4px); }
+@media (min-width:1100px){ .nota{ grid-template-columns:1fr; } .nota__ico{ width:88px; } }
+.nota > .cinta{ width:64px; height:22px; top:-10px; left:30%; }
+.nota__ico{ width:76px; aspect-ratio:1; border-radius:var(--r-m); overflow:hidden; }
+.nota__ico svg{ width:100%; height:100%; }
+.nota__cat{ font-size:var(--t-1); font-weight:700; letter-spacing:.06em; color:var(--salvia-o); }
+.nota h3{ font-size:var(--t-4); margin-top:var(--e-1); }
+.nota p{ font-size:var(--t-2); color:var(--tinta2); margin-top:var(--e-1); }
+.nota__a{ display:inline-flex; align-items:center; gap:.35em; min-height:44px; margin-top:var(--e-1); font-weight:700; font-size:var(--t-2); color:var(--terra-t); text-decoration:none; }
+.nota__a span{ border-bottom:2px solid currentColor; }
+.nota__a:hover svg{ transform:translateX(4px); }
+.nota__a svg{ width:16px; height:16px; transition:transform var(--d1) var(--e); }
+.nota__pronto{ display:inline-block; margin-top:var(--e-2); font-size:var(--t-2); font-weight:600; color:var(--tinta2); }
+.nota[hidden]{ display:none; }
+
+/* ============ Grupos anteriores (sticker-despegable-luz) ============ */
+.historial{ display:grid; gap:var(--e-6); }
+@media (min-width:900px){ .historial{ grid-template-columns:1fr 1fr; gap:var(--e-7); } }
+.resena{ position:relative; background:var(--papel); border-radius:var(--r-l); padding:var(--e-6) var(--e-5) var(--e-5); box-shadow:var(--sombra); background-image:repeating-linear-gradient(transparent 0 31px, var(--linea) 31px 32px); background-position:0 22px; }
+.resena__cab{ display:flex; align-items:center; gap:var(--e-3); padding-right:96px; }
+.resena__cab small{ display:block; font-size:var(--t-1); color:var(--tinta2); }
+.resena h3{ font-size:var(--t-4); }
+.resena blockquote{ margin-top:var(--e-4); font:400 var(--t-4)/1.6 var(--mano); }
+.resena cite{ display:block; margin-top:var(--e-2); font-style:normal; font-weight:600; font-size:var(--t-2); color:var(--tinta2); }
+.resena .btn{ margin-top:var(--e-4); }
+.resena > .ej{ position:absolute; left:var(--e-5); top:calc(var(--e-3) * -1); }
+/* el sticker: la esquina se levanta al pasar, al tocar o con el foco */
+.sticker{ position:absolute; right:var(--e-4); top:var(--e-4); width:84px; height:84px; border:0; padding:0; background:none; cursor:pointer; rotate:12deg; --p:0px;
+  filter:drop-shadow(0 2px 2px color-mix(in srgb, var(--tinta) 18%, transparent)); transition:--p var(--d2) var(--e), filter var(--d2) var(--e); }
+@property --p{ syntax:"<length>"; inherits:true; initial-value:0px; }
+.sticker__cara{ position:absolute; inset:0; display:grid; place-items:center; border-radius:50%; background:var(--chancho); color:var(--sobre); text-align:center; font:700 var(--t-2)/1.15 var(--sans);
+  clip-path:polygon(0 0, 100% 0, 100% calc(100% - var(--p)), calc(100% - var(--p)) 100%, 0 100%); }
+:lang(zh-TW) .sticker__cara{ font-family:var(--mano); font-size:var(--t-4); }
+.sticker__cara::before{ content:""; position:absolute; inset:5px; border:1.5px dashed color-mix(in srgb, var(--sobre) 70%, transparent); border-radius:50%; }
+.sticker__dorso{ position:absolute; right:0; bottom:0; width:var(--p); height:var(--p); background:linear-gradient(135deg, var(--papel) 50%, transparent 50%); border-radius:0 0 40% 0; box-shadow:-2px -2px 4px color-mix(in srgb, var(--tinta) 12%, transparent); }
+.sticker:focus-visible, .sticker.alzado{ --p:34px; filter:drop-shadow(0 10px 12px color-mix(in srgb, var(--tinta) 24%, transparent)); }
+@media (hover:hover) and (pointer:fine){ .sticker:hover{ --p:26px; filter:drop-shadow(0 8px 10px color-mix(in srgb, var(--tinta) 22%, transparent)); } }
+
+/* ============ Viajes en familia (galeria-polaroids / scroll-polaroids-mesa) ============ */
+.viajes{ background:var(--salvia-c); border-radius:var(--r-xl); }
+.mesa{ display:flex; gap:var(--e-5); list-style:none; padding:var(--e-5) var(--gut) var(--e-6); margin-inline:calc(var(--gut) * -1); overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:var(--gut); scrollbar-width:thin; }
+.mesa li{ flex:0 0 min(72%, 260px); scroll-snap-align:start; }
+.mesa li:nth-child(odd) .pola{ --r:-2.5deg; } .mesa li:nth-child(even) .pola{ --r:2deg; }
+.mesa li:nth-child(3n) .pola{ --r:-1deg; }
+.mesa .pola__pie small{ display:block; font:600 var(--t-1)/1.3 var(--sans); color:var(--tinta2); margin-top:var(--e-1); }
+.pista{ display:flex; align-items:center; gap:.5em; font-size:var(--t-2); color:var(--salvia-o); font-weight:600; }
+.pista svg{ width:20px; height:20px; }
+@media (min-width:900px){
+  .mesa{ display:grid; grid-template-columns:repeat(3, 1fr); gap:var(--e-7) var(--e-6); overflow:visible; margin:0; padding:var(--e-5) 0 0; }
+  .mesa li:nth-child(3n+2){ margin-top:var(--e-6); }
+  .pista{ display:none; }
+}
+@media (min-width:1100px){
+  .mesa{ grid-template-columns:repeat(5, 1fr); gap:var(--e-5); }
+  .mesa li:nth-child(3n+2){ margin-top:0; }
+  .mesa li:nth-child(even){ margin-top:var(--e-6); }
+}
+
+/* ============ Para marcas ============ */
+.marcas{ display:grid; gap:var(--e-6); }
+@media (min-width:900px){ .marcas{ grid-template-columns:1fr 1fr; align-items:center; gap:var(--e-8); } }
+.cifras{ display:grid; grid-template-columns:1fr 1fr; gap:var(--e-3); list-style:none; padding:0; }
+.cifras li{ position:relative; background:var(--papel); border-radius:var(--r-m); padding:var(--e-4); box-shadow:var(--sombra); }
+.cifras li:first-child{ background:var(--tinta); color:var(--papel); }
+.cifras li:first-child span{ color:var(--crema2); }
+.cifras b{ display:block; font:560 var(--t-6)/1 var(--serif); font-variation-settings:"SOFT" 100; font-variant-numeric:tabular-nums; letter-spacing:-.02em; }
+.cifras span{ display:block; margin-top:var(--e-2); font-size:var(--t-2); color:var(--tinta2); line-height:1.4; }
+.cifras .ej{ margin-top:var(--e-2); }
+.tipos{ display:flex; flex-wrap:wrap; gap:var(--e-2); list-style:none; padding:0; margin-top:var(--e-4); }
+.tipos li{ font-size:var(--t-2); font-weight:600; padding:.35em .9em; border-radius:var(--r-p); background:var(--salvia-c); color:var(--salvia-o); }
+.mail{ display:block; margin-top:var(--e-3); font-size:var(--t-2); color:var(--tinta2); overflow-wrap:anywhere; }
+
+/* ============ Suscribite ============ */
+.sus{ position:relative; background:var(--papel); border-radius:var(--r-xl); padding:clamp(28px, 5vw, 64px) clamp(20px, 5vw, 64px); box-shadow:var(--sombra); text-align:center; }
+.sus > .cinta{ width:130px; }
+.sus h2{ max-width:20ch; margin-inline:auto; }
+.sus p{ color:var(--tinta2); max-width:46ch; margin:var(--e-3) auto 0; }
+.sus .acciones{ justify-content:center; }
+.sus .ej{ margin-top:var(--e-3); }
+
+/* ============ Pie ============ */
+.pie{ margin-top:clamp(56px, 8vw, 112px); padding:var(--e-7) 0 var(--e-6); border-top:2px dashed var(--linea2); }
+.pie__grid{ display:grid; gap:var(--e-5); }
+@media (min-width:900px){ .pie__grid{ grid-template-columns:1fr auto; align-items:center; } }
+.redes{ display:flex; flex-wrap:wrap; gap:var(--e-2); list-style:none; padding:0; }
+.redes a{ display:inline-flex; align-items:center; gap:.45em; min-height:44px; padding:0 1em; border:1.5px solid var(--linea2); border-radius:var(--r-p); text-decoration:none; font-weight:600; font-size:var(--t-2); background:var(--papel); }
+.redes a:is(:hover,:focus-visible){ border-color:var(--tinta); }
+.redes svg{ width:18px; height:18px; }
+.credito{ margin-top:var(--e-5); font-size:var(--t-1); color:var(--tinta2); line-height:1.7; }
+.credito a{ display:inline-block; padding-block:var(--e-1); font-weight:600; color:var(--tinta); }
+.credito a:is(:hover,:focus-visible){ color:var(--terra-t); }
+
+/* ============ Aparecer al bajar (seguro: se ve sin JS y con ?captura) ============ */
+@media (prefers-reduced-motion:no-preference){
+  .js .ap:not(.on){ opacity:0; transform:translateY(18px); }
+  .js .ap{ transition:opacity var(--d2) var(--e), transform var(--d2) var(--e); }
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ transition-duration:.01ms!important; animation-duration:.01ms!important; }
+  .pola, .nota{ rotate:var(--r,0deg); transform:none!important; }
+}
+@media print{ .cab{ position:static; } .js .ap{ opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido" data-es="Saltar al contenido">跳到主要內容</a>
+
+<header class="cab">
+  <div class="wrap cab__in">
+    <a class="logo" href="#contenido" aria-label="豬豬隊友 Scott &amp; Wendy" data-es-aria="Piggy Teammates, Scott y Wendy, inicio">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="f-cc" cx="24" cy="24" r="22"/><path class="f-ch" d="M9 14 L15 4 L19 13Z M39 14 L33 4 L29 13Z"/><circle class="f-pa" cx="24" cy="25" r="16"/><ellipse class="f-ch" cx="24" cy="29" rx="9" ry="6.5"/><ellipse class="f-ti" cx="20.5" cy="29" rx="1.7" ry="2.4"/><ellipse class="f-ti" cx="27.5" cy="29" rx="1.7" ry="2.4"/><circle class="f-ti" cx="17" cy="19" r="1.8"/><circle class="f-ti" cx="31" cy="19" r="1.8"/></svg>
+      <span class="logo__t"><span class="logo__zh">豬豬隊友</span><span class="logo__en">Scott &amp; Wendy</span></span>
+    </a>
+    <nav class="nav" aria-label="主選單" data-es-aria="Menú principal">
+      <ul>
+        <li><a href="#abierto" data-es="Grupo abierto">開團中</a></li>
+        <li><a href="#recomendados" data-es="Recomendados">好物推薦</a></li>
+        <li><a href="#viajes" data-es="Viajes en familia">親子旅遊</a></li>
+        <li><a href="#marcas" data-es="Para marcas">合作邀約</a></li>
+      </ul>
+    </nav>
+    <div class="cab__acc">
+      <button class="idioma" id="idioma" type="button" lang="es" aria-label="Ver en español" data-es-aria="查看中文版">ES</button>
+      <a class="line-mini" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener" aria-label="加入 LINE 好友" data-es-aria="Sumate a nuestro LINE">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1 .9.5s6-3.5 8.2-6.1c1.5-1.6 2.2-3.2 2.2-4.8C22 6.6 17.5 3 12 3Zm-3.9 10.6H6.2a.5.5 0 0 1-.5-.5V9.3a.5.5 0 0 1 1 0v3.3h1.4a.5.5 0 0 1 0 1Zm2-.5a.5.5 0 0 1-1 0V9.3a.5.5 0 0 1 1 0v3.8Zm4.6 0a.5.5 0 0 1-.9.3l-2-2.6v2.3a.5.5 0 0 1-1 0V9.3a.5.5 0 0 1 .9-.3l2 2.6V9.3a.5.5 0 0 1 1 0v3.8Zm3-2.4a.5.5 0 0 1 0 1h-1.4v.9h1.4a.5.5 0 0 1 0 1h-1.9a.5.5 0 0 1-.5-.5V9.3c0-.3.2-.5.5-.5h1.9a.5.5 0 0 1 0 1h-1.4v.9h1.4Z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="contenido">
+  <!-- ========== 1. Portada ========== -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="kicker">Scott &amp; Wendy · <span data-es="Piggy Teammates">豬豬隊友</span></p>
+        <h1 class="h1" id="h1"><span data-es="A los 25 ">25 歲</span><span class="nw" data-es="dimos la vuelta al mundo. ">環遊世界一年</span><span data-es="Ahora, con ">，這次帶著</span><span class="nw" data-es="los dos chicos, ">兩個孩子</span><em class="trazo-w"><span data-es="salimos otra vez.">再出發</span><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 13 C 40 5, 80 4, 118 9 S 176 15, 196 6"/></svg></em></h1>
+        <p class="hero__p" data-es="Viajes, crianza y cosas para la casa: solo compartimos lo que probamos y recomendamos de verdad, a mejor precio.">旅行、育兒、居家好物——只分享自己真心用過、推薦的東西，用更好的價格帶給你。</p>
+        <div class="acciones">
+          <a class="btn btn--chancho" href="#abierto"><span data-es="Ver grupos abiertos">看現在開團</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-6-6m6 6 6-6"/></svg></a>
+          <a class="btn btn--linea" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener" data-es="Sumate a nuestro LINE">加入 LINE 好友</a>
+        </div>
+        <p class="hero__dato"><b class="num">83.6K</b> <span data-es="personas nos siguen en Instagram">位朋友在 Instagram 追蹤我們</span></p>
+      </div>
+
+      <div class="collage" aria-label="我們的旅行相簿" data-es-aria="Nuestro álbum de viaje" role="group">
+        <figure class="pola p1">
+          <span class="cinta" aria-hidden="true"></span>
+          <div class="pola__img">
+            <div class="foto-vacia">
+              <svg viewBox="0 0 200 120" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g class="f-sc"><circle cx="48" cy="40" r="15"/><path d="M22 120 Q22 64 48 64 Q74 64 74 120Z"/><circle cx="152" cy="40" r="15"/><path d="M126 120 Q126 64 152 64 Q178 64 178 120Z"/></g><g class="f-du"><circle cx="86" cy="66" r="11"/><path d="M68 120 Q68 84 86 84 Q104 84 104 120Z"/><circle cx="116" cy="70" r="10"/><path d="M100 120 Q100 88 116 88 Q132 88 132 120Z"/></g></svg>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg><span data-es="Acá va su foto">這裡放你們的照片</span></span>
+            </div>
+          </div>
+          <figcaption data-es="Nosotros, antes de salir">出發前的我們</figcaption>
+        </figure>
+        <figure class="pola p2">
+          <span class="cinta b" aria-hidden="true" style="--rc:5deg"></span>
+          <div class="pola__img">
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <rect class="f-sc" width="200" height="200"/><circle class="f-pa" cx="150" cy="44" r="20"/>
+              <rect class="f-te" x="46" y="70" width="108" height="104" rx="14"/><path class="s-ti2" d="M80 70 V56 Q80 48 88 48 H112 Q120 48 120 56 V70"/>
+              <rect class="f-pa" x="64" y="70" width="10" height="104" opacity=".55"/><rect class="f-pa" x="126" y="70" width="10" height="104" opacity=".55"/>
+              <circle class="f-mo" cx="98" cy="104" r="17"/><path class="s-ti2" d="M90 104 l6 6 l10 -12"/>
+              <rect class="f-cc" x="88" y="132" width="40" height="24" rx="6" transform="rotate(-8 108 144)"/><ellipse class="f-ch" cx="108" cy="145" rx="7" ry="5" transform="rotate(-8 108 145)"/>
+              <circle class="f-ti" cx="62" cy="180" r="6"/><circle class="f-ti" cx="138" cy="180" r="6"/>
+            </svg>
+          </div>
+          <figcaption data-es="La valija, abierta otra vez">行李箱又打開了</figcaption>
+        </figure>
+        <p class="nota-cinta" data-es="Kenia, Francia, Disney y Arabia Saudita: ¡vamos de nuevo!">肯亞、法國、迪士尼、沙烏地……我們又上路了！</p>
+        <div class="sello" aria-hidden="true"><span><b>4</b><span data-es="viajeros">位旅人</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2. Grupo abierto ========== -->
+  <section class="abierto seccion" id="abierto" aria-labelledby="t-abierto">
+    <div class="wrap">
+      <div class="cabezal ap">
+        <p class="kicker" data-es="🔥 Grupo abierto">🔥 開團中</p>
+        <h2 id="t-abierto"><span data-es="Colchones del 11/11: ">雙 11 床墊團，</span><mark class="res"><span data-es="esta vez conviene en serio">這次真的很划算</span></mark></h2>
+      </div>
+
+      <article class="grupo ap" id="grupo" aria-labelledby="t-emma">
+        <span class="cinta c" aria-hidden="true"></span>
+        <div class="grupo__esc">
+          <svg viewBox="0 0 320 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect class="f-cc" width="320" height="240"/>
+            <path class="f-mo" d="M262 34 a26 26 0 1 0 22 40 a20 20 0 1 1 -22 -40Z"/>
+            <g class="f-pa"><circle cx="58" cy="40" r="3"/><circle cx="96" cy="64" r="2"/><circle cx="210" cy="30" r="2.5"/><circle cx="180" cy="72" r="2"/></g>
+            <rect class="f-ti2" x="44" y="176" width="232" height="16" rx="6"/><rect class="f-ti2" x="56" y="190" width="10" height="22" rx="3"/><rect class="f-ti2" x="254" y="190" width="10" height="22" rx="3"/>
+            <rect class="f-pa" x="36" y="128" width="248" height="52" rx="18"/>
+            <rect class="f-cr2" x="36" y="150" width="248" height="10"/><rect class="f-du" x="36" y="160" width="248" height="6" opacity=".7"/>
+            <ellipse class="f-pa" cx="96" cy="118" rx="44" ry="16"/><ellipse class="f-cr" cx="96" cy="118" rx="30" ry="8"/>
+            <path class="s-ch" d="M196 108 q8 -10 16 0 t16 0"/><path class="s-ch" d="M214 92 q6 -8 12 0 t12 0"/>
+          </svg>
+        </div>
+        <div>
+          <span class="etiq"><i></i><span data-es="Grupo abierto · hasta el 4/11">開團中・11/4 結單</span></span>
+          <h3 id="t-emma" data-es="Colchón EMMA (Alemania)">EMMA 德國床墊</h3>
+          <p class="grupo__oferta"><span data-es="Promo de la marca por el 11/11: ">品牌雙 11 活動 </span><b data-es="50% off">5 折</b><span data-es=", y con nuestro código, ">，輸入我們的折扣碼</span><b data-es="12% más">再享 12% 折扣</b><span data-es=".">。</span></p>
+
+          <div class="reloj" role="timer" aria-live="off">
+            <p class="reloj__t" data-es="Cierra el miércoles 4/11 a las 23:59 (hora de Taiwán). Falta:">11/4（三）23:59 結單，倒數：</p>
+            <div class="reloj__n" id="reloj">
+              <div><b id="r-d">0</b><span data-es="días">天</span></div>
+              <div><b id="r-h">00</b><span data-es="horas">時</span></div>
+              <div><b id="r-m">00</b><span data-es="min">分</span></div>
+              <div><b id="r-s">00</b><span data-es="seg">秒</span></div>
+            </div>
+          </div>
+
+          <div class="codigo">
+            <span class="codigo__l" data-es="Código de descuento (tocá para copiarlo)">折扣碼（點一下就複製）</span>
+            <code id="codigo">piggyteamate</code>
+            <button class="copiar" id="copiar" type="button" data-texto="piggyteamate">
+              <svg class="cp" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              <svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="copiar-t" data-es="Copiar">複製</span>
+            </button>
+          </div>
+          <p class="sr" id="copiar-aviso" aria-live="polite"></p>
+
+          <a class="btn btn--chancho btn--ancho" href="https://links.emma-sleep.com.tw/ytpiggyteamate" target="_blank" rel="noopener"><span data-es="Comprar en EMMA con el descuento">去 EMMA 官網下單</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></a>
+          <div class="cerrado-msg">
+            <p data-es="Este grupo ya cerró. ¿Querés que te avisemos si vuelve?">這團已結單。想在下次開團時收到通知嗎？</p>
+            <a class="btn btn--salvia" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener" data-es="Avisame si vuelve">再開團通知我</a>
+          </div>
+          <p class="letra-chica" data-es="Las condiciones y fechas son las que publica la marca en su sitio.">優惠內容與期限以品牌官網公告為準。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========== 3. Siempre recomendados ========== -->
+  <section class="seccion" id="recomendados" aria-labelledby="t-rec">
+    <div class="wrap">
+      <div class="cabezal ap">
+        <p class="kicker" data-es="✨ Siempre recomendados">✨ 長期推薦</p>
+        <h2 id="t-rec"><span data-es="Lo que usamos todos los días: ">家裡每天在用的，</span><mark class="sub"><span data-es="por eso lo recomendamos">才敢推薦給你</span></mark></h2>
+      </div>
+      <div class="filtros" role="group" aria-label="依分類篩選" data-es-aria="Filtrar por categoría">
+        <button class="filtro" type="button" aria-pressed="true" data-cat="todo" data-es="Todo">全部</button>
+        <button class="filtro" type="button" aria-pressed="false" data-cat="hogar" data-es="Hogar">居家</button>
+        <button class="filtro" type="button" aria-pressed="false" data-cat="cocina" data-es="Cocina">廚房</button>
+        <button class="filtro" type="button" aria-pressed="false" data-cat="viajes" data-es="Viajes">旅行</button>
+        <button class="filtro" type="button" aria-pressed="false" data-cat="ninos" data-es="Bebés y niños">親子</button>
+      </div>
+      <ul class="notas" id="notas">
+        <li class="nota" data-cat="cocina">
+          <span class="cinta" aria-hidden="true"></span>
+          <div class="nota__ico"><svg viewBox="0 0 80 80" aria-hidden="true"><rect class="f-cr2" width="80" height="80"/><path class="s-ti2" d="M30 20 q4 -6 0 -10 M42 20 q4 -6 0 -10"/><rect class="f-tv" x="14" y="30" width="52" height="30" rx="10"/><rect class="f-ti2" x="8" y="36" width="8" height="6" rx="3"/><rect class="f-ti2" x="64" y="36" width="8" height="6" rx="3"/><rect class="f-pa" x="12" y="26" width="56" height="7" rx="3.5"/></svg></div>
+          <div>
+            <span class="nota__cat" data-es="Cocina · Corea">廚房・韓國</span>
+            <h3 data-es="Ollas de cerámica Neoflam">Neoflam 陶瓷塗層鍋</h3>
+            <p data-es="Marca coreana. Según la marca, recubrimiento cerámico sin teflón.">韓國品牌；品牌表示為不含鐵氟龍的陶瓷塗層。</p>
+            <a class="nota__a" href="https://neoflam.com.tw/pages/piggy?sl-ref=piggy" target="_blank" rel="noopener"><span data-es="Ver precio especial">看專屬優惠</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></a>
+          </div>
+        </li>
+        <li class="nota" data-cat="hogar">
+          <span class="cinta b" aria-hidden="true" style="--rc:4deg"></span>
+          <div class="nota__ico"><svg viewBox="0 0 80 80" aria-hidden="true"><rect class="f-sc" width="80" height="80"/><rect class="f-pa" x="24" y="12" width="32" height="58" rx="8"/><g class="s-ti2"><path d="M31 24h18M31 30h18M31 36h18M31 42h18"/></g><circle class="f-sa" cx="40" cy="56" r="5"/><path class="s-pa" d="M12 30 q6 -4 10 0 M60 22 q6 -4 10 0 M58 46 q6 -4 10 0"/></svg></div>
+          <div>
+            <span class="nota__cat" data-es="Hogar · Japón">居家・日本</span>
+            <h3 data-es="Purificador y deshumidificador IRIS">IRIS 空氣清淨除濕機</h3>
+            <p data-es="Según la marca, elimina el 99,9% de las bacterias. Aplica al subsidio de NT$&nbsp;1.200.">品牌表示可去除 99.9% 細菌；可申請 NT$1,200 補助。</p>
+            <a class="nota__a" href="https://presto.company/5kM3S" target="_blank" rel="noopener"><span data-es="Ver precio especial">看專屬優惠</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></a>
+          </div>
+        </li>
+        <li class="nota" data-cat="viajes" data-ejemplo>
+          <span class="cinta" aria-hidden="true" style="--rc:-2deg"></span>
+          <div class="nota__ico"><svg viewBox="0 0 80 80" aria-hidden="true"><rect class="f-du" width="80" height="80"/><rect class="f-so" x="10" y="30" width="30" height="34" rx="7"/><rect class="f-sa" x="36" y="22" width="34" height="42" rx="7"/><path class="s-pa" d="M16 40h18M42 34h22"/></svg></div>
+          <div>
+            <span class="nota__cat" data-es="Viajes">旅行</span> <span class="ej" data-es="Ejemplo">範例 / Ejemplo</span>
+            <h3 data-es="Bolsas organizadoras para la valija">旅行收納袋組</h3>
+            <p data-es="Cuatro personas, una valija: una bolsa por cada uno.">一家四口的行李，一人一袋不打架。</p>
+            <span class="nota__pronto" data-es="Muy pronto">即將上架</span>
+          </div>
+        </li>
+        <li class="nota" data-cat="ninos" data-ejemplo>
+          <span class="cinta c" aria-hidden="true" style="--rc:3deg"></span>
+          <div class="nota__ico"><svg viewBox="0 0 80 80" aria-hidden="true"><rect class="f-cc" width="80" height="80"/><path class="f-mo" d="M20 26 a20 20 0 0 0 40 0 h-10 a10 10 0 0 1 -20 0Z" transform="translate(0 14)"/><circle class="f-pa" cx="58" cy="20" r="6"/></svg></div>
+          <div>
+            <span class="nota__cat" data-es="Bebés y niños">親子</span> <span class="ej" data-es="Ejemplo">範例 / Ejemplo</span>
+            <h3 data-es="Almohada de viaje para chicos">兒童旅行頸枕</h3>
+            <p data-es="Para los vuelos largos: los chicos duermen más tranquilos.">長途飛行必備，孩子睡得比較安穩。</p>
+            <span class="nota__pronto" data-es="Muy pronto">即將上架</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 4. Grupos anteriores ========== -->
+  <section class="seccion" id="anteriores" aria-labelledby="t-ant" style="padding-top:0">
+    <div class="wrap">
+      <div class="cabezal ap">
+        <p class="kicker" data-es="Grupos anteriores">團購紀錄</p>
+        <h2 id="t-ant"><span data-es="Después del cierre, ">結單之後，</span><mark class="res"><span data-es="lo seguimos usando">我們還在用</span></mark></h2>
+      </div>
+      <div class="historial">
+        <article class="resena ap" data-ejemplo>
+          <span class="ej" data-es="Ejemplo">範例 / Ejemplo</span>
+          <button class="sticker" type="button" aria-pressed="false" aria-label="已結單貼紙，點一下掀開" data-es-aria="Sticker de grupo cerrado, tocalo para despegarlo"><span class="sticker__cara" data-es="Cerrado">已結單</span><span class="sticker__dorso"></span></button>
+          <div class="resena__cab"><div><small class="num" data-es="Abril 2026">2026 年 4 月</small><h3 data-es="Sillas de auto para chicos">兒童安全座椅團</h3></div></div>
+          <blockquote data-es="«Los usamos medio año y te cuento: en los viajes largos en auto los dos duermen, y pasarla de un auto a otro lleva cinco minutos.»">「用了半年，心得是：長途開車兩個小孩都睡得很熟，換車安裝也只要五分鐘。」</blockquote>
+          <cite>— Wendy</cite>
+          <a class="btn btn--linea btn--chico" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener" data-es="Avisame si vuelve">再開團通知我</a>
+        </article>
+        <article class="resena ap" data-ejemplo>
+          <span class="ej" data-es="Ejemplo">範例 / Ejemplo</span>
+          <button class="sticker" type="button" aria-pressed="false" aria-label="已結單貼紙，點一下掀開" data-es-aria="Sticker de grupo cerrado, tocalo para despegarlo" style="rotate:-8deg"><span class="sticker__cara" data-es="Cerrado">已結單</span><span class="sticker__dorso"></span></button>
+          <div class="resena__cab"><div><small class="num" data-es="Diciembre 2025">2025 年 12 月</small><h3 data-es="Valijas para toda la familia">全家行李箱團</h3></div></div>
+          <blockquote data-es="«Fue a Kenia y a Arabia Saudita y las rueditas siguen perfectas. Los chicos arrastran solos la valija chica y están orgullosísimos.»">「帶去肯亞又帶去沙烏地，輪子還是很順。孩子自己拉小的那一個，超有成就感。」</blockquote>
+          <cite>— Scott</cite>
+          <a class="btn btn--linea btn--chico" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener" data-es="Avisame si vuelve">再開團通知我</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 5. Viajes en familia ========== -->
+  <section class="viajes seccion" id="viajes" aria-labelledby="t-viajes">
+    <div class="wrap">
+      <div class="cabezal ap">
+        <p class="kicker" data-es="Viajes en familia">親子旅遊</p>
+        <h2 id="t-viajes"><span data-es="Con los chicos, ">帶著孩子，</span><mark class="sub"><span data-es="ver el mundo otra vez">把世界再看一次</span></mark></h2>
+        <p data-es="Cada parada tiene su página: itinerario, dónde dormir y los trucos para viajar con chicos.">每一站都整理成一頁：行程、住宿，還有帶小孩出門的眉角。</p>
+      </div>
+      <p class="pista" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 12h16m0 0-5-5m5 5-5 5"/></svg><span data-es="Deslizá para ver los destinos">往旁邊滑，看看每一站</span></p>
+      <ul class="mesa" aria-label="旅行目的地" data-es-aria="Destinos">
+        <li><a class="pola" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+          <span class="cinta" aria-hidden="true"></span>
+          <span class="pola__img"><svg viewBox="0 0 200 200" aria-hidden="true"><rect class="f-du" width="200" height="200"/><circle class="f-mo" cx="150" cy="62" r="24"/><path class="f-sa" d="M0 132 Q60 114 120 126 T200 120 V200 H0Z"/><path class="f-so" d="M0 160 Q80 146 200 158 V200 H0Z"/><path class="s-ti2" d="M54 138 L56 100 M56 112 L44 98 M56 108 L68 96"/><ellipse class="f-so" cx="56" cy="94" rx="34" ry="9"/><g class="f-mo"><ellipse cx="128" cy="128" rx="15" ry="9"/><rect x="118" y="132" width="4" height="18" rx="2"/><rect x="134" y="132" width="4" height="18" rx="2"/><path d="M136 124 L146 92 L152 94 L142 126Z"/><ellipse cx="151" cy="90" rx="7" ry="4"/></g><g class="f-tv"><circle cx="124" cy="126" r="2.4"/><circle cx="132" cy="130" r="2"/><circle cx="143" cy="108" r="1.8"/></g></svg></span>
+          <span class="pola__pie"><span data-es="Kenia">肯亞</span><small data-es="Mañanas en la sabana">草原上的早晨</small></span></a></li>
+        <li><a class="pola" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+          <span class="cinta b" aria-hidden="true" style="--rc:6deg"></span>
+          <span class="pola__img"><svg viewBox="0 0 200 200" aria-hidden="true"><rect class="f-cr2" width="200" height="200"/><ellipse class="f-pa" cx="50" cy="50" rx="26" ry="9"/><ellipse class="f-pa" cx="158" cy="76" rx="22" ry="7"/><rect class="f-sc" y="160" width="200" height="40"/><circle class="f-sa" cx="30" cy="158" r="18"/><circle class="f-sa" cx="172" cy="156" r="20"/><g class="s-ti2"><path d="M76 162 L96 52 H104 L124 162"/><path d="M84 120 H116 M90 88 H110"/><path d="M100 52 V32"/><path d="M86 162 Q100 136 114 162"/></g><path class="f-ch" d="M150 120 c-4 -6 -12 -2 -8 4 l8 8 l8 -8 c4 -6 -4 -10 -8 -4Z"/></svg></span>
+          <span class="pola__pie"><span data-es="Francia">法國</span><small data-es="Paseando por París">巴黎散步</small></span></a></li>
+        <li><a class="pola" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+          <span class="cinta c" aria-hidden="true" style="--rc:-3deg"></span>
+          <span class="pola__img"><svg viewBox="0 0 200 200" aria-hidden="true"><rect class="f-ro" width="200" height="200"/><g class="s-mo"><path d="M44 46 v-12 M44 58 v12 M32 52 h-12 M56 52 h12 M36 44 l-7 -7 M52 44 l7 -7"/><path d="M160 34 v-10 M160 44 v10 M150 39 h-10 M170 39 h10"/></g><path class="f-sa" d="M0 170 Q100 150 200 170 V200 H0Z"/><g class="f-pa"><rect x="62" y="104" width="76" height="62"/><rect x="54" y="88" width="18" height="78"/><rect x="128" y="88" width="18" height="78"/><rect x="88" y="76" width="24" height="90"/></g><g class="f-ch"><path d="M54 88 L63 64 L72 88Z"/><path d="M128 88 L137 64 L146 88Z"/><path d="M88 76 L100 42 L112 76Z"/></g><path class="f-ti2" d="M90 166 V146 Q100 134 110 146 V166Z"/></svg></span>
+          <span class="pola__pie"><span data-es="Disney Hong Kong">香港迪士尼</span><small data-es="Fuegos frente al castillo">城堡前的煙火</small></span></a></li>
+        <li><a class="pola" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+          <span class="cinta" aria-hidden="true" style="--rc:4deg"></span>
+          <span class="pola__img"><svg viewBox="0 0 200 200" aria-hidden="true"><rect class="f-cr2" width="200" height="200"/><circle class="f-mo" cx="44" cy="52" r="18"/><rect class="f-sa" y="132" width="200" height="68"/><path class="s-pa" d="M10 160 q10 -6 20 0 t20 0 M120 178 q10 -6 20 0 t20 0"/><rect class="f-pa" x="58" y="92" width="96" height="22" rx="4"/><rect class="f-pa" x="72" y="74" width="66" height="20" rx="4"/><rect class="f-te" x="88" y="52" width="14" height="24" rx="3"/><rect class="f-te" x="110" y="52" width="14" height="24" rx="3"/><path class="f-ti" d="M36 112 H176 L160 142 H52Z"/><g class="f-mo"><circle cx="72" cy="103" r="3"/><circle cx="90" cy="103" r="3"/><circle cx="108" cy="103" r="3"/><circle cx="126" cy="103" r="3"/><circle cx="144" cy="103" r="3"/></g></svg></span>
+          <span class="pola__pie"><span data-es="Crucero Disney">迪士尼郵輪</span><small data-es="Una casa en el mar">海上的家</small></span></a></li>
+        <li><a class="pola" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+          <span class="cinta b" aria-hidden="true" style="--rc:-5deg"></span>
+          <span class="pola__img"><svg viewBox="0 0 200 200" aria-hidden="true"><rect class="f-cr2" width="200" height="200"/><circle class="f-tv" cx="146" cy="70" r="26"/><path class="f-du" d="M0 140 Q50 104 110 130 T200 118 V200 H0Z"/><path class="f-mo" d="M0 168 Q70 136 140 160 T200 156 V200 H0Z"/><path class="s-ti2" d="M54 150 Q60 120 56 92" style="stroke-width:4"/><g class="f-so"><path d="M56 92 Q36 82 24 94 Q40 88 56 94Z"/><path d="M56 92 Q76 80 90 92 Q74 88 56 94Z"/><path d="M56 92 Q44 70 30 72 Q46 78 56 92Z"/><path d="M56 92 Q70 70 84 74 Q68 78 56 92Z"/></g></svg></span>
+          <span class="pola__pie"><span data-es="Arabia Saudita">沙烏地阿拉伯</span><small data-es="Una noche en el desierto">沙漠裡的一晚</small></span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 6. Para marcas ========== -->
+  <section class="seccion" id="marcas" aria-labelledby="t-marcas">
+    <div class="wrap marcas">
+      <div class="ap">
+        <p class="kicker" data-es="Para marcas">合作邀約</p>
+        <h2 id="t-marcas"><span data-es="¿Querés que las familias ">想讓爸媽</span><mark class="res rosa"><span data-es="confíen de verdad">真的相信</span></mark><span data-es=" en tu producto?">你的產品嗎？</span></h2>
+        <p style="margin-top:var(--e-3);color:var(--tinta2)" data-es="Solo trabajamos con marcas que usaríamos nosotros. Para propuestas, escribile a nuestra agencia, Capsule Inc.">我們只接自己真的會用的品牌。合作請聯繫經紀公司 Capsule Inc.。</p>
+        <ul class="tipos">
+          <li data-es="Grupos de compra">團購開團</li><li data-es="Videos de unboxing">開箱影片</li><li data-es="Viajes en familia">親子旅遊合作</li><li data-es="Colaboraciones">品牌聯名</li>
+        </ul>
+        <div class="acciones">
+          <a class="btn btn--linea" href="mailto:piggyteammates@capsuleinc.cc?subject=%E5%90%88%E4%BD%9C%E9%82%80%E7%B4%84" data-es="Escribile a Capsule Inc.">寄信給 Capsule Inc.</a>
+        </div>
+        <span class="mail">piggyteammates@capsuleinc.cc</span>
+      </div>
+      <ul class="cifras ap" aria-label="媒體資料" data-es-aria="Datos para marcas">
+        <li><b class="num">83.6K</b><span data-es="seguidores en Instagram">Instagram 追蹤</span></li>
+        <li data-ejemplo><b class="num">12.4K</b><span data-es="suscriptores en YouTube">YouTube 訂閱</span><span class="ej" data-es="Ejemplo">範例 / Ejemplo</span></li>
+        <li data-ejemplo><b class="num">45K</b><span data-es="vistas promedio por reel">Reels 平均觀看</span><span class="ej" data-es="Ejemplo">範例 / Ejemplo</span></li>
+        <li data-ejemplo><b class="num">78%</b><span data-es="del público son mamás y papás de 25 a 44">受眾為 25–44 歲爸媽</span><span class="ej" data-es="Ejemplo">範例 / Ejemplo</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 7. Suscribite ========== -->
+  <section class="seccion" id="suscribite" aria-labelledby="t-sus" style="padding-top:0">
+    <div class="wrap">
+      <div class="sus ap">
+        <span class="cinta" aria-hidden="true"></span>
+        <p class="kicker" data-es="Avisos de grupos nuevos">開團通知</p>
+        <h2 id="t-sus"><span data-es="Cuando abrimos un grupo, ">新團一開，</span><mark class="sub"><span data-es="te avisamos primero">第一個通知你</span></mark></h2>
+        <p data-es="Sumate al LINE y te llega el aviso el mismo día que abrimos. Si preferís, también por email.">加入 LINE 好友，開團當天馬上收到通知；也可以用 Email 訂閱。</p>
+        <div class="acciones">
+          <a class="btn btn--salvia" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1 .9.5s6-3.5 8.2-6.1c1.5-1.6 2.2-3.2 2.2-4.8C22 6.6 17.5 3 12 3Z"/></svg><span data-es="Sumate a nuestro LINE">加入 LINE 好友</span></a>
+          <a class="btn btn--linea" href="mailto:piggyteammates@capsuleinc.cc?subject=%E8%A8%82%E9%96%B1%E9%96%8B%E5%9C%98%E9%80%9A%E7%9F%A5" data-ejemplo data-es="Suscribirme por email">用 Email 訂閱</a>
+        </div>
+        <span class="ej" data-es="Ejemplo: después va el boletín de ustedes">範例：之後換成你們的電子報</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie__grid">
+      <a class="logo" href="#contenido" aria-label="回到頂端" data-es-aria="Volver arriba">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="f-cc" cx="24" cy="24" r="22"/><path class="f-ch" d="M9 14 L15 4 L19 13Z M39 14 L33 4 L29 13Z"/><circle class="f-pa" cx="24" cy="25" r="16"/><ellipse class="f-ch" cx="24" cy="29" rx="9" ry="6.5"/><ellipse class="f-ti" cx="20.5" cy="29" rx="1.7" ry="2.4"/><ellipse class="f-ti" cx="27.5" cy="29" rx="1.7" ry="2.4"/><circle class="f-ti" cx="17" cy="19" r="1.8"/><circle class="f-ti" cx="31" cy="19" r="1.8"/></svg>
+        <span class="logo__t"><span class="logo__zh">豬豬隊友</span><span class="logo__en">Scott &amp; Wendy</span></span>
+      </a>
+      <ul class="redes">
+        <li><a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/></svg>Instagram</a></li>
+        <li><a href="https://www.youtube.com/@piggyteammates" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg>YouTube</a></li>
+        <li><a href="https://www.facebook.com/piggyteammates" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v7h4v-7h3l1-4h-4V8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Facebook</a></li>
+        <li><a href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 4 3.6 7.3 8.4 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1 .9.5s6-3.5 8.2-6.1c1.5-1.6 2.2-3.2 2.2-4.8C22 6.6 17.5 3 12 3Z"/></svg>LINE</a></li>
+      </ul>
+    </div>
+    <p class="credito">
+      <a href="https://paginasclover.com" target="_blank" rel="noopener nofollow" data-es="Página de muestra hecha por Páginas Clover">範例設計 · Páginas Clover 製作</a> · <span data-es="Otro trabajo nuestro: ">我們的其他作品：</span><a href="https://spanishwithemi.com" target="_blank" rel="noopener nofollow">Spanish with Emi</a><br>
+      <span data-es="Las imágenes son dibujos de muestra; los datos marcados «Ejemplo» son inventados.">圖片為示意插畫；標示「範例」的內容為虛構資料。</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var doc = document.documentElement;
+  doc.classList.add('js');
+  var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var captura = /[?&]captura\b/.test(location.search);
+
+  /* ---------- Idioma: zh-TW por defecto, ES con el botón ---------- */
+  var textos = {
+    zh: { title: document.title, btn: 'ES' },
+    es: { title: 'Piggy Teammates, Scott y Wendy | Viajes en familia y compras en grupo', btn: '中文' }
+  };
+  var btnIdioma = document.getElementById('idioma');
+  var idioma = 'zh';
+  function ponerIdioma(nuevo) {
+    var aEs = nuevo === 'es';
+    document.querySelectorAll('[data-es]').forEach(function (el) {
+      if (el.dataset.zh === undefined) el.dataset.zh = el.textContent;
+      el.textContent = aEs ? el.dataset.es : el.dataset.zh;
+    });
+    document.querySelectorAll('[data-es-aria]').forEach(function (el) {
+      if (el.dataset.zhAria === undefined) el.dataset.zhAria = el.getAttribute('aria-label') || '';
+      el.setAttribute('aria-label', aEs ? el.dataset.esAria : el.dataset.zhAria);
+    });
+    doc.lang = aEs ? 'es-AR' : 'zh-TW';
+    document.title = textos[nuevo].title;
+    btnIdioma.textContent = aEs ? textos.es.btn : textos.zh.btn;
+    btnIdioma.lang = aEs ? 'zh-TW' : 'es';
+    idioma = nuevo;
+    actualizarCopiar();
+  }
+  btnIdioma.addEventListener('click', function () { ponerIdioma(idioma === 'zh' ? 'es' : 'zh'); });
+
+  /* ---------- Marcas a mano y aparecer al bajar ---------- */
+  var marcables = document.querySelectorAll('.res, .sub, .trazo-w, .ap');
+  if (reducido || captura || !('IntersectionObserver' in window)) {
+    marcables.forEach(function (el) { el.classList.add('on'); });
+  } else {
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('on'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
+    marcables.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- Cuenta regresiva: grupo EMMA cierra 4/11/2026 23:59 (UTC+8) ---------- */
+  var fin = Date.UTC(2026, 10, 4, 15, 59, 0);
+  var grupo = document.getElementById('grupo');
+  var rD = document.getElementById('r-d'), rH = document.getElementById('r-h'), rM = document.getElementById('r-m'), rS = document.getElementById('r-s');
+  var tic = null, visible = true;
+  function dos(n) { return (n < 10 ? '0' : '') + n; }
+  function paso() {
+    var falta = Math.max(0, Math.floor((fin - Date.now()) / 1000));
+    rD.textContent = Math.floor(falta / 86400);
+    rH.textContent = dos(Math.floor(falta % 86400 / 3600));
+    rM.textContent = dos(Math.floor(falta % 3600 / 60));
+    rS.textContent = dos(falta % 60);
+    if (falta === 0) {
+      grupo.classList.add('terminado');
+      var et = grupo.querySelector('.etiq span');
+      et.dataset.zh = '已結單'; et.dataset.es = 'Cerrado';
+      et.textContent = idioma === 'es' ? 'Cerrado' : '已結單';
+      parar();
+    }
+  }
+  function arrancar() { if (!tic && visible && !document.hidden && !grupo.classList.contains('terminado')) { paso(); tic = setInterval(paso, 1000); } }
+  function parar() { if (tic) { clearInterval(tic); tic = null; } }
+  paso(); arrancar();
+  document.addEventListener('visibilitychange', function () { document.hidden ? parar() : arrancar(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; visible ? arrancar() : parar(); }).observe(grupo);
+  }
+
+  /* ---------- Copiar el código con un toque ---------- */
+  var btnCopiar = document.getElementById('copiar');
+  var tCopiar = document.getElementById('copiar-t');
+  var aviso = document.getElementById('copiar-aviso');
+  var copiado = false, volver = null;
+  function actualizarCopiar() {
+    if (copiado) tCopiar.textContent = idioma === 'es' ? '¡Copiado!' : '已複製！';
+  }
+  function copiarRespaldo(texto) {
+    var t = document.createElement('textarea');
+    t.value = texto; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(t); return ok;
+  }
+  function marcarCopiado() {
+    copiado = true; btnCopiar.classList.add('hecho'); actualizarCopiar();
+    aviso.textContent = idioma === 'es' ? 'Código piggyteamate copiado' : '已複製折扣碼 piggyteamate';
+    clearTimeout(volver);
+    volver = setTimeout(function () {
+      copiado = false; btnCopiar.classList.remove('hecho');
+      tCopiar.textContent = idioma === 'es' ? tCopiar.dataset.es : (tCopiar.dataset.zh || '複製');
+    }, 2200);
+  }
+  btnCopiar.addEventListener('click', function () {
+    var texto = btnCopiar.dataset.texto;
+    function fallo() {
+      if (copiarRespaldo(texto)) { marcarCopiado(); return; }
+      /* si el navegador no deja copiar: queda el código seleccionado para copiarlo a mano */
+      var sel = window.getSelection(), rango = document.createRange();
+      rango.selectNodeContents(document.getElementById('codigo')); sel.removeAllRanges(); sel.addRange(rango);
+      aviso.textContent = idioma === 'es' ? 'Código seleccionado: copialo con el menú' : '折扣碼已選取，請手動複製';
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(texto).then(marcarCopiado, fallo);
+    } else { fallo(); }
+  });
+
+  /* ---------- Filtro de recomendados ---------- */
+  var filtros = document.querySelectorAll('.filtro');
+  var notas = document.querySelectorAll('#notas .nota');
+  filtros.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var cat = b.dataset.cat;
+      filtros.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      notas.forEach(function (n) { n.hidden = !(cat === 'todo' || n.dataset.cat === cat); });
+    });
+  });
+
+  /* ---------- Sticker que se despega (toque = alza la esquina) ---------- */
+  document.querySelectorAll('.sticker').forEach(function (s) {
+    s.addEventListener('click', function () {
+      var on = s.classList.toggle('alzado');
+      s.setAttribute('aria-pressed', String(on));
+    });
+  });
+})();
+</script>
+</body>
+</html>

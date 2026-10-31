@@ -1,0 +1,819 @@
+<!doctype html>
+<!--
+  Páginas Clover — Propuesta 05 · "Colorido juvenil" · modo lote
+  Cliente: 豬豬隊友 Scott & Wendy (prospecto) · muestra visual
+  Concepto: «el pasaporte de la familia chanchito»: cada destino es un sello del pasaporte y cada grupo de compra es un pase de abordar con su hora de cierre.
+  Acento chanchito (a confirmar con Emi): --pink-d #c02a5c (botón principal + 1 detalle por pantalla). Blanco sobre #c02a5c 5,63:1 · #c02a5c sobre papel 5,42:1 · tinta sobre --pink 11,71:1 (AA medido con herramientas/contraste.py).
+  Largo: 8,3 pantallas a 390 px (meta ≤ 14) · 8,1 a 800 · 7,3 a 1280
+  Efecto firma: hover-ojos-siguen → chanchito del pasaporte (mira al mouse, al tocar y al bajar) · boton-3d-presionable → todos los botones
+  Apoyo: tarjeta-pase-socio-codigo-barras → pase de abordar del grupo EMMA · producto-oferta-cuenta-regresiva → hora de cierre 4/11 23:59 (Taiwán) · boton-copiar-portapapeles → código (confeti solo al copiar) · tarjetas-abanico → catálogo «長期推薦» · sticker-despegable-luz → sellos «大推» del historial
+  Letras: Fredoka + Nunito (variables) para latín, 粉圓 Huninn solo en títulos chinos; cuerpo chino con letras del sistema.
+  Todo respeta prefers-reduced-motion. Sin recursos externos salvo Google Fonts.
+-->
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>豬豬隊友 Scott &amp; Wendy｜親子旅遊・團購好物</title>
+<meta name="description" content="豬豬隊友 Scott & Wendy：25 歲環遊世界一年，現在帶著兩個孩子再出發。親子旅遊、開團中好物與長期推薦。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fffaf0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400..700&family=Huninn&family=Nunito:wght@400..800&display=swap">
+<style>
+:root{
+  --paper:#fffaf0; --ink:#1f1640; --ink2:#4b4468; --white:#fff;
+  --mint:#c3f0da; --mint-2:#8fe3bd; --mint-d:#0b7a5c;
+  --lilac:#e3d7ff; --lilac-2:#c9b8ff; --lilac-d:#5b3fd9; --lilac-e:#3b23a8;
+  --yellow:#ffe45e; --yellow-2:#fff3b3; --yellow-e:#c99800;
+  --pink:#ffc9d8; --pink-d:#c02a5c;
+  --sky:#c9e9ff; --sky-d:#1c6fb8;
+  --peach:#ffe0c7;
+  /* acento chanchito: el rosa del estilo hace de color del cliente */
+  --acc:var(--pink-d); --acc-e:color-mix(in srgb,var(--pink-d) 68%,var(--ink)); --acc-soft:var(--pink);
+  --line:color-mix(in srgb,var(--ink) 12%,transparent);
+  --shade:color-mix(in srgb,var(--ink) 28%,transparent);
+  --soft:0 2px 0 color-mix(in srgb,var(--ink) 5%,transparent),0 22px 40px -22px color-mix(in srgb,var(--ink) 35%,transparent);
+  --r-xl:44px; --r-l:28px; --r-m:18px; --r-s:12px; --pill:999px;
+  /* letras: latín primero, chino después */
+  --fd:'Fredoka','Huninn','Arial Rounded MT Bold','PingFang TC','Noto Sans CJK TC','Microsoft JhengHei',system-ui,sans-serif;
+  --fb:'Nunito','PingFang TC','Noto Sans CJK TC','Microsoft JhengHei',system-ui,-apple-system,'Segoe UI',sans-serif;
+  /* escala fluida (8 pasos, máx ≤ 2,5× el mín) */
+  --t-xs:.8125rem; --t-s:.9375rem; --t-m:1.0625rem;
+  --t-l:clamp(1.15rem,1.05rem + .5vi,1.35rem);
+  --t-xl:clamp(1.4rem,1.2rem + 1vi,1.9rem);
+  --t-num:clamp(1.6rem,1.3rem + 1.4vi,2.3rem);
+  --t-2xl:clamp(1.9rem,1.35rem + 2.6vi,3.3rem);
+  --t-3xl:clamp(2.25rem,1.4rem + 4.2vi,3.8rem);
+  /* espacios */
+  --e-1:4px; --e-2:8px; --e-3:12px; --e-4:18px; --e-5:26px; --e-6:clamp(32px,4vw,48px); --e-7:clamp(44px,6vw,80px); --e-8:clamp(56px,8vw,112px);
+  /* movimiento del estilo */
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --out:cubic-bezier(.22,1,.36,1);
+  --press:cubic-bezier(.3,.7,.4,1);
+  --d-1:40ms; --d-2:.25s; --d-3:.5s; --d-4:.6s;
+  --wrap:1180px; --h:7px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--t-m)/1.75 var(--fb);overflow-x:clip;-webkit-font-smoothing:antialiased}
+html[lang^="es"] body{line-height:1.6}
+img,svg{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--fd);font-weight:600;line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance;font-synthesis-weight:none}
+html[lang^="es"] :is(h1,h2,h3){line-height:1.05}
+p{margin:0;text-wrap:pretty}
+a{color:inherit}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--lilac-d);outline-offset:3px;border-radius:10px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:var(--e-3);top:-60px;z-index:200;background:var(--ink);color:var(--white);padding:.7em 1.1em;border-radius:var(--r-s);font-weight:800;text-decoration:none}
+.skip:focus{top:var(--e-3)}
+.wrap{width:min(var(--wrap),100% - 32px);margin-inline:auto}
+section{scroll-margin-top:90px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ============ Botón 3D de goma (efecto firma: boton-3d-presionable) ============ */
+.b3d{--face:var(--lilac-d);--edge:var(--lilac-e);--txt:var(--white);position:relative;display:inline-block;border:0;padding:0;margin-top:var(--h);background:none;border-radius:var(--pill);font:600 var(--t-m)/1 var(--fd);letter-spacing:.01em;text-decoration:none;color:var(--txt);cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;vertical-align:top;font-synthesis-weight:none}
+.b3d>.sh,.b3d>.ed{position:absolute;inset:0;border-radius:inherit}
+.b3d>.sh{background:var(--shade);filter:blur(5px);transform:translateY(5px);transition:transform var(--d-3) var(--press),filter var(--d-3)}
+.b3d>.ed{background:var(--edge)}
+.b3d>.fc{position:relative;display:flex;align-items:center;justify-content:center;gap:.55em;min-height:48px;padding:.95em 1.5em;border-radius:inherit;background:var(--face);color:var(--txt);box-shadow:inset 0 2px 0 color-mix(in srgb,var(--white) 35%,transparent);transform:translateY(calc(var(--h) * -1));transition:transform var(--d-3) var(--press)}
+@media (hover:hover) and (pointer:fine){
+  .b3d:hover>.fc{transform:translateY(calc(var(--h) * -1 - 3px));transition-duration:var(--d-2)}
+  .b3d:hover>.sh{transform:translateY(9px);filter:blur(8px);transition-duration:var(--d-2)}
+}
+.b3d:active>.fc,.b3d.down>.fc{transform:translateY(-1px);transition-duration:var(--d-1)}
+.b3d:active>.sh,.b3d.down>.sh{transform:translateY(1px);filter:blur(2px);transition-duration:var(--d-1)}
+.b3d:focus-visible{outline-offset:6px;border-radius:var(--pill)}
+.b3d.pig{--face:var(--acc);--edge:var(--acc-e);--txt:var(--white)}
+.b3d.line{--face:var(--mint-2);--edge:var(--mint-d);--txt:var(--ink)}
+.b3d.white{--face:var(--white);--edge:var(--lilac-2);--txt:var(--ink)}
+.b3d.yel{--face:var(--yellow);--edge:var(--yellow-e);--txt:var(--ink)}
+.b3d.sm{--h:5px;font-size:var(--t-s)}
+.b3d.sm>.fc{min-height:44px;padding:.7em 1.1em}
+.b3d{min-height:44px}
+.b3d.lg{--h:9px;font-size:var(--t-l)}
+.b3d.lg>.fc{padding:1.05em 1.7em}
+.b3d svg{width:1.15em;height:1.15em;flex:none}
+.b3d[aria-disabled="true"]{cursor:default}
+
+/* ============ Stickers / rótulos ============ */
+.stk{--r:-4deg;display:inline-flex;align-items:center;gap:.4em;padding:.45em .9em;border-radius:var(--pill);background:var(--yellow);color:var(--ink);font:600 var(--t-s)/1.1 var(--fd);border:3px solid var(--white);box-shadow:var(--soft);rotate:var(--r);white-space:nowrap}
+.stk.mint{background:var(--mint)}.stk.lilac{background:var(--lilac)}.stk.sky{background:var(--sky)}.stk.white{background:var(--white)}.stk.peach{background:var(--peach)}
+.eg{display:inline-block;padding:.2em .6em;border-radius:var(--pill);background:var(--white);border:2px dashed var(--ink2);color:var(--ink);font:700 var(--t-xs)/1.3 var(--fb);letter-spacing:.04em;vertical-align:middle;white-space:nowrap}
+.eyebrow{display:inline-flex;align-items:center;gap:.45em;font:600 var(--t-s)/1.2 var(--fd);color:var(--ink);background:var(--white);padding:.55em 1em;border-radius:var(--pill);box-shadow:0 0 0 2px var(--line)}
+.eyebrow::before{content:"";width:.6em;height:.6em;border-radius:50%;background:var(--dot,var(--lilac-d))}
+.sec-head{text-align:center;max-width:760px;margin:0 auto var(--e-6)}
+.sec-head h2{font-size:var(--t-2xl);margin-top:.4em}
+.sec-head>p:not(.eyebrow){margin-top:.8em;color:var(--ink2)}
+.hl{background:linear-gradient(transparent 58%,var(--hlc,var(--yellow)) 58% 92%,transparent 92%);padding:0 .08em;border-radius:4px}
+
+/* láminas pastel */
+.slab{position:relative;margin-inline:clamp(8px,1.6vw,22px);border-radius:var(--r-xl);padding-block:var(--e-7);isolation:isolate;overflow:clip}
+.slab.yellow{background:var(--yellow-2)}.slab.mint{background:var(--mint)}.slab.lilac{background:var(--lilac)}.slab.peach{background:var(--peach)}.slab.sky{background:var(--sky)}
+.plain{padding-block:var(--e-7)}
+
+/* aparecer con resorte (solo si hay JS y movimiento) */
+.rv.pre{opacity:0;transform:translateY(28px) rotate(var(--rr,0deg)) scale(.95)}
+.rv.pre.in{opacity:1;transform:none;transition:opacity var(--d-3) ease var(--dl,0s),transform .9s var(--spring) var(--dl,0s)}
+
+/* ============ Encabezado ============ */
+.hd{position:sticky;top:10px;z-index:50;padding-inline:clamp(8px,1.6vw,22px);margin-top:10px}
+.hd-in{max-width:1300px;margin-inline:auto;display:flex;align-items:center;gap:var(--e-3);background:rgb(255 255 255 / .92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:var(--pill);padding:6px 8px 6px 12px;box-shadow:0 0 0 2px var(--line),var(--soft)}
+.logo{display:flex;align-items:center;gap:var(--e-2);text-decoration:none;flex:none;border-radius:var(--r-s);min-height:44px}
+.logo svg{width:38px;height:38px}
+.logo b{font:600 var(--t-l)/1 var(--fd);display:block}
+.logo small{display:block;font:700 var(--t-xs)/1 var(--fb);color:var(--acc);letter-spacing:.06em;margin-top:3px}
+.nav{display:none;gap:var(--e-1);margin-left:auto}
+.nav a{display:block;padding:.6em .9em;border-radius:var(--pill);text-decoration:none;font:600 var(--t-s)/1 var(--fd);transition:background var(--d-2),transform .35s var(--spring)}
+@media (hover:hover) and (pointer:fine){.nav a:hover{background:var(--lilac);transform:rotate(-3deg) scale(1.05)}}
+.nav a:active{background:var(--lilac)}
+.hd-act{display:flex;align-items:center;gap:var(--e-2);margin-left:auto}
+.lang{min-width:48px;min-height:44px;border:0;border-radius:var(--pill);background:var(--ink);color:var(--white);font:800 var(--t-xs)/1 var(--fb);letter-spacing:.06em;cursor:pointer;padding:0 .9em}
+.hd .b3d{margin-top:0;--h:4px}
+.hd .b3d>.fc{min-height:44px;padding:.55em .95em}
+@media (min-width:900px){.nav{display:flex}.hd-act{margin-left:var(--e-3)}}
+@media (max-width:380px){.logo small{display:none}}
+
+/* ============ Hero: página del pasaporte ============ */
+.hero{padding-block:var(--e-6) var(--e-7);overflow-x:clip}
+.hero-grid{display:grid;gap:var(--e-6);align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1{font-size:var(--t-3xl);margin-top:var(--e-4)}
+.hero h1 .pk{color:var(--acc)}
+.hero h1>span{display:inline-block}
+.hero .lead{margin-top:var(--e-4);font-size:var(--t-l);color:var(--ink2);max-width:34em}
+.hero .acts{display:flex;flex-wrap:wrap;gap:var(--e-3);margin-top:var(--e-5)}
+.ig-stk{margin-top:var(--e-5);display:flex;flex-wrap:wrap;gap:var(--e-3);align-items:center}
+.passport{position:relative;max-width:460px;margin-inline:auto;width:100%;background:var(--lilac);border-radius:var(--r-l);padding:var(--e-4);box-shadow:var(--soft);rotate:2deg}
+.pp-page{position:relative;background:var(--white);border-radius:var(--r-m);padding:var(--e-4);display:grid;grid-template-columns:42% 1fr;gap:var(--e-4);background-image:repeating-linear-gradient(0deg,transparent 0 27px,color-mix(in srgb,var(--lilac-2) 45%,transparent) 27px 28px)}
+.pp-top{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;font:700 var(--t-xs)/1.2 var(--fb);letter-spacing:.12em;color:var(--ink2);text-transform:uppercase}
+.photo{position:relative;display:grid;place-items:center;text-align:center;aspect-ratio:4/5;border-radius:var(--r-m);border:3px dashed var(--ink2);background:repeating-linear-gradient(45deg,var(--peach) 0 12px,var(--yellow-2) 12px 24px);color:var(--ink);font:700 var(--t-xs)/1.4 var(--fb);padding:var(--e-2)}
+.photo svg{width:34px;height:34px;margin:0 auto var(--e-1)}
+.photo span{background:var(--white);border-radius:var(--r-s);padding:.3em .5em}
+.pp-data{display:grid;align-content:start;gap:var(--e-2);font-size:var(--t-s)}
+.pp-data dt{font:700 var(--t-xs)/1.2 var(--fb);color:var(--ink2);letter-spacing:.06em}
+.pp-data dd{margin:0 0 var(--e-1);font:600 var(--t-m)/1.25 var(--fd)}
+.pp-data dl{margin:0}
+.mrz{grid-column:1/-1;font:700 var(--t-xs)/1.5 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.12em;color:var(--ink);overflow:hidden;white-space:nowrap}
+/* chanchito-mascota (sustituye a Clovi) */
+.pig-m{position:absolute;right:-14px;bottom:-30px;width:clamp(110px,30vw,150px);rotate:-6deg;filter:drop-shadow(0 12px 14px var(--shade))}
+.pig-m svg{width:100%;height:auto;overflow:visible}
+.pig .pupil{transition:transform .18s var(--out)}
+.pig .lid{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0);transition:transform .12s ease}
+.pig.blink .lid{transform:scaleY(1)}
+.hero .stamp-mini{position:absolute;left:-12px;top:-16px;--r:-10deg}
+
+/* ============ Grupo abierto: pase de abordar ============ */
+.pass{position:relative;display:grid;background:var(--white);border-radius:var(--r-l);box-shadow:var(--soft);max-width:980px;margin-inline:auto;--notch:18px}
+@media (min-width:860px){.pass{grid-template-columns:1.55fr 1fr}}
+.pass-main{padding:var(--e-5);display:grid;gap:var(--e-4)}
+.pass-top{display:flex;justify-content:space-between;align-items:center;gap:var(--e-3);flex-wrap:wrap}
+.pass-top .hot{display:inline-flex;align-items:center;gap:.4em;background:var(--acc-soft);color:var(--ink);border-radius:var(--pill);padding:.4em .9em;font:600 var(--t-s)/1.2 var(--fd)}
+.pass-top .flight{font:800 var(--t-xs)/1 var(--fb);letter-spacing:.14em;color:var(--ink2)}
+.route{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--e-3)}
+.route .code{font:700 var(--t-2xl)/1 var(--fd);letter-spacing:.02em}
+.route small{display:block;font:700 var(--t-xs)/1.3 var(--fb);color:var(--ink2);letter-spacing:.06em}
+.route .to{text-align:right}
+.route .plane{width:clamp(56px,14vw,96px);color:var(--acc)}
+.pass h3{font-size:var(--t-xl)}
+.pass .deal{display:flex;flex-wrap:wrap;gap:var(--e-2)}
+.pass .fine{font-size:var(--t-xs);color:var(--ink2);line-height:1.6}
+.pass-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--e-3);border-top:2px dashed var(--line);padding-top:var(--e-4)}
+.pass-grid dt{font:700 var(--t-xs)/1.2 var(--fb);color:var(--ink2);letter-spacing:.06em}
+.pass-grid dd{margin:0;font:600 var(--t-m)/1.3 var(--fd)}
+.pass-stub{position:relative;padding:var(--e-5);background:var(--yellow-2);border-radius:0 0 var(--r-l) var(--r-l);display:grid;gap:var(--e-4);align-content:start}
+.pass-stub::before{content:"";position:absolute;left:var(--notch);right:var(--notch);top:-1px;border-top:3px dashed var(--ink2);opacity:.45}
+.pass-stub::after{content:"";position:absolute;inset:calc(var(--notch) * -1) calc(var(--notch) * -1) auto;height:calc(var(--notch) * 2);background:radial-gradient(circle at 0 50%,var(--sky) var(--notch),transparent calc(var(--notch) + .5px)),radial-gradient(circle at 100% 50%,var(--sky) var(--notch),transparent calc(var(--notch) + .5px));pointer-events:none}
+@media (min-width:860px){
+  .pass-stub{border-radius:0 var(--r-l) var(--r-l) 0}
+  .pass-stub::before{left:-1px;right:auto;top:var(--notch);bottom:var(--notch);border-top:0;border-left:3px dashed var(--ink2)}
+  .pass-stub::after{inset:calc(var(--notch) * -1) auto calc(var(--notch) * -1) calc(var(--notch) * -1);width:calc(var(--notch) * 2);height:auto;background:radial-gradient(circle at 50% 0,var(--sky) var(--notch),transparent calc(var(--notch) + .5px)),radial-gradient(circle at 50% 100%,var(--sky) var(--notch),transparent calc(var(--notch) + .5px))}
+}
+.cd-lbl{font:600 var(--t-s)/1.3 var(--fd)}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e-2);margin-top:var(--e-2)}
+.cd div{background:var(--white);border-radius:var(--r-s);padding:var(--e-2) var(--e-1);text-align:center;box-shadow:0 0 0 2px var(--line)}
+.cd b{display:block;font:700 var(--t-num)/1 var(--fd);font-variant-numeric:tabular-nums}
+.cd span{display:block;font:700 var(--t-xs)/1.3 var(--fb);color:var(--ink2)}
+.cd-done{display:none;font:600 var(--t-l)/1.3 var(--fd)}
+.pass.closed .cd,.pass.closed .buy{display:none}
+.pass.closed .cd-done{display:block}
+.copy{display:flex;align-items:center;gap:var(--e-2);flex-wrap:wrap}
+.copy code{font:700 var(--t-l)/1 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.06em;background:var(--white);border:3px dashed var(--acc);border-radius:var(--r-s);padding:.55em .7em;color:var(--ink)}
+.copy-msg{font:700 var(--t-s)/1.3 var(--fb);color:var(--mint-d);min-height:1.3em}
+.barcode{display:block;width:100%;height:56px;color:var(--ink)}
+.bc-num{font:700 var(--t-xs)/1 ui-monospace,Menlo,monospace;letter-spacing:.3em;color:var(--ink2);text-align:center}
+.confetti{position:fixed;left:0;top:0;width:10px;height:14px;border-radius:3px;pointer-events:none;z-index:300}
+
+/* ============ Catálogo en abanico ============ */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--e-2);margin-bottom:var(--e-5)}
+.chip{min-height:44px;border:0;border-radius:var(--pill);padding:0 1.1em;background:var(--white);color:var(--ink);font:600 var(--t-s)/1 var(--fd);box-shadow:0 0 0 2px var(--line);cursor:pointer;transition:transform .35s var(--spring),background var(--d-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--white)}
+.chip:active{transform:scale(.94)}
+.fan{display:flex;gap:var(--e-4);overflow-x:auto;scroll-snap-type:x mandatory;padding:var(--e-4) var(--e-2) var(--e-5);margin-inline:calc(var(--e-2) * -1);scrollbar-width:thin}
+.card{--rot:0deg;flex:0 0 min(78%,300px);scroll-snap-align:center;background:var(--white);border-radius:var(--r-l);padding:var(--e-4);box-shadow:var(--soft);display:grid;gap:var(--e-3);align-content:start;rotate:var(--rot);transition:rotate var(--d-4) var(--spring),translate var(--d-4) var(--spring),scale var(--d-4) var(--spring)}
+.card[hidden]{display:none}
+.card:nth-child(odd){--rot:-1.5deg}.card:nth-child(even){--rot:1.5deg}
+.card .art{border-radius:var(--r-m);aspect-ratio:16/10;display:grid;place-items:center;overflow:hidden}
+.card .art svg{width:70%;height:auto}
+.card .cat{font:700 var(--t-xs)/1 var(--fb);letter-spacing:.06em;color:var(--ink2)}
+.card h3{font-size:var(--t-l)}
+.card p{font-size:var(--t-s);color:var(--ink2)}
+.card .b3d{justify-self:start}
+@media (min-width:900px){
+  .fan{justify-content:center;overflow:visible;padding-block:var(--e-5)}
+  .card{flex:0 0 270px;margin-inline:-22px;transform-origin:50% 120%}
+  .card:nth-child(1){--rot:-9deg;translate:0 22px}.card:nth-child(2){--rot:-3deg}.card:nth-child(3){--rot:3deg}.card:nth-child(4){--rot:9deg;translate:0 22px}
+  .fan:has(.card:hover,.card:focus-within) .card{--rot:0deg}
+  .fan:has(.card:hover,.card:focus-within) .card:nth-child(1){translate:-66px 0}
+  .fan:has(.card:hover,.card:focus-within) .card:nth-child(2){translate:-22px 0}
+  .fan:has(.card:hover,.card:focus-within) .card:nth-child(3){translate:22px 0}
+  .fan:has(.card:hover,.card:focus-within) .card:nth-child(4){translate:66px 0}
+  .fan .card:is(:hover,:focus-within){scale:1.04;z-index:2}
+}
+.fan-hint{text-align:center;font-size:var(--t-xs);color:var(--ink2)}
+@media (min-width:900px){.fan-hint{display:none}}
+
+/* ============ Historial: pases usados + sticker despegable ============ */
+.hist{display:grid;gap:var(--e-5);max-width:980px;margin-inline:auto}
+@media (min-width:860px){.hist{grid-template-columns:1fr 1fr}}
+.used{position:relative;background:var(--white);border-radius:var(--r-l);padding:var(--e-5);box-shadow:var(--soft);display:grid;gap:var(--e-3)}
+.used .top{display:flex;justify-content:space-between;gap:var(--e-2);align-items:center;flex-wrap:wrap;font:800 var(--t-xs)/1 var(--fb);letter-spacing:.1em;color:var(--ink2)}
+.used h3{font-size:var(--t-xl);padding-right:84px}
+.used blockquote{margin:0;padding:var(--e-3) var(--e-4);background:var(--yellow-2);border-radius:var(--r-m);font-size:var(--t-m)}
+.used blockquote b{font-family:var(--fd);font-weight:600}
+.used .b3d{justify-self:start}
+.closed-stamp{position:absolute;right:var(--e-4);top:var(--e-6);width:86px;height:86px;border-radius:50%;border:3px solid var(--lilac-d);color:var(--lilac-d);display:grid;place-items:center;text-align:center;font:600 var(--t-xs)/1.15 var(--fd);rotate:-14deg;background:color-mix(in srgb,var(--lilac) 40%,var(--white))}
+/* sticker-despegable-luz */
+.peel{position:relative;display:inline-grid;justify-self:start;border:0;padding:0;background:none;cursor:pointer;font:inherit;color:var(--ink);min-height:44px;-webkit-tap-highlight-color:transparent}
+.peel .under{grid-area:1/1;display:flex;align-items:center;padding:.5em 1em;border-radius:var(--r-m);background:var(--peach);border:2px dashed var(--ink2);font:700 var(--t-s)/1.35 var(--fb)}
+.peel .face{grid-area:1/1;position:relative;display:flex;align-items:center;justify-content:center;gap:.4em;padding:.5em 1em;border-radius:var(--r-m);background:var(--yellow);border:3px solid var(--white);box-shadow:var(--soft);font:600 var(--t-m)/1.2 var(--fd);overflow:hidden;transform-origin:0 0;transition:transform var(--d-4) var(--spring),opacity var(--d-3)}
+.peel .face::after{content:"";position:absolute;inset:-40% auto -40% -60%;width:40%;background:linear-gradient(100deg,transparent,color-mix(in srgb,var(--white) 75%,transparent),transparent);transform:skewX(-18deg) translateX(0);transition:transform .9s var(--out)}
+@media (hover:hover) and (pointer:fine){.peel:hover .face::after{transform:skewX(-18deg) translateX(520%)}.peel:hover .face{transform:rotate(-7deg) translate(2px,-4px)}}
+.peel:focus-visible .face::after{transform:skewX(-18deg) translateX(520%)}
+.peel[aria-expanded="true"] .face{transform:rotate(-24deg) translate(-6%,-62%) scale(.92);opacity:.0}
+
+/* ============ Viajes: sellos del pasaporte ============ */
+.stamps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--e-4);max-width:1020px;margin-inline:auto}
+@media (min-width:760px){.stamps{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.stamp{--r:-3deg;position:relative;display:grid;gap:var(--e-2);justify-items:center;text-align:center;text-decoration:none;color:var(--ink);background:var(--white);border-radius:var(--r-l);padding:var(--e-4) var(--e-3);box-shadow:var(--soft);rotate:var(--r);transition:rotate var(--d-4) var(--spring),scale var(--d-4) var(--spring)}
+.stamp:nth-child(even){--r:3deg}.stamp:nth-child(3n){--r:-1deg}
+.stamp .ring{width:min(100%,150px);aspect-ratio:1;border-radius:50%;border:3px dashed var(--ink2);padding:6px;display:grid;place-items:center}
+.stamp .ring svg{width:100%;height:auto;border-radius:50%}
+.stamp b{font:600 var(--t-l)/1.2 var(--fd)}
+.stamp small{font:700 var(--t-xs)/1.3 var(--fb);color:var(--ink2);letter-spacing:.06em}
+@media (hover:hover) and (pointer:fine){.stamp:hover{rotate:0deg;scale:1.05}}
+.stamp:active,.stamp:focus-visible{rotate:0deg;scale:.97}
+.stamp.next{background:transparent;box-shadow:none;border:3px dashed var(--ink2)}
+.stamp.next .ring{border-style:dotted;background:var(--yellow-2)}
+.story{max-width:760px;margin:var(--e-6) auto 0;display:grid;gap:var(--e-4);align-items:center}
+@media (min-width:760px){.story{grid-template-columns:200px 1fr}}
+.story .photo{aspect-ratio:1;max-width:200px;width:100%;margin-inline:auto}
+
+/* ============ Para marcas ============ */
+.kit{display:grid;gap:var(--e-5);align-items:center}
+@media (min-width:900px){.kit{grid-template-columns:1fr 1.1fr}}
+.kit .photo{aspect-ratio:4/3;max-width:440px;width:100%;margin-inline:auto;rotate:-2deg}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--e-3)}
+.stat{background:var(--white);border-radius:var(--r-m);padding:var(--e-4);box-shadow:0 0 0 2px var(--line)}
+.stat b{display:block;font:700 var(--t-xl)/1.1 var(--fd);font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:var(--t-s);color:var(--ink2);line-height:1.4;margin-top:var(--e-1)}
+.stat.real{background:var(--acc-soft)}
+.offers{display:flex;flex-wrap:wrap;gap:var(--e-2);margin-block:var(--e-4)}
+.kit h2{font-size:var(--t-2xl);margin-top:.4em}
+.kit .txt>p:not(.eyebrow){margin-top:var(--e-3);color:var(--ink2)}
+
+/* ============ Suscribite ============ */
+.sub{text-align:center;display:grid;justify-items:center;gap:var(--e-4)}
+.sub h2{font-size:var(--t-2xl)}
+.sub p{max-width:36em;color:var(--ink2)}
+.sub .acts{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--e-3)}
+.sub .pig-s{width:120px}
+
+/* ============ Pie ============ */
+.ft{padding-block:var(--e-7) var(--e-6)}
+.ft-in{display:grid;gap:var(--e-5);justify-items:center;text-align:center}
+.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--e-2)}
+.socials a{display:inline-flex;align-items:center;min-height:44px;padding:0 1em;border-radius:var(--pill);background:var(--white);text-decoration:none;font:600 var(--t-s)/1 var(--fd);box-shadow:0 0 0 2px var(--line)}
+.socials a:active{background:var(--lilac)}
+@media (hover:hover) and (pointer:fine){.socials a:hover{background:var(--lilac)}}
+.ft .logo small{color:var(--ink)}
+.credit{font-size:var(--t-xs);color:var(--ink2);line-height:1.7}
+.credit a{font-weight:800;color:var(--ink);text-underline-offset:3px;display:inline-block;padding-block:var(--e-1)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv.pre{opacity:1;transform:none}
+  .card,.stamp,.passport,.pig-m{rotate:0deg}
+}
+@media print{.hd{position:static}.rv.pre{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-es="Saltar al contenido">跳到主要內容</a>
+
+<!-- símbolo del chanchito (se reutiliza con <use>) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="pigface" viewBox="0 0 120 110">
+      <path d="M22 30 L14 6 L42 20 Z M98 30 L106 6 L78 20 Z" stroke-width="3.5" stroke-linejoin="round" style="fill:var(--pink);stroke:var(--ink)"/>
+      <ellipse cx="60" cy="60" rx="50" ry="44" stroke-width="3.5" style="fill:var(--pink);stroke:var(--ink)"/>
+      <ellipse cx="60" cy="76" rx="18" ry="12.5" stroke-width="3.5" style="fill:var(--paper);stroke:var(--ink)"/>
+      <ellipse cx="53.5" cy="76" rx="3" ry="4.5" style="fill:var(--ink)"/><ellipse cx="66.5" cy="76" rx="3" ry="4.5" style="fill:var(--ink)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hd">
+  <div class="hd-in">
+    <a class="logo" href="#top" aria-label="豬豬隊友 首頁" data-es-aria="Piggy Teammates, inicio">
+      <svg viewBox="0 0 120 110" aria-hidden="true"><use href="#pigface"/><circle cx="42" cy="50" r="5" style="fill:var(--ink)"/><circle cx="78" cy="50" r="5" style="fill:var(--ink)"/></svg>
+      <span><b>豬豬隊友</b><small>SCOTT &amp; WENDY</small></span>
+    </a>
+    <nav class="nav" aria-label="主選單" data-es-aria="Menú principal">
+      <a href="#open" data-es="Grupo abierto">開團中</a>
+      <a href="#picks" data-es="Recomendados">長期推薦</a>
+      <a href="#trips" data-es="Viajes">親子旅遊</a>
+      <a href="#brands" data-es="Para marcas">合作邀約</a>
+    </nav>
+    <div class="hd-act">
+      <button class="lang" type="button" id="lang" aria-label="Ver en español" data-es-aria="Ver en chino (中文)">ES</button>
+      <a class="b3d line sm" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc">LINE</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============ 1 · Hero ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" style="--dot:var(--acc)" data-es="Viajes en familia · grupos de compra">親子旅遊・團購好物</p>
+      <h1 id="h1"><span data-es="Ya dimos la vuelta al mundo.">環遊世界一次不夠，</span><br><span class="pk" data-es="Ahora, con los chicos.">這次帶孩子一起！</span></h1>
+      <p class="lead" data-es="A los 25 viajamos un año entero por el mundo. Ahora el sueño es repetirlo con nuestros dos hijos, y en el camino compartimos solo lo que probamos de verdad, a mejor precio.">25 歲那年，我們花一年環遊世界；現在的夢想，是帶著兩個孩子再出發一次。路上只分享自己真心用過、推薦的好物，用更好的價格。</p>
+      <div class="acts">
+        <a class="b3d pig lg" href="#open"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Ver grupos abiertos">看現在開團</span></a>
+        <a class="b3d white lg" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Sumate al LINE">加入 LINE 好友</span></a>
+      </div>
+      <div class="ig-stk">
+        <span class="stk mint" style="--r:-3deg"><span class="num">83.6K</span> <span data-es="seguidores en Instagram">IG 粉絲</span></span>
+        <span class="stk sky" style="--r:2deg" data-es="5 países sellados">已蓋 5 個國家章</span>
+      </div>
+    </div>
+
+    <div class="passport rv" aria-label="豬豬家的護照" data-es-aria="Pasaporte de la familia chanchito" role="group">
+      <span class="stk stamp-mini" data-es="Pasaporte chanchito">豬豬護照</span>
+      <div class="pp-page">
+        <div class="pp-top"><span>PASSPORT · 護照</span><span>TWN</span></div>
+        <div class="photo"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-es="Acá va su foto">這裡放<br>你們的照片</span></div></div>
+        <div class="pp-data"><dl>
+          <dt data-es="Titulares">持照人</dt><dd>Scott &amp; Wendy</dd>
+          <dt data-es="Tripulación">隊員</dt><dd data-es="2 adultos + 2 chicos">2 大 + 2 小</dd>
+          <dt data-es="Destino">目的地</dt><dd data-es="Otra vuelta al mundo">再環遊世界一次</dd>
+        </dl></div>
+        <div class="mrz" aria-hidden="true">P&lt;TWNPIGGY&lt;&lt;TEAMMATES&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</div>
+      </div>
+      <div class="pig-m">
+        <svg class="pig" viewBox="0 0 120 110" role="img" aria-label="豬豬吉祥物" data-es-aria="Chanchito mascota">
+          <use href="#pigface"/>
+          <g class="eye" transform="translate(42 48)"><circle r="11" stroke-width="3" style="fill:var(--white);stroke:var(--ink)"/><g class="pupil"><circle r="5.5" style="fill:var(--ink)"/><circle cx="2" cy="-2" r="1.8" style="fill:var(--white)"/></g><rect class="lid" x="-12.5" y="-12.5" width="25" height="25" rx="12.5" style="fill:var(--pink)"/></g>
+          <g class="eye" transform="translate(78 48)"><circle r="11" stroke-width="3" style="fill:var(--white);stroke:var(--ink)"/><g class="pupil"><circle r="5.5" style="fill:var(--ink)"/><circle cx="2" cy="-2" r="1.8" style="fill:var(--white)"/></g><rect class="lid" x="-12.5" y="-12.5" width="25" height="25" rx="12.5" style="fill:var(--pink)"/></g>
+          <ellipse cx="26" cy="70" rx="8" ry="5" opacity=".25" style="fill:var(--pink-d)"/><ellipse cx="94" cy="70" rx="8" ry="5" opacity=".25" style="fill:var(--pink-d)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · Grupo abierto: pase de abordar ============ -->
+<section id="open" class="slab sky" aria-labelledby="h-open">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="--dot:var(--acc)" data-es="🔥 Grupo abierto">🔥 開團中</p>
+      <h2 id="h-open" data-es="Tu pase para el colchón EMMA">登機證在手，EMMA 床墊團出發！</h2>
+    </div>
+
+    <article class="pass" id="pass" aria-labelledby="h-emma">
+      <div class="pass-main">
+        <div class="pass-top">
+          <span class="hot" data-es="Boarding pass · cierra el 4/11">登機證・11/4 結單</span>
+          <span class="flight">FLIGHT PIG 1111</span>
+        </div>
+        <div class="route">
+          <div><span class="code">GER</span><small data-es="Alemania">德國</small></div>
+          <svg class="plane" viewBox="0 0 96 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 12h70" stroke-dasharray="2 8"/><path d="M70 4l14 8-14 8 3-8z" fill="currentColor"/></svg>
+          <div class="to"><span class="code">HOME</span><small data-es="Tu casa">你家</small></div>
+        </div>
+        <h3 id="h-emma" data-es="Colchón EMMA (Alemania): 50% en el 11/11 + 12% extra con nuestro código">EMMA 德國床墊：雙 11 五折，用我們的折扣碼再享 12% 折扣</h3>
+        <div class="deal">
+          <span class="stk yel" style="--r:-2deg" data-es="50% OFF 11/11">雙 11 五折</span>
+          <span class="stk white" style="--r:2deg" data-es="+12% con código">再享 12% 折扣</span>
+        </div>
+        <dl class="pass-grid">
+          <div><dt data-es="Pasajero">乘客</dt><dd data-es="Vos">你</dd></div>
+          <div><dt data-es="Puerta">登機門</dt><dd>11.11</dd></div>
+          <div><dt data-es="Asiento">座位</dt><dd data-es="Cama">床</dd></div>
+        </dl>
+        <p class="fine" data-es="Precio y condiciones según la marca; lo que vale es lo que dice el sitio de EMMA al comprar.">價格與活動內容以品牌官網結帳頁面為準。</p>
+      </div>
+
+      <div class="pass-stub">
+        <div>
+          <p class="cd-lbl" data-es="El grupo cierra en (hora de Taiwán):">距離結單（台灣時間 11/4 23:59）</p>
+          <div class="cd" role="timer" aria-live="off">
+            <div><b class="num" id="cd-d">0</b><span data-es="días">天</span></div>
+            <div><b class="num" id="cd-h">00</b><span data-es="horas">時</span></div>
+            <div><b class="num" id="cd-m">00</b><span data-es="min">分</span></div>
+            <div><b class="num" id="cd-s">00</b><span data-es="seg">秒</span></div>
+          </div>
+          <p class="cd-done" aria-live="polite" data-es="Cerrado · ¿querés que vuelva? Avisanos por LINE.">已結單・想再開團？LINE 跟我們說！</p>
+        </div>
+        <div>
+          <p class="cd-lbl" data-es="Código de descuento (tocá para copiar):">折扣碼（點一下複製）</p>
+          <div class="copy">
+            <code id="code">piggyteamate</code>
+            <button class="b3d yel sm" type="button" id="copy-btn"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Copiar código">複製折扣碼</span></button>
+          </div>
+          <p class="copy-msg" id="copy-msg" role="status"></p>
+        </div>
+        <div aria-hidden="true">
+          <svg class="barcode" id="barcode" viewBox="0 0 240 56" preserveAspectRatio="none"></svg>
+          <p class="bc-num">PIG·1111·EMMA</p>
+        </div>
+        <a class="b3d pig lg buy" href="https://links.emma-sleep.com.tw/ytpiggyteamate" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Comprar en EMMA">去 EMMA 下單</span></a>
+        <a class="b3d line sm" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Avisame si vuelve">再開團通知我</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 3 · Recomendados (abanico) ============ -->
+<section id="picks" class="plain" aria-labelledby="h-picks">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="--dot:var(--yellow-e)" data-es="✨ Recomendados siempre">✨ 長期推薦</p>
+      <h2 id="h-picks" data-es="Lo que usamos en casa y en la valija">家裡用、行李箱也帶著的好物</h2>
+    </div>
+    <div class="chips" role="group" aria-label="分類" data-es-aria="Categorías">
+      <button class="chip" type="button" data-f="all" aria-pressed="true" data-es="Todo">全部</button>
+      <button class="chip" type="button" data-f="home" aria-pressed="false" data-es="Hogar">居家</button>
+      <button class="chip" type="button" data-f="kitchen" aria-pressed="false" data-es="Cocina">廚房</button>
+      <button class="chip" type="button" data-f="travel" aria-pressed="false" data-es="Viajes">旅行</button>
+      <button class="chip" type="button" data-f="kids" aria-pressed="false" data-es="Bebés y niños">親子</button>
+    </div>
+    <ul class="fan" id="fan">
+      <li class="card" data-cat="kitchen">
+        <div class="art" style="background:var(--peach)"><svg viewBox="0 0 160 100" aria-hidden="true"><path d="M30 44h100v26a22 22 0 0 1-22 22H52a22 22 0 0 1-22-22z" stroke-width="4" style="fill:var(--sky);stroke:var(--ink)"/><rect x="24" y="36" width="112" height="10" rx="5" stroke-width="4" style="fill:var(--white);stroke:var(--ink)"/><path d="M8 52h22M130 52h22" stroke-width="6" stroke-linecap="round" style="stroke:var(--ink)"/><path d="M70 30q10-12 20 0" fill="none" stroke-width="4" style="stroke:var(--ink)"/><path d="M60 18q4-8 0-14M80 18q4-8 0-14M100 18q4-8 0-14" stroke-width="3" stroke-linecap="round" fill="none" style="stroke:var(--ink2)"/></svg></div>
+        <span class="cat" data-es="COCINA · Corea">廚房・韓國</span>
+        <h3 data-es="Ollas de cerámica Neoflam">Neoflam 陶瓷鍋</h3>
+        <p data-es="Según la marca, recubrimiento cerámico sin teflón.">品牌表示採陶瓷塗層、不含鐵氟龍。</p>
+        <a class="b3d white sm" href="https://neoflam.com.tw/pages/piggy?sl-ref=piggy" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Ver Neoflam">去看看</span></a>
+      </li>
+      <li class="card" data-cat="home">
+        <div class="art" style="background:var(--mint)"><svg viewBox="0 0 160 100" aria-hidden="true"><rect x="52" y="8" width="56" height="86" rx="14" stroke-width="4" style="fill:var(--white);stroke:var(--ink)"/><rect x="62" y="20" width="36" height="8" rx="4" style="fill:var(--mint-2)"/><g style="stroke:var(--ink2)" stroke-width="3" stroke-linecap="round"><path d="M64 42h32M64 52h32M64 62h32M64 72h32"/></g><path d="M118 30q10 8 0 16M126 24q16 14 0 28" stroke-width="3.5" fill="none" stroke-linecap="round" style="stroke:var(--mint-d)"/></svg></div>
+        <span class="cat" data-es="HOGAR · Japón">居家・日本</span>
+        <h3 data-es="Purificador y deshumidificador IRIS">IRIS 空氣清淨除濕機</h3>
+        <p data-es="Según la marca, elimina el 99,9% de las bacterias. Entra en el subsidio de NT$&nbsp;1200.">品牌表示可去除 99.9% 細菌，適用 NT$1200 補助。</p>
+        <a class="b3d white sm" href="https://presto.company/5kM3S" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Ver IRIS">去看看</span></a>
+      </li>
+      <li class="card" data-cat="travel" data-ejemplo>
+        <div class="art" style="background:var(--lilac)"><svg viewBox="0 0 160 100" aria-hidden="true"><rect x="40" y="22" width="80" height="66" rx="12" stroke-width="4" style="fill:var(--yellow);stroke:var(--ink)"/><path d="M64 22v-8a6 6 0 0 1 6-6h20a6 6 0 0 1 6 6v8" fill="none" stroke-width="4" style="stroke:var(--ink)"/><path d="M40 50h80" stroke-width="4" style="stroke:var(--ink)"/><circle cx="56" cy="92" r="5" style="fill:var(--ink)"/><circle cx="104" cy="92" r="5" style="fill:var(--ink)"/><rect x="72" y="42" width="16" height="16" rx="4" stroke-width="3" style="fill:var(--white);stroke:var(--ink)"/></svg></div>
+        <span class="cat" data-es="VIAJES">旅行</span>
+        <h3 data-es="Bolsas organizadoras para la valija">行李箱收納袋組</h3>
+        <p><span class="eg">範例 / Ejemplo</span> <span data-es="Lugar para un producto de viaje que recomienden.">這裡放你們推薦的旅行好物。</span></p>
+        <span class="b3d white sm" aria-disabled="true"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Pronto">即將上架</span></span>
+      </li>
+      <li class="card" data-cat="kids" data-ejemplo>
+        <div class="art" style="background:var(--yellow-2)"><svg viewBox="0 0 160 100" aria-hidden="true"><path d="M50 30a30 30 0 0 1 60 0v56H50z" stroke-width="4" style="fill:var(--pink);stroke:var(--ink)"/><rect x="62" y="54" width="36" height="24" rx="8" stroke-width="4" style="fill:var(--white);stroke:var(--ink)"/><path d="M68 30q12-10 24 0" fill="none" stroke-width="4" style="stroke:var(--ink)"/><circle cx="70" cy="40" r="3.5" style="fill:var(--ink)"/><circle cx="90" cy="40" r="3.5" style="fill:var(--ink)"/></svg></div>
+        <span class="cat" data-es="BEBÉS Y NIÑOS">親子</span>
+        <h3 data-es="Mochila de viaje para chicos">兒童旅行背包</h3>
+        <p><span class="eg">範例 / Ejemplo</span> <span data-es="Lugar para lo que usan los chicos en el viaje.">這裡放孩子旅行時愛用的好物。</span></p>
+        <span class="b3d white sm" aria-disabled="true"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Pronto">即將上架</span></span>
+      </li>
+    </ul>
+    <p class="fan-hint" data-es="Deslizá para ver más →">← 左右滑動看更多 →</p>
+  </div>
+</section>
+
+<!-- ============ 4 · Historial de grupos ============ -->
+<section id="history" class="slab yellow" aria-labelledby="h-hist">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="--dot:var(--lilac-d)" data-es="Grupos anteriores">團購紀錄</p>
+      <h2 id="h-hist" data-es="Pases ya usados: ¿qué tal salió?">用過的登機證：心得回報</h2>
+      <p><span class="eg">範例 / Ejemplo</span> <span data-es="Reseñas inventadas para mostrar el formato.">示範用的心得，之後換成你們的真實紀錄。</span></p>
+    </div>
+    <div class="hist">
+      <article class="used rv" data-ejemplo>
+        <div class="top"><span>FLIGHT PIG 0618</span><span class="eg">範例 / Ejemplo</span></div>
+        <span class="closed-stamp" data-es="CERRADO">已結單<br>CLOSED</span>
+        <h3 data-es="Termo para el auto">兒童保溫水壺</h3>
+        <blockquote><b data-es="Medio año de uso:">用了半年，心得是…</b> <span data-es="no gotea en la mochila y el más chico lo abre solo.">放背包完全不漏，弟弟自己就打得開。</span></blockquote>
+        <button class="peel" type="button" aria-expanded="false"><span class="under" data-es="¿Vuelve? Depende de cuántos lo pidan.">會不會再開？看大家敲碗！</span><span class="face" aria-hidden="true" data-es="¡Lo recomendamos! ★">大推 ★</span></button>
+        <a class="b3d white sm" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Avisame si vuelve">再開團通知我</span></a>
+      </article>
+      <article class="used rv" data-ejemplo style="--dl:.08s">
+        <div class="top"><span>FLIGHT PIG 0909</span><span class="eg">範例 / Ejemplo</span></div>
+        <span class="closed-stamp" data-es="CERRADO">已結單<br>CLOSED</span>
+        <h3 data-es="Valija de cabina">登機箱</h3>
+        <blockquote><b data-es="Medio año de uso:">用了半年，心得是…</b> <span data-es="cinco vuelos y las ruedas siguen como nuevas.">飛了五趟，輪子還跟新的一樣。</span></blockquote>
+        <button class="peel" type="button" aria-expanded="false"><span class="under" data-es="¿Vuelve? Depende de cuántos lo pidan.">會不會再開？看大家敲碗！</span><span class="face" aria-hidden="true" data-es="¡Lo recomendamos! ★">大推 ★</span></button>
+        <a class="b3d white sm" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Avisame si vuelve">再開團通知我</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · Viajes en familia: sellos ============ -->
+<section id="trips" class="plain" aria-labelledby="h-trips">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="--dot:var(--sky-d)" data-es="Viajes en familia">親子旅遊</p>
+      <h2 id="h-trips" data-es="Los sellos de nuestro pasaporte">護照上的每一個章</h2>
+      <p data-es="Tocá un sello para ver el viaje completo.">點一個章，看完整旅程。</p>
+    </div>
+    <div class="stamps">
+      <a class="stamp rv" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <span class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" style="fill:var(--peach)"/><circle cx="72" cy="30" r="12" style="fill:var(--yellow)"/><path d="M0 74q50-14 100 0v26H0z" style="fill:var(--yellow)"/><path d="M34 74V50" stroke-width="4" style="stroke:var(--ink)"/><ellipse cx="34" cy="46" rx="22" ry="7" style="fill:var(--mint-d)"/><path d="M66 74V56l4-14" stroke-width="4" fill="none" style="stroke:var(--ink)"/><circle cx="71" cy="40" r="4" style="fill:var(--yellow-e)"/></svg></span>
+        <b data-es="Kenia">肯亞</b><small>KENYA · SAFARI</small>
+      </a>
+      <a class="stamp rv" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener" style="--dl:.05s">
+        <span class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" style="fill:var(--lilac)"/><path d="M50 12L38 88h8l4-16 4 16h8z" fill="none" stroke-width="4" stroke-linejoin="round" style="stroke:var(--lilac-d)"/><path d="M42 58h16M45 40h10" stroke-width="4" style="stroke:var(--lilac-d)"/><path d="M0 88h100" stroke-width="4" style="stroke:var(--ink)"/></svg></span>
+        <b data-es="Francia">法國</b><small>FRANCE · PARIS</small>
+      </a>
+      <a class="stamp rv" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener" style="--dl:.1s">
+        <span class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" style="fill:var(--sky)"/><path d="M28 86V52h44v34z" stroke-width="4" style="fill:var(--white);stroke:var(--ink)"/><path d="M22 52l10-18 10 18M58 52l10-18 10 18" stroke-width="4" stroke-linejoin="round" style="fill:var(--pink);stroke:var(--ink)"/><path d="M40 52l10-26 10 26" stroke-width="4" stroke-linejoin="round" style="fill:var(--yellow);stroke:var(--ink)"/><path d="M44 86v-14a6 6 0 0 1 12 0v14" style="fill:var(--sky-d)"/></svg></span>
+        <b data-es="Disney Hong Kong">香港迪士尼</b><small>HONG KONG</small>
+      </a>
+      <a class="stamp rv" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">
+        <span class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" style="fill:var(--mint)"/><path d="M14 62h72l-10 18H24z" style="fill:var(--ink)"/><rect x="26" y="46" width="48" height="16" rx="3" stroke-width="4" style="fill:var(--white);stroke:var(--ink)"/><rect x="40" y="30" width="10" height="16" style="fill:var(--pink-d)"/><rect x="54" y="30" width="10" height="16" style="fill:var(--pink-d)"/><path d="M0 86q12-6 25 0t25 0 25 0 25 0" fill="none" stroke-width="4" style="stroke:var(--sky-d)"/></svg></span>
+        <b data-es="Crucero Disney">迪士尼郵輪</b><small>DISNEY CRUISE</small>
+      </a>
+      <a class="stamp rv" href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener" style="--dl:.05s">
+        <span class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" style="fill:var(--yellow-2)"/><circle cx="30" cy="28" r="10" stroke-width="3" style="fill:var(--yellow);stroke:var(--yellow-e)"/><path d="M0 80q30-26 60-8t40-6v34H0z" stroke-width="3" style="fill:var(--peach);stroke:var(--yellow-e)"/><path d="M70 74V40" stroke-width="4" style="stroke:var(--ink)"/><path d="M70 40q-14-6-20 4M70 40q14-6 20 4M70 40q-6-12-16-12M70 40q6-12 16-12" stroke-width="4" fill="none" stroke-linecap="round" style="stroke:var(--mint-d)"/></svg></span>
+        <b data-es="Arabia Saudita">沙烏地阿拉伯</b><small>SAUDI ARABIA</small>
+      </a>
+      <div class="stamp next rv" style="--dl:.1s">
+        <span class="ring"><svg viewBox="0 0 120 110" aria-hidden="true"><use href="#pigface"/><circle cx="42" cy="50" r="5" style="fill:var(--ink)"/><circle cx="78" cy="50" r="5" style="fill:var(--ink)"/></svg></span>
+        <b data-es="Próxima parada">下一站？</b><small data-es="CON LOS DOS CHICOS">帶兩個孩子一起</small>
+      </div>
+    </div>
+    <div class="story">
+      <div class="photo"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-es="Acá va su foto">這裡放你們的照片</span></div></div>
+      <p data-es="Cada sello es un viaje con historia: dónde dormir con chicos, qué llevar en la valija y qué vale la pena de verdad. Las guías completas están en Instagram y YouTube.">每個章都是一段故事：帶小孩住哪裡、行李箱帶什麼、哪些真的值得去。完整旅程都在 IG 和 YouTube。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · Para marcas ============ -->
+<section id="brands" class="slab lilac" aria-labelledby="h-brands">
+  <div class="wrap kit">
+    <div class="photo rv"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span data-es="Acá va su foto en familia">這裡放你們的全家福</span></div></div>
+    <div class="txt">
+      <p class="eyebrow" style="--dot:var(--acc)" data-es="Para marcas">合作邀約</p>
+      <h2 id="h-brands" data-es="Viajemos juntos con tu marca">和品牌一起出發</h2>
+      <p data-es="Contenido de viajes y familia, hecho con productos que usamos de verdad.">親子旅遊與家庭生活內容，只和真心喜歡的品牌合作。</p>
+      <div class="stats" style="margin-top:var(--e-4)">
+        <div class="stat real"><b class="num">83.6K</b><span data-es="seguidores en Instagram">Instagram 粉絲</span></div>
+        <div class="stat" data-ejemplo><b class="num">25K</b><span data-es="suscriptores en YouTube">YouTube 訂閱</span> <span class="eg">範例 / Ejemplo</span></div>
+        <div class="stat" data-ejemplo><b class="num">68%</b><span data-es="del público son mamás y papás">觀眾是爸媽</span> <span class="eg">範例 / Ejemplo</span></div>
+        <div class="stat" data-ejemplo><b class="num">40+</b><span data-es="grupos de compra hechos">已完成團購</span> <span class="eg">範例 / Ejemplo</span></div>
+      </div>
+      <div class="offers">
+        <span class="stk white" style="--r:-2deg" data-es="Reseñas en video">開箱影片</span>
+        <span class="stk mint" style="--r:2deg" data-es="Viajes en familia">親子旅遊</span>
+        <span class="stk yel" style="--r:-1deg" data-es="Grupos de compra">團購合作</span>
+      </div>
+      <a class="b3d pig" href="mailto:piggyteammates@capsuleinc.cc?subject=%E5%90%88%E4%BD%9C%E9%82%80%E7%B4%84%EF%BD%9C%E8%B1%AC%E8%B1%AC%E9%9A%8A%E5%8F%8B"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Escribile a la agencia">寄信給經紀公司</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · Suscribite ============ -->
+<section id="sub" class="plain" aria-labelledby="h-sub">
+  <div class="wrap sub">
+    <div class="pig-s">
+      <svg class="pig" viewBox="0 0 120 110" role="img" aria-label="豬豬吉祥物" data-es-aria="Chanchito mascota">
+        <use href="#pigface"/>
+        <g class="eye" transform="translate(42 48)"><circle r="11" stroke-width="3" style="fill:var(--white);stroke:var(--ink)"/><g class="pupil"><circle r="5.5" style="fill:var(--ink)"/><circle cx="2" cy="-2" r="1.8" style="fill:var(--white)"/></g><rect class="lid" x="-12.5" y="-12.5" width="25" height="25" rx="12.5" style="fill:var(--pink)"/></g>
+        <g class="eye" transform="translate(78 48)"><circle r="11" stroke-width="3" style="fill:var(--white);stroke:var(--ink)"/><g class="pupil"><circle r="5.5" style="fill:var(--ink)"/><circle cx="2" cy="-2" r="1.8" style="fill:var(--white)"/></g><rect class="lid" x="-12.5" y="-12.5" width="25" height="25" rx="12.5" style="fill:var(--pink)"/></g>
+      </svg>
+    </div>
+    <h2 id="h-sub" data-es="Enterate antes del próximo grupo">下一團開跑，搶先知道</h2>
+    <p data-es="Sumate al LINE oficial o dejanos tu mail: avisamos primero ahí, antes de publicar.">加入 LINE 官方帳號或用 Email 訂閱，新團會先在這裡通知。</p>
+    <div class="acts">
+      <a class="b3d line lg" href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Sumarme al LINE">加入 LINE 好友</span></a>
+      <a class="b3d white lg" href="mailto:piggyteammates@capsuleinc.cc?subject=%E6%88%91%E6%83%B3%E8%A8%82%E9%96%B1%E9%96%8B%E5%9C%98%E9%80%9A%E7%9F%A5"><span class="sh"></span><span class="ed"></span><span class="fc" data-es="Avisarme por mail">Email 訂閱</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft slab peach">
+  <div class="wrap ft-in">
+    <a class="logo" href="#top" aria-label="回到頂端" data-es-aria="Volver arriba"><svg viewBox="0 0 120 110" aria-hidden="true"><use href="#pigface"/><circle cx="42" cy="50" r="5" style="fill:var(--ink)"/><circle cx="78" cy="50" r="5" style="fill:var(--ink)"/></svg><span><b>豬豬隊友</b><small>SCOTT &amp; WENDY</small></span></a>
+    <div class="socials">
+      <a href="https://www.instagram.com/piggyteammates/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@piggyteammates" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.facebook.com/piggyteammates" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://lin.ee/XS0mXRr" target="_blank" rel="noopener">LINE</a>
+      <a href="mailto:piggyteammates@capsuleinc.cc" data-es="Contacto comercial">商務合作</a>
+    </div>
+    <p class="credit">
+      <span data-es="Página de muestra hecha por ">範例設計 · </span><a href="https://paginasclover.com" target="_blank" rel="noopener nofollow">Páginas Clover</a><span data-es=""> 製作</span><span data-es=" · Otro trabajo nuestro: "> · 我們的其他作品：</span><a href="https://spanishwithemi.com" target="_blank" rel="noopener nofollow">Spanish with Emi</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const calma = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const captura = location.search.includes('captura');
+
+  /* ---------- Idioma: zh-TW por defecto, botón ES / 中文 ---------- */
+  const btnLang = $('#lang');
+  let es = false;
+  const titulos = { zh: document.title, es: 'Piggy Teammates · Scott & Wendy | Viajes en familia y grupos de compra' };
+  const ponerIdioma = (aEs) => {
+    es = aEs;
+    $$('[data-es]').forEach(el => {
+      if (el.dataset.zh === undefined) el.dataset.zh = el.innerHTML;
+      el.innerHTML = aEs ? el.dataset.es : el.dataset.zh;
+    });
+    $$('[data-es-aria]').forEach(el => {
+      if (el.dataset.zhAria === undefined) el.dataset.zhAria = el.getAttribute('aria-label') || '';
+      el.setAttribute('aria-label', aEs ? el.dataset.esAria : el.dataset.zhAria);
+    });
+    document.documentElement.lang = aEs ? 'es-AR' : 'zh-Hant-TW';
+    document.title = aEs ? titulos.es : titulos.zh;
+    btnLang.textContent = aEs ? '中文' : 'ES';
+    if (copyMsg.textContent) copyMsg.textContent = aEs ? '¡Copiado! Pegalo al pagar en EMMA.' : '已複製！結帳時貼上就好。';
+  };
+  btnLang.addEventListener('click', () => ponerIdioma(!es));
+
+  /* ---------- Botones de goma: estado apretado también con teclado ---------- */
+  $$('.b3d').forEach(b => {
+    b.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') b.classList.add('down'); });
+    b.addEventListener('keyup', () => b.classList.remove('down'));
+    b.addEventListener('blur', () => b.classList.remove('down'));
+  });
+
+  /* ---------- Cuenta regresiva: 4/11/2026 23:59:59 hora de Taiwán ---------- */
+  const fin = Date.parse('2026-11-04T23:59:59+08:00');
+  const pass = $('#pass');
+  const cd = { d: $('#cd-d'), h: $('#cd-h'), m: $('#cd-m'), s: $('#cd-s') };
+  const dos = n => String(n).padStart(2, '0');
+  let reloj = null;
+  const tic = () => {
+    const resto = Math.max(0, fin - Date.now());
+    if (!resto) { pass.classList.add('closed'); clearInterval(reloj); reloj = null; return; }
+    const t = Math.floor(resto / 1000);
+    cd.d.textContent = Math.floor(t / 86400);
+    cd.h.textContent = dos(Math.floor(t / 3600) % 24);
+    cd.m.textContent = dos(Math.floor(t / 60) % 60);
+    cd.s.textContent = dos(t % 60);
+  };
+  const arrancarReloj = () => { tic(); if (!reloj && !pass.classList.contains('closed')) reloj = setInterval(tic, 1000); };
+  arrancarReloj();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(reloj); reloj = null; } else arrancarReloj();
+  });
+
+  /* ---------- Código de barras del pase (dibujado a partir del código) ---------- */
+  const bc = $('#barcode');
+  if (bc) {
+    let x = 4, out = '';
+    const s = 'PIG1111EMMApiggyteamate';
+    for (let i = 0; i < s.length && x < 232; i++) {
+      const c = s.charCodeAt(i);
+      for (let k = 0; k < 3; k++) {
+        const w = 1 + ((c >> k) & 1) * 2 + ((c >> (k + 3)) & 1);
+        if (x + w > 236) break;
+        out += `<rect x="${x}" y="0" width="${w}" height="56" fill="currentColor"/>`;
+        x += w + 1 + ((c >> (k + 1)) & 1) * 2;
+      }
+    }
+    bc.innerHTML = out;
+  }
+
+  /* ---------- Copiar código + confeti (solo en este éxito real) ---------- */
+  const copyBtn = $('#copy-btn'), copyMsg = $('#copy-msg'), code = $('#code').textContent.trim();
+  const colores = ['--pink-d', '--yellow', '--mint-2', '--lilac-2', '--sky-d'].map(v => getComputedStyle(document.documentElement).getPropertyValue(v).trim());
+  const confeti = (el) => {
+    if (calma) return;
+    const r = el.getBoundingClientRect();
+    for (let i = 0; i < 22; i++) {
+      const p = document.createElement('span');
+      p.className = 'confetti';
+      p.style.background = colores[i % colores.length];
+      document.body.appendChild(p);
+      const a = (Math.random() * Math.PI) + Math.PI, v = 70 + Math.random() * 110;
+      const x0 = r.left + r.width / 2, y0 = r.top + r.height / 2;
+      p.animate([
+        { transform: `translate(${x0}px,${y0}px) rotate(0deg)`, opacity: 1 },
+        { transform: `translate(${x0 + Math.cos(a) * v}px,${y0 + Math.sin(a) * v + 140}px) rotate(${Math.random() * 540}deg)`, opacity: 0 }
+      ], { duration: 900 + Math.random() * 300, easing: 'cubic-bezier(.22,1,.36,1)' }).onfinish = () => p.remove();
+    }
+  };
+  const copiarRespaldo = (txt) => {
+    const t = document.createElement('textarea');
+    t.value = txt; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    let ok = false; try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    t.remove(); return ok;
+  };
+  copyBtn.addEventListener('click', async () => {
+    let ok = false;
+    try { await navigator.clipboard.writeText(code); ok = true; } catch (e) { ok = copiarRespaldo(code); }
+    copyMsg.textContent = ok
+      ? (es ? '¡Copiado! Pegalo al pagar en EMMA.' : '已複製！結帳時貼上就好。')
+      : (es ? 'Mantené apretado el código para copiarlo.' : '請長按折扣碼手動複製。');
+    if (ok) confeti(copyBtn);
+  });
+
+  /* ---------- Catálogo: filtros por categoría ---------- */
+  const chips = $$('.chip'), cards = $$('#fan .card');
+  chips.forEach(ch => ch.addEventListener('click', () => {
+    chips.forEach(c => c.setAttribute('aria-pressed', String(c === ch)));
+    const f = ch.dataset.f;
+    cards.forEach(c => { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+  }));
+
+  /* ---------- Sticker que se despega (al tocar o con teclado) ---------- */
+  $$('.peel').forEach(p => p.addEventListener('click', () => {
+    p.setAttribute('aria-expanded', String(p.getAttribute('aria-expanded') !== 'true'));
+  }));
+
+  /* ---------- Aparecer al bajar (seguro: sin JS o con ?captura se ve todo) ---------- */
+  if (!calma && !captura && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    $$('.rv').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight) return;
+      el.classList.add('pre'); io.observe(el);
+    });
+  }
+
+  /* ---------- Efecto firma: el chanchito sigue con la mirada ---------- */
+  const pigs = $$('svg.pig').map(svg => ({ svg, eyes: $$('.eye', svg).map(g => ({ g, p: $('.pupil', g) })), visible: false }));
+  const MAX = 4.6;
+  let ultimo = 0;
+  const mirar = (x, y) => {
+    pigs.forEach(pg => {
+      if (!pg.visible) return;
+      pg.eyes.forEach(({ g, p }) => {
+        const r = g.getBoundingClientRect();
+        const dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2);
+        const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 160);
+        p.setAttribute('transform', `translate(${(dx / d) * MAX * k} ${(dy / d) * MAX * k})`);
+      });
+    });
+  };
+  const centro = () => pigs.forEach(pg => pg.eyes.forEach(({ p }) => p.setAttribute('transform', 'translate(0 0)')));
+  if ('IntersectionObserver' in window) {
+    const ioPig = new IntersectionObserver(es => es.forEach(e => {
+      const pg = pigs.find(q => q.svg === e.target); if (pg) pg.visible = e.isIntersecting;
+    }));
+    pigs.forEach(pg => ioPig.observe(pg.svg));
+  } else pigs.forEach(pg => { pg.visible = true; });
+
+  // mouse, dedo y lápiz
+  addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { ultimo = Date.now(); mirar(e.clientX, e.clientY); } }, { passive: true });
+  addEventListener('pointerdown', e => { ultimo = Date.now(); mirar(e.clientX, e.clientY); }, { passive: true });
+  // al bajar en el celular: mira hacia donde va la página y vuelve al centro
+  let yPrev = scrollY, vuelta = null;
+  addEventListener('scroll', () => {
+    const dy = scrollY - yPrev; yPrev = scrollY;
+    if (Date.now() - ultimo < 1500) return;
+    pigs.forEach(pg => {
+      if (!pg.visible) return;
+      const r = pg.svg.getBoundingClientRect();
+      mirar(r.left + r.width / 2, r.top + r.height / 2 + (dy > 0 ? 200 : -200));
+    });
+    clearTimeout(vuelta); vuelta = setTimeout(centro, 700);
+  }, { passive: true });
+
+  // parpadeo, solo si se ve y la pestaña está activa
+  if (!calma) {
+    const parpadear = () => {
+      if (!document.hidden) pigs.forEach(pg => {
+        if (!pg.visible) return;
+        pg.svg.classList.add('blink');
+        setTimeout(() => pg.svg.classList.remove('blink'), 140);
+      });
+      setTimeout(parpadear, 3200 + Math.random() * 2600);
+    };
+    setTimeout(parpadear, 2200);
+  }
+})();
+</script>
+</body>
+</html>
