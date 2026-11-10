@@ -343,7 +343,8 @@ footer a{color:#DCEAE6}
 .panel>*,.check-grid>*,.hero .wrap>*{min-width:0}
 @media (max-width:560px){.sched{font-size:12px;border-spacing:3px}.sched td{padding:8px 1px}}
 
-.brand{white-space:nowrap}.langs a{white-space:nowrap}.hero-note::before{flex:none}
+.brand{white-space:nowrap}.langs a{white-space:nowrap}.top nav a,.btn{white-space:nowrap}
+@media (max-width:1180px){.top nav{display:none}}.hero-note::before{flex:none}
 @media (max-width:420px){.brand{font-size:14px;gap:8px}.brand svg{width:26px;height:26px}.langs a{padding:6px 8px}.top .wrap{gap:8px}}
 
 /* utilidades (ex style=) */

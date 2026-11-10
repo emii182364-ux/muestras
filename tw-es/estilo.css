@@ -335,7 +335,8 @@ footer a{color:#DCEAE6}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
-.brand{white-space:nowrap}.langs a{white-space:nowrap}.hero-note::before{flex:none}
+.brand{white-space:nowrap}.langs a{white-space:nowrap}.top nav a,.btn{white-space:nowrap}
+@media (max-width:1180px){.top nav{display:none}}.hero-note::before{flex:none}
 @media (max-width:420px){.brand{font-size:14px;gap:8px}.brand svg{width:26px;height:26px}.langs a{padding:6px 8px}.top .wrap{gap:8px}}
 
 /* utilidades (ex style=) */
