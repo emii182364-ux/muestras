@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>牙醫診所網站｜Páginas Clover</title>
+<meta name="description" content="專為台灣牙醫診所設計的網站：線上預約、LINE 回診提醒、看診進度、療程與費用說明、Google 與 AI 搜尋優化。網站開發 US$200 起。">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://dentist.paginasclover.com/zh/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://dentist.paginasclover.com/zh/">
+<link rel="alternate" hreflang="en" href="https://dentist.paginasclover.com/en/">
+<link rel="alternate" hreflang="es-AR" href="https://dentista.paginasclover.com/es/">
+<link rel="alternate" hreflang="x-default" href="https://dentist.paginasclover.com/">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<svg class="u1" width="0" height="0" aria-hidden="true">
+  <defs>
+    <symbol id="i-tooth" viewBox="0 0 24 24"><path d="M7.5 3C4.9 3 3 5 3 8c0 2.3.8 3.7 1.3 5.6.6 2.4.9 7.4 2.7 7.4 1.6 0 1.6-4.6 2.6-6 .5-.7 1.1-1 2.4-1s1.9.3 2.4 1c1 1.4 1 6 2.6 6 1.8 0 2.1-5 2.7-7.4.5-1.9 1.3-3.3 1.3-5.6 0-3-1.9-5-4.5-5-1.8 0-2.8 1-4.5 1S9.3 3 7.5 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-queue" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 20h8M12 16v4M8 10h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-form" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18.5h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M18.5 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z" fill="currentColor"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4l2.4 5 5.4.6-4 3.7 1.1 5.3L12 16l-4.9 2.6 1.1-5.3-4-3.7 5.4-.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 8h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M5 8l-2.5 6a3 3 0 0 0 5 0zM19 8l-2.5 6a3 3 0 0 0 5 0z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-line" viewBox="0 0 24 24"><path d="M12 3.5c-5 0-9 3.2-9 7.2 0 3.6 3.2 6.5 7.5 7.1.3.1.7.2.8.5.1.3 0 .7 0 .9l-.1.8c0 .3-.2 1 .9.5 1.1-.5 5.9-3.5 8-6 1.4-1.6 2-3.2 2-4.8-.1-4-4.1-7.2-9.1-7.2z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Páginas Clover 牙醫診所網站">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#F5F8F7"/></svg>
+      Páginas Clover <small>牙醫診所網站</small>
+    </a>
+    <nav aria-label="頁面導覽">
+      <a href="#styles">風格範例</a>
+      <a href="#tools">診所工具</a>
+      <a href="#check">網站健檢</a>
+      <a href="#price">方案價格</a>
+      <a href="#faq">常見問題</a>
+      <a href="/plantillas/">診所範本</a>
+    </nav>
+    <div class="top-r">
+      <div class="langs" role="navigation" aria-label="Language / 語言 / Idioma"><a href="/zh/" data-l="zh" lang="zh-Hant" aria-current="page">繁中</a><a href="/en/" data-l="en" lang="en">EN</a><a href="/es/" data-l="es" lang="es">ES</a></div>
+      <a class="btn btn-line" href="https://line.me/ti/p/vO1gWlfDwT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-line"/></svg><span class="lbl">LINE 諮詢</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="arc" viewBox="0 0 900 600" aria-hidden="true"><path d="M40 120c120 330 330 440 410 440s290-110 410-440" fill="none" stroke="#DDEFE8" stroke-width="90" stroke-linecap="round"/><path d="M40 120c120 330 330 440 410 440s290-110 410-440" fill="none" stroke="#F5F8F7" stroke-width="4" stroke-dasharray="2 18" stroke-linecap="round"/></svg>
+  <div class="wrap">
+    <div>
+      <h1>病患搜尋「牙醫」的那一刻，您的診所就該出現，而且能直接預約。</h1>
+      <p class="lead">我們只專注一件事：牙醫診所的網站。讓附近的病患在 Google 和 AI 搜尋找到您，在手機上選好時段，再由 LINE 提醒準時回診。</p>
+      <div class="hero-ctas">
+        <a class="btn btn-line" href="https://line.me/ti/p/vO1gWlfDwT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-line"/></svg>用 LINE 預約免費網站健檢</a>
+        <a class="btn btn-ghost" href="#styles">看 6 種診所風格</a>
+      </div>
+      <p class="hero-note">示範手機可以直接操作，這就是病患會看到的預約流程。</p>
+      <div class="search" aria-label="搜尋示範">
+        <div class="sbox"><svg aria-hidden="true"><use href="#i-search"/></svg><span id="q"></span><i class="caret" aria-hidden="true"></i></div>
+        <div class="results" id="results">
+          <div class="res other"><div class="pin"><svg><use href="#i-pin"/></svg></div><div class="u2"><div class="bar u3"></div><div class="bar u4"></div></div></div>
+          <div class="res other"><div class="pin"><svg><use href="#i-pin"/></svg></div><div class="u2"><div class="bar u5"></div><div class="bar u6"></div></div></div>
+          <div class="res ours"><div class="pin"><svg><use href="#i-tooth"/></svg></div><div><b>晴光牙醫診所</b><span>可線上預約・今晚還有時段</span></div></div>
+        </div>
+        <p class="s-label">您的診所，第一個被看到</p>
+      </div>
+
+    </div>
+
+    <div class="stage">
+      <div class="phone" aria-label="線上預約示範">
+        <div class="screen">
+          <div class="scr-top"><b>晴光牙醫診所</b><span>範例診所・線上預約</span></div>
+          <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+          <div class="scr-body" id="bk">
+            <div data-step="1">
+              <p class="scr-q">這次想看什麼？</p>
+              <div class="chips u7">
+                <button class="chip" data-v="洗牙・塗氟">洗牙・塗氟</button>
+                <button class="chip" data-v="牙痛・補牙">牙痛・補牙</button>
+                <button class="chip" data-v="矯正諮詢">矯正諮詢</button>
+                <button class="chip" data-v="植牙諮詢">植牙諮詢</button>
+                <button class="chip" data-v="兒童牙科">兒童牙科</button>
+                <button class="chip" data-v="美白・貼片諮詢">美白・貼片諮詢</button>
+              </div>
+            </div>
+            <div data-step="2" hidden>
+              <p class="scr-q">選擇日期與時段</p>
+              <div class="days u7" id="days"></div>
+              <div class="slots" id="slots"></div>
+            </div>
+            <div data-step="3" hidden>
+              <p class="scr-q">最後一步</p>
+              <div class="chips u7">
+                <button class="chip" data-who="初診">我是初診</button>
+                <button class="chip" data-who="複診">我是複診</button>
+              </div>
+              <p class="u8">確認後，診所會透過 LINE 傳送預約資訊，並在看診前一天提醒您。</p>
+            </div>
+            <div class="done" id="done">
+              <div class="ok-badge" aria-hidden="true"><svg><use href="#i-check"/></svg></div>
+              <p class="scr-q u9">預約完成</p>
+              <div class="summary" id="sum"></div>
+              <div class="line-bubble" id="lb">
+                <div class="line-ic">LINE</div>
+                <div class="line-msg" id="lm"></div>
+              </div>
+              <button class="again" id="again">再試一次</button>
+            </div>
+            <button class="scr-next" id="next" disabled>下一步</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="prob" aria-labelledby="prob-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="prob-h">診所每天都在流失的三種病患</h2>
+      <p class="lead">不是醫術的問題，而是病患在找您的路上卡住了。</p>
+    </div>
+    <div class="prob-list">
+      <div class="prob-item">
+        <div class="prob-ic"><svg aria-hidden="true"><use href="#i-search"/></svg></div>
+        <h3>找不到您的病患</h3>
+        <p>搬到附近的家庭、牙痛的上班族，都是先上網搜尋。網站沒有好好設定，他們看到的是別家診所。</p>
+        <div class="fix"><svg aria-hidden="true"><use href="#i-check"/></svg>在地 SEO、Google 商家與 AI 搜尋優化</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-ic"><svg aria-hidden="true"><use href="#i-phone"/></svg></div>
+        <h3>打不進電話的病患</h3>
+        <p>櫃台在忙、午休、晚上下診，病患打兩次沒人接就放棄了。</p>
+        <div class="fix"><svg aria-hidden="true"><use href="#i-check"/></svg>24 小時線上預約，下診後也收得到</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-ic"><svg aria-hidden="true"><use href="#i-bell"/></svg></div>
+        <h3>忘記回來的病患</h3>
+        <p>洗牙半年一次、矯正每月回診，病患不是不想來，是忘了。</p>
+        <div class="fix"><svg aria-hidden="true"><use href="#i-check"/></svg>LINE 自動提醒預約與定期回診</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STYLES -->
+<section id="styles" aria-labelledby="sty-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="sty-h">每家診所都不一樣，網站也不該一樣</h2>
+      <p class="lead">同樣的內容，6 種完全不同的個性。點一個放大看，想像換上您診所的名字與照片。</p>
+    </div>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools" id="tools" aria-labelledby="tool-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="tool-h">不只是網站，是診所的線上櫃台</h2>
+      <p class="lead">這些都是台灣牙醫診所每天真正需要的功能，每一個都可以直接試用。</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="診所工具">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1"><svg aria-hidden="true"><use href="#i-cal"/></svg>門診時間表</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1"><svg aria-hidden="true"><use href="#i-queue"/></svg>看診進度</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1"><svg aria-hidden="true"><use href="#i-bell"/></svg>回診提醒</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p4" id="t4" tabindex="-1"><svg aria-hidden="true"><use href="#i-list"/></svg>療程與費用</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p5" id="t5" tabindex="-1"><svg aria-hidden="true"><use href="#i-form"/></svg>初診資料</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p6" id="t6" tabindex="-1"><svg aria-hidden="true"><use href="#i-globe"/></svg>外籍病患</button>
+    </div>
+
+    <div class="panel show" role="tabpanel" id="p1" aria-labelledby="t1">
+      <div>
+        <h3>門診時間表</h3>
+        <ul class="why">
+          <li>早診、午診、夜診一目了然，依醫師分開顯示。</li>
+          <li>醫師休診、出國，後台改一次全站更新。</li>
+          <li>病患最常問的問題，網站直接回答。</li>
+        </ul>
+      </div>
+      <div class="demo">
+        <div class="doc-pick" id="docs">
+          <button class="chip sel" data-doc="0">全部醫師</button>
+          <button class="chip" data-doc="1">林醫師・矯正</button>
+          <button class="chip" data-doc="2">陳醫師・植牙</button>
+          <button class="chip" data-doc="3">王醫師・兒牙</button>
+        </div>
+        <div class="u10"><table class="sched" id="sched"></table></div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <div>
+        <h3>看診進度</h3>
+        <ul class="why">
+          <li>病患在家或附近咖啡店就能看到目前號碼。</li>
+          <li>候診室不再擁擠，病患少等、心情更好。</li>
+          <li>快輪到時用 LINE 通知。</li>
+        </ul>
+      </div>
+      <div class="demo queue">
+        <div class="qbox now"><small>目前看診號碼</small><b id="qnow">12</b></div>
+        <div class="qbox me"><small>您的號碼</small><b>16</b></div>
+        <div class="qbar"><i class="u11" id="qbar"></i></div>
+        <p class="qmsg" id="qmsg">前面還有 4 位，約 32 分鐘。</p>
+        <button class="btn btn-ghost u12" id="qadv">下一位（示範）</button>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <div>
+        <h3>回診提醒</h3>
+        <ul class="why">
+          <li>洗牙、塗氟、矯正回診，時間到自動提醒。</li>
+          <li>透過診所的 LINE 官方帳號發送，病患一鍵預約。</li>
+          <li>減少爽約，把空檔重新排滿。</li>
+        </ul>
+      </div>
+      <div class="demo recall">
+        <div class="recall-row"><span>王小姐・上次洗牙 5 月 12 日</span><span>11/12 提醒洗牙</span></div>
+        <div class="recall-row"><span>李同學・矯正每 4 週回診</span><span>下週二提醒</span></div>
+        <div class="recall-row"><span>陳先生・植牙術後追蹤</span><span>3 個月後</span></div>
+        <div class="recall-row"><span>小安（6 歲）・塗氟</span><span>每半年提醒家長</span></div>
+        <div class="line-bubble show u13">
+          <div class="line-ic">LINE</div>
+          <div class="line-msg u14">王小姐您好，距離上次洗牙已經半年了。點這裡選一個方便的時間，我們幫您保留時段。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+      <div>
+        <h3>療程與費用說明</h3>
+        <ul class="why">
+          <li>清楚標示健保給付與自費項目，病患來之前就有概念。</li>
+          <li>每項療程一頁說明：適合誰、流程、注意事項。</li>
+          <li>依醫療法廣告規範撰寫，不使用誇大或保證療效的用語。</li>
+        </ul>
+      </div>
+      <div class="demo u10">
+        <table class="price-t">
+          <thead><tr><th>療程</th><th>類別</th><th>說明</th></tr></thead>
+          <tbody>
+            <tr><td>洗牙</td><td><span class="tag nhi">健保</span></td><td>每半年一次</td></tr>
+            <tr><td>兒童塗氟</td><td><span class="tag nhi">健保</span></td><td>依年齡規定</td></tr>
+            <tr><td>補牙</td><td><span class="tag nhi">健保</span> <span class="tag self">自費材料</span></td><td>可選擇材料</td></tr>
+            <tr><td>隱形矯正</td><td><span class="tag self">自費</span></td><td>諮詢後報價</td></tr>
+            <tr><td>植牙</td><td><span class="tag self">自費</span></td><td>評估後報價</td></tr>
+            <tr><td>美白・貼片</td><td><span class="tag self">自費</span></td><td>諮詢後報價</td></tr>
+          </tbody>
+        </table>
+        <p class="u15">表格為範例，實際項目與規定以診所與健保署公告為準。</p>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p5" aria-labelledby="t5" hidden>
+      <div>
+        <h3>初診線上資料</h3>
+        <ul class="why">
+          <li>病患在家先填好基本資料與病史，到診所不用再寫紙本。</li>
+          <li>醫師看診前就知道主訴與過敏史。</li>
+          <li>資料加密保存，只有診所人員看得到。</li>
+        </ul>
+      </div>
+      <div class="demo intake">
+        <label>姓名<input type="text" placeholder="王小明" autocomplete="off"></label>
+        <label>這次主要的問題
+          <select><option>牙痛</option><option>定期洗牙</option><option>想矯正</option><option>想植牙</option><option>其他</option></select>
+        </label>
+        <div><p class="u16">是否有以下狀況（可複選）</p>
+          <div class="chips" id="hx">
+            <button class="chip">高血壓</button><button class="chip">糖尿病</button><button class="chip">藥物過敏</button><button class="chip">懷孕中</button><button class="chip">服用抗凝血劑</button><button class="chip">都沒有</button>
+          </div>
+        </div>
+        <p class="u17">示範用，不會送出任何資料。</p>
+      </div>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p6" aria-labelledby="t6" hidden>
+      <div>
+        <h3>外籍病患也看得懂</h3>
+        <ul class="why">
+          <li>台北有很多外籍工作者、留學生與旅客，在找會說英文的牙醫。</li>
+          <li>中文、英文、日文切換，預約流程也跟著翻譯。</li>
+          <li>我們團隊本身就是多語背景，不是機器直翻。</li>
+        </ul>
+      </div>
+      <div class="demo">
+        <div class="chips" id="langs">
+          <button class="chip sel" data-l="zh">中文</button>
+          <button class="chip" data-l="en">English</button>
+          <button class="chip" data-l="ja">日本語</button>
+        </div>
+        <div class="lang-card"><b id="lt">讓每一次看牙都安心</b><p id="lp">早診 9:00–12:00・午診 14:30–17:30・夜診 18:30–21:30</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="check" aria-labelledby="chk-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="chk-h">您的診所網站幾分？</h2>
+      <p class="lead">牙醫診所網站的 12 項檢查。勾選您現在已經做到的，馬上看到分數。</p>
+    </div>
+    <div class="check-grid">
+      <ul class="cl" id="cl"></ul>
+      <aside class="score" aria-live="polite">
+        <div class="ring">
+          <svg viewBox="0 0 140 140" aria-hidden="true"><circle class="bg" cx="70" cy="70" r="60"/><circle class="fg" id="ringfg" cx="70" cy="70" r="60"/></svg>
+          <b><span><span id="sn">0</span><small>／ 12 項</small></span></b>
+        </div>
+        <p id="st">勾選左邊已經做到的項目。</p>
+        <a class="btn btn-line" href="https://line.me/ti/p/vO1gWlfDwT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-line"/></svg>免費幫我檢查網站</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="u18" aria-labelledby="feat-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="feat-h">每個診所網站都包含</h2>
+    </div>
+    <div class="feat">
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-mobile"/></svg></span><h3>手機優先設計</h3><p>字夠大、按鈕好按，電話和 LINE 一鍵就到。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><h3>在地 SEO</h3><p>「牙醫＋地區」、「兒童牙醫」、「植牙」等搜尋，讓附近的病患找到您。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-spark"/></svg></span><h3>AI 搜尋優化</h3><p>越來越多人問 ChatGPT、Gemini 附近的牙醫。我們讓 AI 讀得懂您的診所。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-star"/></svg></span><h3>Google 商家與評論</h3><p>地圖上的照片、門診時間，以及邀請病患留下評論的連結。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-user"/></svg></span><h3>醫師與環境介紹</h3><p>學經歷、專長與診所環境，讓病患第一次來就有信任感。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-scale"/></svg></span><h3>符合醫療廣告規範</h3><p>避免誇大、比較或保證療效的用語，上線前由診所確認。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><h3>A+ 資安</h3><p>強制 HTTPS、現代安全標頭、後台兩步驟驗證。</p></div>
+      <div><span class="ic"><svg aria-hidden="true"><use href="#i-edit"/></svg></span><h3>您自己也能更新</h3><p>交件附後台教學，改門診時間、公告休診都很簡單。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="price" aria-labelledby="pr-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="pr-h">方案與價格</h2>
+      <p class="lead">網站開發 US$200（約 NT$6,400），再搭配一個每月維護方案。也可以不綁月費，一次付清。</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>基本方案</h3>
+        <div class="pp">US$20<small> /月</small></div>
+        <div class="nt">約 NT$650</div>
+        <ul><li>錯誤修正與資料備份</li><li>技術與安全更新</li><li>小幅內容修改（門診時間、公告）</li><li>Google 評論連結</li><li>每月 A+ 資安檢查</li></ul>
+      </div>
+      <div class="plan pop">
+        <span class="badge">最多人選擇</span>
+        <h3>成長方案</h3>
+        <div class="pp">US$30<small> /月</small></div>
+        <div class="nt">約 NT$960</div>
+        <ul><li>包含基本方案所有內容</li><li>更頻繁的內容更新</li><li>SEO 改善與搜尋能見度檢查</li><li>AI 搜尋優化</li><li>小幅設計調整</li></ul>
+      </div>
+      <div class="plan">
+        <h3>成長＋內容方案</h3>
+        <div class="pp">US$40<small> /月</small></div>
+        <div class="nt">約 NT$1,280</div>
+        <ul><li>包含成長方案所有內容</li><li>新增療程頁與小型頁面</li><li>衛教內容更新</li><li>持續 SEO 最佳化</li></ul>
+      </div>
+    </div>
+    <div class="setup">
+      <div><p>網站開發（搭配月費方案）</p><b>US$200</b><p>約 NT$6,400，一次</p></div>
+      <div><p>網站一次付清，不綁月費</p><b>US$400</b><p>約 NT$12,800，日後修改另外報價</p></div>
+      <div><p>病患專區＋診所管理系統</p><b>US$200 起</b><p>病患帳號、預約紀錄、提醒與後台</p></div>
+    </div>
+    <p class="u19">月費方案包含一定數量的小型維護工作；新功能、系統整合與大幅改版另外報價。新台幣金額以 1 美元約 32 元計算，實際以報價為準。</p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="u18" aria-labelledby="pc-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="pc-h">合作流程</h2></div>
+    <div class="proc">
+      <div><h3>免費健檢</h3><p>先看您現在的網站和 Google 商家，告訴您哪裡可以改善。</p></div>
+      <div><h3>免費提案</h3><p>依您的診所規劃頁面、療程與預約方式，先看提案再決定。</p></div>
+      <div><h3>設計與開發</h3><p>選定風格後開始製作，每個階段確認後才進行下一步。</p></div>
+      <div><h3>上線與維護</h3><p>持續更新、備份與優化，讓網站一直在幫您工作。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq" aria-labelledby="fq-h">
+  <div class="wrap faq-grid">
+    <div class="sec-head u20"><h2 id="fq-h">常見問題</h2><p class="lead">還有其他問題？用 LINE 問我們就好。</p></div>
+    <div>
+      <details><summary>已經有網站了，一定要重做嗎？</summary><p>不一定。我們先免費健檢，很多時候改善速度、手機版和 SEO 就有明顯差別。需要重做才會建議重做。</p></details>
+      <details><summary>可以接我們現在用的預約系統嗎？</summary><p>可以先評估。如果您已經使用其他預約或叫號系統，我們會盡量串接；沒有的話，也可以直接用我們的線上預約。</p></details>
+      <details><summary>網站內容會符合醫療廣告的規定嗎？</summary><p>我們撰寫內容時會遵守醫療法對醫療廣告的規範，避免誇大、比較或保證療效的說法。最終內容會請診所確認後才上線。</p></details>
+      <details><summary>網域和網站是誰的？</summary><p>是您的。網域、內容與網站檔案都屬於診所，日後如果更換廠商也可以完整移轉。</p></details>
+      <details><summary>多久可以上線？</summary><p>一般診所網站約 2 到 4 週，依頁數與功能而定。提案時會給您明確時程。</p></details>
+      <details><summary>你們在哪裡？</summary><p>Páginas Clover 是網站與 App 開發團隊，在台北士林有據點，也可以線上合作。我們自己也開發並經營上架中的 App。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final" aria-labelledby="fn-h">
+  <div class="wrap">
+    <div>
+      <h2 id="fn-h">先看看您的診所網站還能多做什麼</h2>
+      <p>免費健檢、免費提案，不用先付任何費用。用 LINE 傳診所名稱給我們就可以開始。</p>
+      <div class="hero-ctas">
+        <a class="btn btn-line" href="https://line.me/ti/p/vO1gWlfDwT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-line"/></svg>LINE 免費健檢</a>
+        <a class="btn btn-ghost" href="mailto:info@paginasclover.com?subject=%E7%89%99%E9%86%AB%E8%A8%BA%E6%89%80%E7%B6%B2%E7%AB%99%E8%AB%AE%E8%A9%A2">寄信給我們</a>
+      </div>
+    </div>
+    <svg class="final-art" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="92" fill="rgba(255,255,255,.08)"/>
+      <path d="M68 46c-17 0-29 13-29 32 0 15 5 24 8 36 4 16 6 48 18 48 10 0 10-30 17-39 3-4 7-6 18-6s15 2 18 6c7 9 7 39 17 39 12 0 14-32 18-48 3-12 8-21 8-36 0-19-12-32-29-32-12 0-18 7-32 7s-20-7-32-7z" fill="#fff"/>
+      <path d="M78 96c8 10 36 10 44 0" fill="none" stroke="#0B7A5E" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="82" cy="78" r="5" fill="#0B7A5E"/><circle cx="118" cy="78" r="5" fill="#0B7A5E"/>
+      <path d="M156 40l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#FFC94D"/>
+      <path d="M40 150l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#FFC94D"/>
+    </svg>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Páginas Clover・台北士林</span>
+    <span>頁面上的診所名稱、病患與資料皆為示範。<a href="https://paginasclover.com/zh-hant/">paginasclover.com</a></span>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mh">
+  <div class="modal-box u21">
+    <button class="modal-x" id="mx" aria-label="關閉">×</button>
+    <div class="frame" id="mframe"></div>
+    <div>
+      <h3 id="mh"></h3>
+      <p class="u22" id="mfor"></p>
+      <ul id="mlist"></ul>
+      <a class="btn btn-line" href="https://line.me/ti/p/vO1gWlfDwT" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-line"/></svg>我想要這個風格</a>
+    </div>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今日門診後台｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所後台範本：依醫師與診療椅排列的今日門診、報到狀態、爽約紀錄與封鎖時段。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="02-agenda.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>今日門診後台 <span class="demo-tag">範本</span></h1>
+    <p>櫃台與醫師共用的一天：依診療椅排好的預約、報到與看診狀態、爽約紀錄，以及臨時封鎖時段或休診。線上預約的病患會自動出現在這裡。</p>
+  </div>
+
+  <div class="bar">
+    <div class="daynav">
+      <button class="btn btn-ghost btn-sm" id="dprev" aria-label="前一天">‹</button>
+      <b id="dlabel"></b>
+      <button class="btn btn-ghost btn-sm" id="dnext" aria-label="後一天">›</button>
+    </div>
+    <div class="sync"><span class="dot" id="sdot"></span><span id="stext">尚未同步診所 HIS 系統</span><button class="btn btn-soft btn-sm" id="sync">同步 HIS（示意）</button></div>
+  </div>
+
+  <div class="stats" aria-live="polite">
+    <div class="stat"><small>今日預約</small><b id="n-all">0</b></div>
+    <div class="stat"><small>已報到</small><b id="n-in">0</b></div>
+    <div class="stat"><small>看診中</small><b id="n-now">0</b></div>
+    <div class="stat"><small>完成</small><b id="n-done">0</b></div>
+    <div class="stat"><small>爽約</small><b id="n-no">0</b></div>
+  </div>
+
+  <div class="scroll-x"><div class="grid" id="grid" role="table" aria-label="今日門診"></div></div>
+  <p class="note u1">點空白格可以封鎖時段；在每個預約上直接切換狀態。</p>
+
+  <div class="side2">
+    <div class="card">
+      <h2>封鎖時段・休診</h2>
+      <p class="note u2">醫師請假、設備維修或臨時休診，封鎖後線上預約就不會開放這些時段。</p>
+      <div class="u3">
+        <label class="f">診療椅<select id="bchair"><option value="all">全部</option></select></label>
+        <label class="f">時段<select id="bsess"><option value="早診">早診</option><option value="午診">午診</option><option value="夜診">夜診</option><option value="all">整天休診</option></select></label>
+        <label class="f u4">原因<input type="text" id="breason" placeholder="例如：林醫師參加研討會"></label>
+      </div>
+      <button class="btn u5" id="bgo">封鎖</button>
+      <div class="list" id="blist"></div>
+    </div>
+    <div class="card">
+      <h2>爽約紀錄</h2>
+      <label class="toggle u6"><input type="checkbox" id="bl"> 爽約 2 次以上，線上預約前請病患先致電確認</label>
+      <p class="note">這是選用的設定，由診所決定是否開啟。名單只有診所人員看得到。</p>
+      <div class="list" id="nolist"></div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="02-agenda.js"></script>
+</body>
+</html>

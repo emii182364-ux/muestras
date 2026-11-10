@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>回診提醒｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所回診提醒範本：洗牙、塗氟、矯正到期名單與可編輯的 LINE／簡訊內容。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="04-recordatorios.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>回診提醒 <span class="demo-tag">範本</span></h1>
+    <p>系統依療程自動算出誰該回診：洗牙每 6 個月、兒童塗氟、矯正每 4 週、植牙術後追蹤。有 LINE 的病患用 LINE 通知，沒有的改傳簡訊。</p>
+  </div>
+
+  <div class="lay">
+    <div class="card">
+      <div class="u1">
+        <h2>即將到期</h2>
+        <div class="chips" id="flt">
+          <button class="chip" aria-pressed="true" data-f="all">全部</button>
+          <button class="chip" aria-pressed="false" data-f="洗牙">洗牙</button>
+          <button class="chip" aria-pressed="false" data-f="塗氟">塗氟</button>
+          <button class="chip" aria-pressed="false" data-f="矯正">矯正</button>
+          <button class="chip" aria-pressed="false" data-f="植牙">植牙追蹤</button>
+        </div>
+      </div>
+      <div class="scroll-x">
+        <table class="tbl">
+          <thead><tr><th><input type="checkbox" id="all" aria-label="全選"></th><th>病患</th><th>項目</th><th>上次</th><th>該回診</th><th>通知方式</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="u2">
+        <button class="btn" id="send" disabled>準備發送</button>
+        <span class="note" id="selinfo">勾選要提醒的病患。</span>
+      </div>
+      <div class="result u3" id="result" role="status"></div>
+    </div>
+
+    <div class="card pv">
+      <h2>訊息內容</h2>
+      <label class="f">範本
+        <select id="tpl">
+          <option value="洗牙">洗牙・半年檢查</option>
+          <option value="塗氟">兒童塗氟（給家長）</option>
+          <option value="矯正">矯正回診</option>
+          <option value="植牙">植牙術後追蹤</option>
+        </select></label>
+      <label class="f">內容（可以直接修改）<textarea id="txt" rows="6"></textarea></label>
+      <div><p class="note u4">點一下插入自動帶入的欄位：</p>
+        <div class="vars" id="vars"><button data-v="{姓名}">{姓名}</button><button data-v="{項目}">{項目}</button><button data-v="{診所}">{診所}</button><button data-v="{日期}">{日期}</button><button data-v="{預約連結}">{預約連結}</button></div></div>
+      <p class="note">依醫療法規定，提醒訊息不能附上優惠、折扣或贈品。範本內容只做回診提醒。</p>
+      <h3 class="u5">預覽：<span id="pvwho">—</span></h3>
+      <div class="phone" id="pv"><div class="msg"><i>晴</i><div class="b" id="pvb"></div></div></div>
+      <div class="meter" id="meter"></div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="04-recordatorios.js"></script>
+</body>
+</html>

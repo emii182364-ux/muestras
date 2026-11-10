@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /tw-es/
+Sitemap: https://dentist.paginasclover.com/sitemap.xml

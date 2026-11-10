@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>初診資料表｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所初診線上資料表範本：基本資料、病史、過敏、用藥與隱私同意。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="05-primera-visita.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>初診資料表 <span class="demo-tag">範本</span></h1>
+    <p>病患在家用手機填好，到診所不用再寫紙本。醫師看診前就能看到主訴、病史、過敏與用藥，重要的健康狀況會特別標示。</p>
+  </div>
+
+  <div class="lay">
+    <div>
+      <form id="fm" novalidate>
+        <fieldset>
+          <legend>基本資料</legend>
+          <div class="two">
+            <label class="f"><span>姓名 <span class="req">*</span></span><input type="text" name="pname" required autocomplete="off"></label>
+            <label class="f"><span>出生日期 <span class="req">*</span></span><input type="date" name="birth" required></label>
+            <label class="f"><span>手機號碼 <span class="req">*</span></span><input type="tel" name="phone" required inputmode="numeric" placeholder="0912345678" autocomplete="off"></label>
+            <label class="f">緊急聯絡人與電話<input type="text" name="emer" placeholder="例如：王先生（配偶）0922…" autocomplete="off"></label>
+          </div>
+          <p class="note">健保卡請於報到時出示，不需要在網路上填寫卡號。</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>這次來看什麼</legend>
+          <label class="f"><span>主要的問題 <span class="req">*</span></span>
+            <select name="main" required><option value="">請選擇</option><option>牙痛</option><option>牙齦流血・腫</option><option>定期檢查・洗牙</option><option>補牙・假牙</option><option>想矯正</option><option>想植牙</option><option>美白・美觀</option><option>其他</option></select></label>
+          <div><p class="q">目前疼痛程度（0 = 不痛，10 = 非常痛）</p>
+            <div class="pain" id="pain"></div></div>
+          <label class="f">補充說明<textarea name="desc" placeholder="例如：右下後面的牙齒咬東西會痛，大約一週了"></textarea></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>健康狀況</legend>
+          <div><p class="q">是否有以下狀況（可複選）</p>
+            <div class="ck" id="hx"></div></div>
+          <div class="two">
+            <div><p class="q">藥物或材料過敏</p>
+              <div class="ck"><label><input type="radio" name="allergy" value="無" checked>沒有</label><label><input type="radio" name="allergy" value="有">有</label></div></div>
+            <label class="f" id="allergyBox" hidden>過敏的藥物或材料<input type="text" name="allergyTxt" placeholder="例如：盤尼西林、麻藥、乳膠"></label>
+          </div>
+          <label class="f">目前固定服用的藥物<input type="text" name="meds" placeholder="例如：降血壓藥、抗凝血劑（請寫藥名）"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>看牙經驗</legend>
+          <div class="ck" id="exp"></div>
+          <label class="f">怎麼知道我們的？<select name="src"><option>Google 搜尋・地圖</option><option>親友介紹</option><option>LINE</option><option>路過看到</option><option>其他</option></select></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>同意事項</legend>
+          <label class="consent"><input type="checkbox" name="privacy" required><span>我同意診所依《個人資料保護法》蒐集並使用以上資料，僅用於本人的看診、病歷與預約通知。 <span class="req">*</span></span></label>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn" type="submit">送出資料（示範）</button>
+        </fieldset>
+      </form>
+
+      <div class="done" id="done" tabindex="-1">
+        <h2>資料已完成</h2>
+        <p class="note">示範：資料不會送出。實際使用時，會加密存到診所系統，醫師看診前就能看到。</p>
+        <div class="alert" id="flag" hidden></div>
+        <dl id="sum"></dl>
+        <button class="btn btn-ghost u1" id="edit">回去修改</button>
+      </div>
+    </div>
+
+    <aside class="side" aria-live="polite">
+      <h3>填寫進度</h3>
+      <div class="pbar"><i id="pb"></i></div>
+      <ul id="chk"><li data-k="pname">姓名</li><li data-k="birth">出生日期</li><li data-k="phone">手機號碼</li><li data-k="main">主要的問題</li><li data-k="privacy">同意事項</li></ul>
+      <p class="u2">大約 3 分鐘就能填完。</p>
+    </aside>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="05-primera-visita.js"></script>
+</body>
+</html>

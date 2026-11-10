@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LINE 圖文選單｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所 LINE 官方帳號圖文選單範本：線上預約、我的預約、門診時間、交通資訊、衛教專區、聯絡我們。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="09-menu-line.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>LINE 圖文選單 <span class="demo-tag">範本</span></h1>
+    <p>病患打開診所的 LINE 官方帳號，下面就是 6 個大按鈕，24 小時都能自己預約、查門診時間、看衛教。點點看手機裡的按鈕。</p>
+  </div>
+
+  <div class="lay">
+    <div class="phone" aria-label="LINE 畫面示範">
+      <div class="scr">
+        <div class="lh"><i>晴</i>晴光牙醫診所</div>
+        <div class="chat" id="chat" aria-live="polite">
+          <div class="m in">您好，歡迎加入晴光牙醫（範例）！點下面的選單就能預約或查詢門診時間。</div>
+        </div>
+        <div class="rm" id="rm"></div>
+        <div class="rbar">選單 ▾</div>
+      </div>
+    </div>
+
+    <div class="opts">
+      <div class="card">
+        <h2 class="u1">選單顏色</h2>
+        <div class="sw" id="sw"></div>
+        <p class="note u2">選好後可以下載 2500 × 1686 的選單圖片，直接上傳到 LINE Official Account Manager。</p>
+        <button class="btn u3" id="dl">下載選單圖片（PNG）</button>
+      </div>
+      <div class="card">
+        <h2 class="u1">每個按鈕做什麼</h2>
+        <div class="acts" id="acts"></div>
+      </div>
+    </div>
+  </div>
+  <canvas id="cv" width="2500" height="1686"></canvas>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="09-menu-line.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>看診進度・叫號｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所叫號範本：候診室電視畫面與病患手機上的看診進度。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="03-llamado.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>看診進度・叫號 <span class="demo-tag">範本</span></h1>
+    <p>左邊是候診室電視的畫面，右邊是病患手機上看到的進度。櫃台按「下一號」，兩邊同時更新；快輪到時用 LINE 通知病患。</p>
+  </div>
+
+  <div class="lay">
+    <div>
+      <div class="tv" id="tv" aria-live="polite">
+        <div class="tv-top"><b>晴光牙醫診所（範例）</b><span id="clock"></span></div>
+        <div class="rooms" id="rooms"></div>
+        <div class="tv-msg"><span>請留意叫號，過號請到櫃台重新報到。</span><span>看診進度也能用手機查詢</span></div>
+      </div>
+      <div class="chips u1">
+        <button class="btn btn-ghost btn-sm" id="fs">全螢幕顯示（接電視用）</button>
+      </div>
+      <h2 class="u2">櫃台控制</h2>
+      <div class="ctrl" id="ctrl"></div>
+    </div>
+
+    <div>
+      <div class="phone" aria-label="病患手機畫面">
+        <div class="scr">
+          <div class="scr-h"><b>晴光牙醫診所</b><span>看診進度查詢</span></div>
+          <div class="scr-b">
+            <label class="f">診間
+              <select id="proom"></select></label>
+            <label class="f">您的號碼<input type="number" id="pnum" value="18" min="1" inputmode="numeric"></label>
+            <div class="big2"><div class="n"><small>目前號碼</small><b id="pnow">—</b></div><div class="m"><small>您的號碼</small><b id="pme">—</b></div></div>
+            <div class="prog"><i class="u3" id="pbar"></i></div>
+            <p class="pmsg" id="pmsg"></p>
+            <div class="lineb" id="pline" hidden><i>LINE</i><p>晴光牙醫提醒您：再 2 位就輪到您了，請回到診所準備看診。</p></div>
+            <p class="note">每號約 10 分鐘，實際時間依療程而定。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="03-llamado.js"></script>
+</body>
+</html>

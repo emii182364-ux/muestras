@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>線上預約｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所線上預約範本：選療程、醫師、日期與早午夜診，加入行事曆、查詢與改期。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="01-reservar.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>線上預約 <span class="demo-tag">範本</span></h1>
+    <p>病患 24 小時自己預約：選療程、醫師、日期與早午夜診。完成後可加入手機行事曆，也能隨時查詢、改期或取消。</p>
+  </div>
+
+  <div class="bk">
+    <div class="card" id="flow">
+      <ol class="stepper" id="stepper">
+        <li class="on">療程</li><li>醫師</li><li>時間</li><li>資料</li><li>完成</li>
+      </ol>
+
+      <section class="step" data-s="1">
+        <h2>這次想看什麼？</h2>
+        <div class="tx" id="tx"></div>
+      </section>
+
+      <section class="step" data-s="2" hidden>
+        <h2>選擇醫師</h2>
+        <div class="docs" id="docs"></div>
+      </section>
+
+      <section class="step" data-s="3" hidden>
+        <h2>選擇日期與時段</h2>
+        <div class="days" id="days" role="group" aria-label="日期"></div>
+        <div class="sess" id="sess"></div>
+      </section>
+
+      <section class="step" data-s="4" hidden>
+        <h2>留下聯絡資料</h2>
+        <div class="form">
+          <label class="f">姓名<input type="text" id="nm" autocomplete="off" placeholder="王小明"></label>
+          <label class="f">手機號碼<input type="tel" id="ph" inputmode="numeric" autocomplete="off" placeholder="0912345678"></label>
+          <div><p class="u1">看診狀態</p>
+            <div class="chips" id="who"><button class="chip" aria-pressed="false" data-v="初診">初診</button><button class="chip" aria-pressed="false" data-v="複診">複診</button></div></div>
+          <label class="f">想先告訴醫師的事（選填）<textarea id="memo" placeholder="例如：右下臼齒咬東西會痛"></textarea></label>
+          <p class="err" id="err" role="alert"></p>
+        </div>
+      </section>
+
+      <section class="step" data-s="5" hidden>
+        <div class="ok">
+          <div class="big" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h2 id="okh">預約完成</h2>
+          <p>預約資訊已傳到您的 LINE。看診前一天，診所會再提醒您一次。</p>
+          <div class="bubble"><i>LINE</i><p id="okmsg"></p></div>
+          <div class="chips">
+            <button class="btn btn-soft" id="ics">加入行事曆</button>
+            <button class="btn btn-ghost" id="gomine">查詢我的預約</button>
+            <button class="btn btn-ghost" id="restart">再預約一次</button>
+          </div>
+          <p class="note">「加入行事曆」會下載一個 .ics 檔，iPhone、Android 與 Google 日曆都能開啟。</p>
+        </div>
+      </section>
+
+      <div class="nav" id="nav">
+        <button class="btn btn-ghost" id="prev" hidden>上一步</button>
+        <button class="btn u2" id="next" disabled>下一步</button>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="sum" aria-live="polite">
+        <h3>您的預約</h3>
+        <dl>
+          <dt>療程</dt><dd id="s1">—</dd>
+          <dt>醫師</dt><dd id="s2">—</dd>
+          <dt>時間</dt><dd id="s3">—</dd>
+          <dt>姓名</dt><dd id="s4">—</dd>
+        </dl>
+      </div>
+      <div class="card" id="minebox">
+        <h2 class="u3">查詢我的預約</h2>
+        <div class="mine" id="mine"><p class="note">完成預約後會出現在這裡。實際網站中，病患用手機號碼或 LINE 登入查詢。</p></div>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="01-reservar.js"></script>
+</body>
+</html>

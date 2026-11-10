@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>療程報價單｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所療程報價單範本：健保與自費項目、合計、簽名與列印。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="06-presupuesto.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>療程報價單 <span class="demo-tag">範本</span></h1>
+    <p>醫師看診後當場開立：健保與自費分開列出，自動加總，病患在平板上簽名，再列印或存成 PDF 交給病患。</p>
+  </div>
+
+  <div class="tools">
+    <button class="btn btn-soft" id="add">＋ 新增項目</button>
+    <button class="btn" id="print">列印・存成 PDF</button>
+  </div>
+
+  <div class="sheet">
+    <div class="sh-top">
+      <div><h2>療程報價單</h2><p class="note">編號 Q-<span id="qno"></span>・範例</p></div>
+      <div class="clinic"><b>晴光牙醫診所（範例）</b><br>台北市士林區範例路 1 號<br>02-0000-0000</div>
+    </div>
+    <div class="meta">
+      <label class="f">病患姓名<input type="text" value="王小明" autocomplete="off"></label>
+      <label class="f">開立日期<input type="date" id="qdate"></label>
+      <label class="f">醫師<select><option>林醫師</option><option>陳醫師</option><option>王醫師</option></select></label>
+      <label class="f">有效期限<select id="valid"><option value="30">30 天</option><option value="60">60 天</option><option value="90">90 天</option></select></label>
+    </div>
+
+    <div class="scroll-x">
+      <table class="items">
+        <thead><tr><th>項目</th><th>牙位</th><th>類別</th><th class="u1">單價（NT$）</th><th class="u1">數量</th><th class="u1">小計</th><th class="no-print"><span class="sr">刪除</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="note no-print u2">單價為範例數字，請依診所實際收費修改。健保項目只計病患自付的部分負擔。</p>
+
+    <div class="tot" aria-live="polite">
+      <div><span>健保部分負擔</span><b id="t-nhi">0</b></div>
+      <div><span>自費項目</span><b id="t-self">0</b></div>
+      <div class="grand"><span>合計 NT$</span><span id="t-all">0</span></div>
+    </div>
+
+    <div class="terms">
+      <p>・本報價依今日檢查結果開立，實際療程可能依治療中的狀況調整，調整前會先說明並取得您的同意。</p>
+      <p>・報價有效期限至 <span id="till"></span>。</p>
+      <p>・如有任何疑問，歡迎隨時詢問醫師或櫃台。</p>
+    </div>
+
+    <div class="signs">
+      <div class="sign"><canvas id="sg1" aria-label="病患簽名區"></canvas><div class="row"><span>病患（或法定代理人）簽名</span><button data-c="sg1">清除</button></div></div>
+      <div class="sign"><canvas id="sg2" aria-label="醫師簽名區"></canvas><div class="row"><span>醫師簽名</span><button data-c="sg2">清除</button></div></div>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+<script src="06-presupuesto.js"></script>
+</body>
+</html>

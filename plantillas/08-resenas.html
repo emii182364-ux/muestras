@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>評論邀請｜範本｜Páginas Clover</title>
+<meta name="description" content="牙醫診所評論邀請範本：櫃台 QR 卡、看診後訊息與評論頁。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B7A5E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="08-resenas.css">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="#0B7A5E"><circle cx="11" cy="11" r="7"/><circle cx="21" cy="11" r="7"/><circle cx="11" cy="21" r="7"/><circle cx="21" cy="21" r="7"/></g><circle cx="16" cy="16" r="2.2" fill="#fff"/></svg>Páginas Clover・牙醫診所範本</a>
+  <a class="back" href="index.html">← 所有範本</a>
+</div></header>
+<!--QR-->
+
+
+<main>
+<div class="wrap">
+  <div class="head">
+    <h1>評論邀請 <span class="demo-tag">範本</span></h1>
+    <p>櫃台放一張 QR 卡，看診後再用 LINE 邀請一次。每位病患都收到一樣的邀請；想直接跟診所說的話，也有不公開的管道。</p>
+  </div>
+
+  <div class="lay">
+    <div class="setup-wrap">
+      <div class="card setup">
+        <h2>設定</h2>
+        <label class="f">診所名稱<input type="text" id="cn" value="晴光牙醫診所"></label>
+        <label class="f">Google 評論連結<input type="text" id="url" value="https://g.page/r/example-clinic/review"></label>
+        <p class="note">在 Google 商家後台按「索取更多評論」就能複製這個連結。範例連結不會開啟真的頁面。</p>
+        <label class="f">卡片上的一句話<input type="text" id="line" value="看完牙了嗎？歡迎分享您的真實感受"></label>
+        <div class="rules">
+          <h3>邀請評論的規則</h3>
+          <ul>
+            <li>每位病患都邀請，不先篩選滿意的人才給 Google 連結。</li>
+            <li>不能用優惠、贈品或折扣換評論（Google 政策與醫療法都不允許）。</li>
+            <li>不代寫評論，也不請員工或親友留評論。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="qcard" id="qcard">
+        <div class="logo"><i></i><span id="ccn">晴光牙醫診所</span></div>
+        <h2 id="cline">看完牙了嗎？歡迎分享您的真實感受</h2>
+        <div class="qbox" id="qr" role="img" aria-label="Google 評論 QR code"></div>
+        <p>用手機相機掃描，就能在 Google 留下評論</p>
+        <small>謝謝您讓我們做得更好</small>
+      </div>
+      <div class="chips tools u1">
+        <button class="btn" id="print">列印卡片</button>
+        <button class="btn btn-ghost" id="dl">下載 QR（SVG）</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="card">
+      <h2 class="u2">看診後的 LINE 訊息</h2>
+      <div class="lp"><div class="msg"><i>晴</i><div class="b">今天辛苦了！謝謝您來到<span class="u3" id="mcn">晴光牙醫診所</span>。如果方便的話，歡迎分享這次看診的感受，您的意見對我們很重要。<span>分享感受</span></div></div></div>
+      <p class="note u4">看診結束後隔天傳送，每位病患都一樣。不附任何優惠。</p>
+    </div>
+    <div>
+      <div class="phone"><div class="scr">
+        <h3>謝謝您的回饋</h3>
+        <p>想公開分享，或只想讓診所知道，都可以。</p>
+        <a class="btn btn-line" id="glink" href="#" target="_blank" rel="noopener">在 Google 寫評論</a>
+        <button class="btn btn-ghost" id="priv">直接告訴診所（不公開）</button>
+        <div class="pf" id="pf">
+          <label class="f">想說的話<textarea id="ptxt" placeholder="例如：櫃台很親切，但等候時間有點久"></textarea></label>
+          <button class="btn" id="psend">送出（示範）</button>
+        </div>
+        <div class="thx" id="thx" role="status">示範：不會送出。實際使用時，意見會直接傳給診所負責人。</div>
+      </div></div>
+      <p class="note u5">兩個選項同時給每位病患，不依滿意程度分流。</p>
+    </div>
+  </div>
+</div>
+</main>
+
+
+
+<footer class="foot"><div class="wrap">範本中的診所、醫師、病患與金額皆為示範，不會送出或儲存任何資料。© 2026 Páginas Clover</div></footer>
+
+<script src="08-resenas.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+# dentist.paginasclover.com + dentista.paginasclover.com (mismo sitio)
+# / elige el idioma: 1) lo que la persona eligió (cookie lang) 2) idioma del navegador 3) dominio (dentista -> es) 4) inglés
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+ServerSignature Off
+AddCharset utf-8 .html .css .js .txt .xml
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  RewriteRule (^|/)\. - [F,L]
+
+  RewriteCond %{HTTP_COOKIE} (?:^|;\s*)lang=(zh|en|es)(?:;|$)
+  RewriteRule ^$ /%1/ [R=302,L,E=LANGREDIR:1]
+  RewriteCond %{HTTP:Accept-Language} ^zh [NC]
+  RewriteRule ^$ /zh/ [R=302,L,E=LANGREDIR:1]
+  RewriteCond %{HTTP:Accept-Language} ^es [NC]
+  RewriteRule ^$ /es/ [R=302,L,E=LANGREDIR:1]
+  RewriteCond %{HTTP_HOST} ^dentista\. [NC]
+  RewriteRule ^$ /es/ [R=302,L,E=LANGREDIR:1]
+  RewriteRule ^$ /en/ [R=302,L,E=LANGREDIR:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always unset X-Powered-By
+  Header always set Vary "Accept-Language, Cookie" env=REDIRECT_LANGREDIR
+  Header always set Cache-Control "no-store" env=REDIRECT_LANGREDIR
+  Header always set Vary "Accept-Language, Cookie" env=LANGREDIR
+  Header always set Cache-Control "no-store" env=LANGREDIR
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
