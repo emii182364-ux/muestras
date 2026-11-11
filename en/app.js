@@ -20,58 +20,7 @@
     },700);
   }
 
-  /* ---------- booking demo ---------- */
-  var st={step:1,t:null,d:null,s:null,w:null}, wk=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  var bars=$$(".steps i"), next=$("#next"), daysEl=$("#days"), slotsEl=$("#slots");
-  var base=new Date(); base.setHours(0,0,0,0);
-  var days=[]; for(var k=1;days.length<5;k++){var x=new Date(base);x.setDate(base.getDate()+k);days.push(x);}
-  days.forEach(function(d,idx){
-    var b=document.createElement("button"); b.className="day"; b.type="button";
-    b.innerHTML=wk[d.getDay()]+"<b>"+d.getDate()+"</b>"+(d.getMonth()+1)+"/"+d.getDate();
-    if(d.getDay()===0){b.disabled=true;b.setAttribute("aria-label","Closed Sunday")}
-    b.addEventListener("click",function(){$$(".day").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.d=d;st.s=null;drawSlots(idx);upd()});
-    daysEl.appendChild(b);
-  });
-  var groups=[["Morning",["09:00","09:30","10:00","10:30","11:00"]],["Afternoon",["14:30","15:00","15:30","16:30"]],["Evening",["18:30","19:00","19:30","20:00","20:30"]]];
-  function drawSlots(seed){
-    slotsEl.innerHTML="";
-    groups.forEach(function(g,gi){
-      var lab=document.createElement("p");lab.className="slot-g";lab.textContent=g[0];slotsEl.appendChild(lab);
-      var row=document.createElement("div");row.className="slot-row";
-      g[1].forEach(function(t,ti){
-        var b=document.createElement("button");b.type="button";b.className="slot";b.textContent=t;
-        if((ti+gi+seed)%3===0){b.disabled=true;b.setAttribute("aria-label",t+" full")}
-        b.addEventListener("click",function(){$$(".slot").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.s=g[0]+" "+t;upd()});
-        row.appendChild(b);
-      });
-      slotsEl.appendChild(row);
-    });
-  }
-  $$('[data-step="1"] .chip').forEach(function(c){c.addEventListener("click",function(){$$('[data-step="1"] .chip').forEach(function(e){e.classList.remove("sel")});c.classList.add("sel");st.t=c.dataset.v;upd()})});
-  $$('[data-step="3"] .chip').forEach(function(c){c.addEventListener("click",function(){$$('[data-step="3"] .chip').forEach(function(e){e.classList.remove("sel")});c.classList.add("sel");st.w=c.dataset.who;upd()})});
-  function upd(){
-    var ok=(st.step===1&&st.t)||(st.step===2&&st.d&&st.s)||(st.step===3&&st.w);
-    next.disabled=!ok; next.textContent=st.step===3?"Confirm booking":"Next";
-  }
-  function show(n){
-    $$("#bk [data-step]").forEach(function(e){e.hidden=+e.dataset.step!==n});
-    bars.forEach(function(b,j){b.classList.toggle("on",j<n)});
-  }
-  next.addEventListener("click",function(){
-    if(st.step<3){st.step++;show(st.step);upd();return}
-    $$("#bk [data-step]").forEach(function(e){e.hidden=true});next.hidden=true;
-    bars.forEach(function(b){b.classList.add("on")});
-    var dd=st.d, ds=wk[dd.getDay()]+", "+dd.toLocaleDateString("en-US",{month:"short",day:"numeric"});
-    $("#sum").innerHTML="<b>"+st.t+"</b> · "+st.w+"<br>"+ds+" "+st.s;
-    $("#lm").textContent="Sunny Dental reminder: tomorrow at "+st.s.split(" ")[1]+" you have a booking ("+st.t+"). Need to change it? Tap here to pick another time.";
-    $("#done").classList.add("show");
-    setTimeout(function(){$("#lb").classList.add("show")},reduce?0:700);
-  });
-  $("#again").addEventListener("click",function(){
-    st={step:1,t:null,d:null,s:null,w:null};$$("#bk .sel").forEach(function(e){e.classList.remove("sel")});
-    slotsEl.innerHTML="";$("#done").classList.remove("show");$("#lb").classList.remove("show");next.hidden=false;show(1);upd();
-  });
-
+  /* turnos: ver /turnos/turnos.js */
   /* ---------- style illustrations ---------- */
   var tooth='M38 18c-11 0-19 8-19 21 0 10 3 16 5 24 3 11 4 32 12 32 7 0 7-20 11-26 2-3 5-4 13-4s11 1 13 4c4 6 4 26 11 26 8 0 9-21 12-32 2-8 5-14 5-24 0-13-8-21-19-21-8 0-12 5-22 5s-14-5-22-5z';
   var art={

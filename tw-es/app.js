@@ -20,58 +20,7 @@
     },700);
   }
 
-  /* ---------- booking demo ---------- */
-  var st={step:1,t:null,d:null,s:null,w:null}, wk=["dom","lun","mar","mié","jue","vie","sáb"];
-  var bars=$$(".steps i"), next=$("#next"), daysEl=$("#days"), slotsEl=$("#slots");
-  var base=new Date(); base.setHours(0,0,0,0);
-  var days=[]; for(var k=1;days.length<5;k++){var x=new Date(base);x.setDate(base.getDate()+k);days.push(x);}
-  days.forEach(function(d,idx){
-    var b=document.createElement("button"); b.className="day"; b.type="button";
-    b.innerHTML=wk[d.getDay()]+"<b>"+d.getDate()+"</b>"+d.getDate()+"/"+(d.getMonth()+1);
-    if(d.getDay()===0){b.disabled=true;b.setAttribute("aria-label","Domingo cerrado")}
-    b.addEventListener("click",function(){$$(".day").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.d=d;st.s=null;drawSlots(idx);upd()});
-    daysEl.appendChild(b);
-  });
-  var groups=[["Mañana",["09:00","09:30","10:00","10:30","11:00"]],["Tarde",["14:30","15:00","15:30","16:30"]],["Noche",["18:30","19:00","19:30","20:00","20:30"]]];
-  function drawSlots(seed){
-    slotsEl.innerHTML="";
-    groups.forEach(function(g,gi){
-      var lab=document.createElement("p");lab.className="slot-g";lab.textContent=g[0];slotsEl.appendChild(lab);
-      var row=document.createElement("div");row.className="slot-row";
-      g[1].forEach(function(t,ti){
-        var b=document.createElement("button");b.type="button";b.className="slot";b.textContent=t;
-        if((ti+gi+seed)%3===0){b.disabled=true;b.setAttribute("aria-label",t+" completo")}
-        b.addEventListener("click",function(){$$(".slot").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.s=g[0]+" "+t;upd()});
-        row.appendChild(b);
-      });
-      slotsEl.appendChild(row);
-    });
-  }
-  $$('[data-step="1"] .chip').forEach(function(c){c.addEventListener("click",function(){$$('[data-step="1"] .chip').forEach(function(e){e.classList.remove("sel")});c.classList.add("sel");st.t=c.dataset.v;upd()})});
-  $$('[data-step="3"] .chip').forEach(function(c){c.addEventListener("click",function(){$$('[data-step="3"] .chip').forEach(function(e){e.classList.remove("sel")});c.classList.add("sel");st.w=c.dataset.who;upd()})});
-  function upd(){
-    var ok=(st.step===1&&st.t)||(st.step===2&&st.d&&st.s)||(st.step===3&&st.w);
-    next.disabled=!ok; next.textContent=st.step===3?"Confirmar turno":"Siguiente";
-  }
-  function show(n){
-    $$("#bk [data-step]").forEach(function(e){e.hidden=+e.dataset.step!==n});
-    bars.forEach(function(b,j){b.classList.toggle("on",j<n)});
-  }
-  next.addEventListener("click",function(){
-    if(st.step<3){st.step++;show(st.step);upd();return}
-    $$("#bk [data-step]").forEach(function(e){e.hidden=true});next.hidden=true;
-    bars.forEach(function(b){b.classList.add("on")});
-    var dd=st.d, ds=wk[dd.getDay()]+" "+dd.getDate()+"/"+(dd.getMonth()+1);
-    $("#sum").innerHTML="<b>"+st.t+"</b> · "+st.w+"<br>"+ds+" "+st.s;
-    $("#lm").textContent="Recordatorio de Sunny Dental: mañana a las "+st.s.split(" ")[1]+" tiene turno ("+st.t+"). ¿Necesita cambiarlo? Toque acá para elegir otro horario.";
-    $("#done").classList.add("show");
-    setTimeout(function(){$("#lb").classList.add("show")},reduce?0:700);
-  });
-  $("#again").addEventListener("click",function(){
-    st={step:1,t:null,d:null,s:null,w:null};$$("#bk .sel").forEach(function(e){e.classList.remove("sel")});
-    slotsEl.innerHTML="";$("#done").classList.remove("show");$("#lb").classList.remove("show");next.hidden=false;show(1);upd();
-  });
-
+  /* turnos: ver /turnos/turnos.js */
   /* ---------- style illustrations ---------- */
   var tooth='M38 18c-11 0-19 8-19 21 0 10 3 16 5 24 3 11 4 32 12 32 7 0 7-20 11-26 2-3 5-4 13-4s11 1 13 4c4 6 4 26 11 26 8 0 9-21 12-32 2-8 5-14 5-24 0-13-8-21-19-21-8 0-12 5-22 5s-14-5-22-5z';
   var art={
@@ -98,7 +47,7 @@
         '<div class="ms-hero"><div><b>'+s.h+'</b><small>Lun a sáb · mañana, tarde y noche</small><span class="ms-btn">'+s.b+'</span></div><div class="ms-art">'+art[s.k]+'</div></div>'+
         '<div class="ms-cards">'+s.g.map(function(x){return "<span><i></i>"+x+"</span>"}).join("")+'</div>'+
         '<div class="ms-hours"><span>Mañana 9:00</span><span>Tarde 14:30</span><span>Noche 18:30</span></div>'+
-        '<div class="ms-foot"><span>Turnos por LINE</span><span>Google Maps</span></div>'+
+        '<div class="ms-foot"><span>Turnos por WhatsApp</span><span>Google Maps</span></div>'+
       '</div></div>';
   }
   var gal=$("#gal"), modal=$("#modal"), lastBtn=null;
@@ -152,7 +101,7 @@
   $("#qadv").addEventListener("click",function(){
     qn=qn>=16?12:qn+1;$("#qnow").textContent=qn;var left=16-qn;
     $("#qbar").style.width=(100-left*8.3)+"%";
-    $("#qmsg").textContent=left===0?"Es su turno: acérquese a recepción.":left===1?"Sigue usted: LINE ya le avisó que se acerque.":"Hay "+left+" personas antes, unos "+left*8+" minutos.";
+    $("#qmsg").textContent=left===0?"Es su turno: acérquese a recepción.":left===1?"Sigue usted: WhatsApp ya le avisó que se acerque.":"Hay "+left+" personas antes, unos "+left*8+" minutos.";
   });
 
   $$("#hx .chip").forEach(function(c){c.addEventListener("click",function(){c.classList.toggle("sel")})});
@@ -170,7 +119,7 @@
     ["Presentación y formación de los odontólogos","Genera confianza antes de la primera visita"],
     ["Ficha de Google completa y con fotos actuales","El mapa es lo primero que mira el paciente"],
     ["Una forma de pedir reseñas a los pacientes","Las clínicas con más reseñas se eligen más"],
-    ["Cuenta oficial de LINE conectada al sitio","La forma de contacto preferida en Taiwán"],
+    ["WhatsApp de la clínica conectado al sitio","El paciente escribe con un toque"],
     ["La dirección tiene https (candadito)","Si no, el navegador muestra «No seguro»"],
     ["Seguro nacional y particular bien indicados","Menos dudas para el paciente"],
     ["Actualizado en los últimos tres meses","Google y la IA prefieren sitios actualizados"]

@@ -11,48 +11,7 @@
   if(reduce){qEl.textContent=q;res.classList.add("found")}
   else{var i=0;setTimeout(function type(){qEl.textContent=q.slice(0,++i);if(i<q.length)setTimeout(type,110+Math.random()*80);else setTimeout(function(){res.classList.add("found")},500)},700)}
 
-  /* turno */
-  var st={step:1,t:null,d:null,s:null,w:null,c:null}, wk=["dom","lun","mar","mié","jue","vie","sáb"];
-  var bars=$$(".steps i"), next=$("#next"), daysEl=$("#days"), slotsEl=$("#slots");
-  var base=new Date(); base.setHours(0,0,0,0);
-  var days=[]; for(var k=1;days.length<5;k++){var x=new Date(base);x.setDate(base.getDate()+k);days.push(x);}
-  days.forEach(function(d,idx){
-    var b=document.createElement("button"); b.className="day"; b.type="button";
-    b.innerHTML=wk[d.getDay()]+"<b>"+d.getDate()+"</b>"+(d.getMonth()+1)+"/"+d.getFullYear().toString().slice(2);
-    if(d.getDay()===0){b.disabled=true;b.setAttribute("aria-label","Domingo, cerrado")}
-    b.addEventListener("click",function(){$$(".day").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.d=d;st.s=null;drawSlots(idx,d.getDay()===6);upd()});
-    daysEl.appendChild(b);
-  });
-  var groups=[["Mañana",["9:00","9:30","10:30","11:00","12:00"]],["Tarde",["15:00","16:00","17:30","18:30","19:00"]]];
-  function drawSlots(seed,sat){
-    slotsEl.innerHTML="";
-    groups.forEach(function(g,gi){
-      if(sat&&gi===1)return;
-      var lab=document.createElement("p");lab.className="slot-g";lab.textContent=g[0];slotsEl.appendChild(lab);
-      var row=document.createElement("div");row.className="slot-row";
-      g[1].forEach(function(t,ti){
-        var b=document.createElement("button");b.type="button";b.className="slot";b.textContent=t;
-        if((ti+gi+seed)%3===0){b.disabled=true;b.setAttribute("aria-label",t+" ocupado")}
-        b.addEventListener("click",function(){$$(".slot").forEach(function(e){e.classList.remove("sel")});b.classList.add("sel");st.s=g[0]+" "+t;upd()});
-        row.appendChild(b);
-      });
-      slotsEl.appendChild(row);
-    });
-  }
-  function group(sel,key,attr){$$(sel+" .chip").forEach(function(c){c.addEventListener("click",function(){$$(sel+" .chip").forEach(function(e){e.classList.remove("sel")});c.classList.add("sel");st[key]=c.dataset[attr];upd()})})}
-  group('[data-step="1"]',"t","v"); group("#who","w","who"); group("#cov","c","cov");
-  function upd(){var ok=(st.step===1&&st.t)||(st.step===2&&st.d&&st.s)||(st.step===3&&st.w&&st.c);next.disabled=!ok;next.textContent=st.step===3?"Confirmar turno":"Siguiente"}
-  function show(n){$$("#bk [data-step]").forEach(function(e){e.hidden=+e.dataset.step!==n});bars.forEach(function(b,j){b.classList.toggle("on",j<n)})}
-  var dlong=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
-  next.addEventListener("click",function(){
-    if(st.step<3){st.step++;show(st.step);upd();return}
-    $$("#bk [data-step]").forEach(function(e){e.hidden=true});next.hidden=true;bars.forEach(function(b){b.classList.add("on")});
-    var dd=st.d, hr=st.s.split(" ")[1];
-    $("#sum").innerHTML="<b>"+st.t+"</b> · "+st.w+" · "+st.c+"<br>"+dlong[dd.getDay()]+" "+dd.getDate()+"/"+(dd.getMonth()+1)+" a las "+hr;
-    $("#lm").textContent="Sonrisa Clara: te recordamos tu turno de mañana a las "+hr+" ("+st.t+"). Si necesitás cambiarlo, tocá acá y elegí otro horario.";
-    $("#done").classList.add("show");setTimeout(function(){$("#lb").classList.add("show")},reduce?0:700);
-  });
-  $("#again").addEventListener("click",function(){st={step:1,t:null,d:null,s:null,w:null,c:null};$$("#bk .sel").forEach(function(e){e.classList.remove("sel")});slotsEl.innerHTML="";$("#done").classList.remove("show");$("#lb").classList.remove("show");next.hidden=false;show(1);upd()});
+  /* turnos: ver /turnos/turnos.js */
 
   /* ilustraciones */
   var tooth='M38 18c-11 0-19 8-19 21 0 10 3 16 5 24 3 11 4 32 12 32 7 0 7-20 11-26 2-3 5-4 13-4s11 1 13 4c4 6 4 26 11 26 8 0 9-21 12-32 2-8 5-14 5-24 0-13-8-21-19-21-8 0-12 5-22 5s-14-5-22-5z';

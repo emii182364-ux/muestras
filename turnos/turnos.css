@@ -1,0 +1,75 @@
+/* Páginas Clover — turnos para consultorios (plantilla). Colores en variables. */
+:root{--tn-ok:#0B7A5E;--tn-ok-bg:#E3F3EE;--tn-busy:#E9EEEC;--tn-busy-t:#93A3A0;--tn-used:#3B4F4C;--tn-on:#2F6FDB;--tn-on-bg:#E5EEFD;--tn-sel:#FFC94D;--tn-line:#DCE6E3;--tn-ink:#102F2C;--tn-ink3:#7E918D}
+.scr-body[hidden],.tn-clinica[hidden]{display:none!important}
+.tn-oculto{visibility:hidden;height:0;padding:0!important;overflow:hidden}
+
+/* interruptor */
+.tn-modo{display:flex;gap:4px;margin:12px 16px 0;padding:4px;background:#EEF3F1;border-radius:14px}
+.tn-m{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 6px;font:700 13px/1.2 var(--sans,system-ui);color:var(--tn-ink3);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.tn-m.on{background:#fff;color:var(--tn-ink);box-shadow:0 1px 4px rgba(16,47,44,.15)}
+.tn-dot{width:8px;height:8px;border-radius:50%;background:var(--tn-sel);box-shadow:0 0 0 0 rgba(255,201,77,.7);animation:tnPulso 1.6s infinite}
+.tn-m.on .tn-dot{animation:none;background:var(--tn-ok)}
+@keyframes tnPulso{70%{box-shadow:0 0 0 7px rgba(255,201,77,0)}100%{box-shadow:0 0 0 0 rgba(255,201,77,0)}}
+@media (prefers-reduced-motion:reduce){.tn-dot{animation:none}}
+
+/* días */
+.tn-days{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 1px 4px;scroll-snap-type:x proximity}
+.tn-days::-webkit-scrollbar{display:none}
+.tn-day{flex:0 0 58px;scroll-snap-align:start;border:1.5px solid var(--tn-line);background:#fff;border-radius:12px;padding:6px 0;text-align:center;font:500 11px/1.25 var(--sans,system-ui);cursor:pointer;color:var(--tn-ink)}
+.tn-day b{display:block;font-size:18px;font-weight:700}
+.tn-day .q{display:block;font-size:10.5px;color:var(--tn-ok);font-weight:700;white-space:nowrap}
+.tn-day.full .q{color:#C0563F}
+.tn-day.off{opacity:.4;cursor:not-allowed}.tn-day.off .q{color:var(--tn-ink3)}
+.tn-day.sel{background:var(--tn-ok);border-color:var(--tn-ok);color:#fff}.tn-day.sel .q{color:#fff}
+
+/* leyenda */
+.tn-ley{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:var(--tn-ink3)}
+.tn-ley span{display:flex;align-items:center;gap:5px}
+.tn-k{width:12px;height:12px;border-radius:4px;display:inline-block;border:1.5px solid var(--tn-line)}
+.tn-k.libre{background:#fff;border-color:var(--tn-ok)}
+.tn-k.previo{background:repeating-linear-gradient(135deg,var(--tn-busy) 0 3px,#fff 3px 5px);border-color:var(--tn-busy)}
+.tn-k.sel{background:var(--tn-sel);border-color:var(--tn-sel)}
+.tn-k.usado{background:var(--tn-used);border-color:var(--tn-used)}
+.tn-k.online{background:var(--tn-on-bg);border-color:var(--tn-on)}
+
+/* horarios */
+.tn-slots{max-height:286px;overflow-y:auto;overscroll-behavior:contain;padding-right:2px;margin:0 -2px;display:block}
+.tn-slots-c{max-height:250px}
+.tn-ses{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;margin:8px 0 5px;position:sticky;top:0;background:#fff;z-index:1;padding:3px 0}
+.tn-ses b{font-size:13px;color:var(--tn-ink)}
+.tn-ses>span{color:var(--tn-ok);font-weight:700}
+.tn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.tn-slot{border:1.5px solid var(--tn-ok);background:#fff;border-radius:9px;padding:7px 0;font:600 12.5px var(--sans,system-ui);cursor:pointer;color:var(--tn-ink);text-align:center;line-height:1.15}
+.tn-slot.libre:hover{background:var(--tn-ok-bg)}
+.tn-slot.previo{border-color:var(--tn-busy);color:var(--tn-busy-t);background:repeating-linear-gradient(135deg,var(--tn-busy) 0 4px,#F7F9F8 4px 8px);text-decoration:line-through}
+.tn-slot.previo[disabled]{cursor:not-allowed}
+.tn-slot.sel{background:var(--tn-sel);border-color:var(--tn-sel);color:var(--tn-ink)}
+.tn-slot small{display:block;font-size:9.5px;font-weight:500;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 3px}
+.tn-clinica .tn-slot b{font-size:12.5px}
+.tn-clinica .tn-slot.libre small{color:var(--tn-ok)}
+.tn-clinica .tn-slot.previo{text-decoration:none}
+.tn-slot.usado{background:var(--tn-used);border-color:var(--tn-used);color:#fff}
+.tn-slot.online{background:var(--tn-on-bg);border-color:var(--tn-on);color:#16408A}
+.tn-vacio{font-size:13px;color:var(--tn-ink3);padding:10px 0}
+
+/* consultorio */
+.tn-clinica{gap:8px}
+.tn-ayuda{font-size:12px;color:var(--tn-ink3);margin:-4px 0 0;line-height:1.5}
+.tn-acc{display:flex;gap:4px}
+.tn-mini{border:1px solid var(--tn-line);background:#fff;border-radius:8px;padding:3px 7px;font:600 11px var(--sans,system-ui);color:var(--tn-ink);cursor:pointer}
+.tn-mini:hover{border-color:var(--tn-ok)}
+.tn-cuenta{font-size:12px;font-weight:700;color:var(--tn-ink);margin:2px 0 0}
+.tn-cal{border:1.5px dashed var(--tn-line);border-radius:12px;padding:8px 10px}
+.tn-cal-t{font-size:12px;font-weight:700;margin:0 0 6px}
+.tn-cal-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tn-calb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;border:1.5px solid var(--tn-line);background:#fff;border-radius:10px;padding:6px 8px;font:600 11.5px var(--sans,system-ui);color:var(--tn-ink);cursor:pointer;text-align:left}
+.tn-calb small{flex-basis:100%;font-size:10px;color:var(--tn-ok);font-weight:700;min-height:0}
+.tn-calb small:empty{display:none}
+.tn-calb.on{border-color:var(--tn-ok);background:var(--tn-ok-bg)}
+.tn-cal-ic{width:16px;height:16px;border-radius:4px;flex:none;border:2px solid #4285F4;border-top-width:5px}
+.tn-cal-ic.a{border-color:#FF3B30;border-top-width:5px}
+.tn-cal-n{font-size:10.5px;color:var(--tn-ink3);margin:6px 0 0;line-height:1.45}
+.tn-pie{display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.tn-ver{margin-top:0}
+.tn-reset{border:0;background:transparent;color:var(--tn-ink3);font:500 12px var(--sans,system-ui);text-decoration:underline;cursor:pointer;padding:2px}
+.tn-nota{font-size:10.5px;color:var(--tn-ink3);text-align:center;margin:0}

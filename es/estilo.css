@@ -371,3 +371,10 @@ footer a{color:#DCEAE6}
 .u21{margin:0}
 .u22{position:relative}
 .u23{color:var(--ink-2);margin-top:8px}
+
+/* WhatsApp en español */
+:root{--line-app:#25D366}
+.line-ic{background:#25D366}
+.line-ic svg{width:18px;height:18px}
+.wa-w{display:flex;flex-direction:column;gap:3px;min-width:0}
+.wa-t{font-size:11px;color:#128C7E}
