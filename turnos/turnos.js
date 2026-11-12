@@ -10,11 +10,11 @@
   /* ===================== CONFIGURACIÓN ===================== */
   var TW={ /* horarios típicos de Taiwán: 早診・午診・夜診 */
     sesiones:[["09:00","12:00"],["14:00","17:30"],["18:00","21:30"]],
-    sabado:[0,1], cerrado:[0], cada:15, dias:7, ocupacion:[.45,.35,.6]
+    sabado:[0,1], cerrado:[0], cada:30, dias:7, ocupacion:[.45,.35,.6]
   };
   var AR={ /* Argentina: mañana y tarde */
     sesiones:[["9:00","13:00"],["15:00","20:00"]],
-    sabado:[0], cerrado:[0], cada:15, dias:7, ocupacion:[.45,.5]
+    sabado:[0], cerrado:[0], cada:30, dias:7, ocupacion:[.45,.5]
   };
   var CLINICAS={
     "zh":{h:TW, ses:["早診","午診","夜診"], wk:["日","一","二","三","四","五","六"],
@@ -92,7 +92,7 @@
   function sesionesDe(d){
     if(H.cerrado.indexOf(d.getDay())>=0) return [];
     var out=[];H.sesiones.forEach(function(s,i){if(d.getDay()===6&&H.sabado.indexOf(i)<0)return;
-      var ts=[];for(var m=mins(s[0]);m<mins(s[1]);m+=H.cada)ts.push(hhmm(m));out.push({i:i,n:C.ses[i],t:ts})});
+      var ts=[];for(var m=mins(s[0]);m<mins(s[1]);m+=H.cada)ts.push(hhmm(m));out.push({i:i,n:C.ses[i],r:s[0]+"–"+s[1],t:ts})});
     return out;
   }
   /* estado: libre | previo (ya reservado) | usado (lo marcó el consultorio) | online (reservado en esta demo) */
@@ -142,7 +142,7 @@
     if(!st.d){slotsEl.appendChild(el("p","tn-vacio",C.elegir));return}
     sesionesDe(st.d).forEach(function(s){
       var libres=s.t.filter(function(t){return estado(st.d,t,s.i)==="libre"}).length;
-      var hd=el("p","tn-ses");hd.appendChild(el("b",null,s.n));hd.appendChild(el("span",null,libres?C.quedan(libres):C.lleno));
+      var hd=el("p","tn-ses");var hb=el("b",null,s.n);hb.appendChild(el("small",null," "+s.r));hd.appendChild(hb);hd.appendChild(el("span",null,libres?C.quedan(libres):C.lleno));
       slotsEl.appendChild(hd);
       var g=el("div","tn-grid");
       s.t.forEach(function(t){
@@ -209,7 +209,7 @@
   function dibujarHorariosC(){
     cHor.innerHTML="";var f=0,b=0;
     sesionesDe(cDia).forEach(function(s){
-      var hd=el("p","tn-ses");hd.appendChild(el("b",null,s.n));
+      var hd=el("p","tn-ses");var hb=el("b",null,s.n);hb.appendChild(el("small",null," "+s.r));hd.appendChild(hb);
       var acc=el("span","tn-acc"), b1=el("button","tn-mini",C.bloq), b2=el("button","tn-mini",C.abrir);b1.type=b2.type="button";
       b1.addEventListener("click",function(){s.t.forEach(function(t){marcar(cDia,t,s.i,true)});save();refrescar()});
       b2.addEventListener("click",function(){s.t.forEach(function(t){marcar(cDia,t,s.i,false)});save();refrescar()});
